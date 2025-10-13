@@ -26,7 +26,7 @@ screen MapUI:
             ypos 570
             # Caminho já estava correto
             idle "images/map/house1_idle.png"
-            hover "images/map/house1_hover.png"
+            #hover "images/map/house1_hover.png"
             # AÇÃO CORRIGIDA: A ação deve pular para o label "digital", não "quiz_digital"
             action Jump("digital")
 
@@ -37,7 +37,7 @@ screen MapUI:
             ypos 165
             # CAMINHOS CORRIGIDOS
             idle "images/map/house2_idle.png"
-            hover "images/map/house2_hover.png"
+            #hover "images/map/house2_hover.png"
             action Jump("cyberpunk") # Presumindo que o label seja "cyberpunk"
 
 
@@ -48,7 +48,7 @@ screen MapUI:
             ypos 165
             # CAMINHOS CORRIGIDOS
             idle "images/map/house3_idle.png"
-            hover "images/map/house3_hover.png"
+            #hover "images/map/house3_hover.png"
             action Jump("marinho") # Presumindo que o label seja "marinho"
 
 
@@ -59,7 +59,7 @@ screen MapUI:
             ypos 165
             # CAMINHOS CORRIGIDOS
             idle "images/map/house4_idle.png"
-            hover "images/map/house4_hover.png"
+            #hover "images/map/house4_hover.png"
             action Jump("medieval") # Presumindo que o label seja "medieval"
 
 
@@ -70,7 +70,7 @@ screen MapUI:
             ypos 165
             # CAMINHOS CORRIGIDOS
             idle "images/map/house5_idle.png"
-            hover "images/map/house5_hover.png"
+            #hover "images/map/house5_hover.png"
             action Jump("alienigena") # Presumindo que o label seja "alienigena"
 
 
@@ -81,5 +81,5 @@ screen MapUI:
             ypos 165
             # CAMINHOS CORRIGIDOS
             idle "images/map/house6_idle.png"
-            hover "images/map/house6_hover.png"
+            #hover "images/map/house6_hover.png"
             action Jump("final")

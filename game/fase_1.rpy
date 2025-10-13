@@ -1,5 +1,10 @@
 # ################### FASE 1 ###############################
 
+# --- CORREÇÃO (PARTE 1) ---
+# Declaramos a imagem de fundo com um nome simples ("bg fase1").
+# Esta linha deve ficar fora de qualquer label.
+image bg fase1 = "images/background/fase1.jpg"
+
 # Bloco de inicialização para carregar as perguntas do JSON uma vez, no início do jogo.
 init python:
     import json
@@ -18,12 +23,18 @@ init python:
 
 
 label digital:
+    # Esconde a tela do mapa que estava visível.
+    hide screen MapUI
+
+    # --- CORREÇÃO (PARTE 2) ---
+    # Agora usamos o nome simples que definimos acima.
+    scene bg fase1 with fade
+
     # Diálogo inicial (mantido do seu script original)
     raimundo "Olá, [jogador]! Seja bem-vindo ao Universo de Variáveis!"
     jogador "Quem é você??"
     raimundo "Serei o seu desafiante, caso passe pelos meus desafios e lhe darei a jóia necessária para voltar pra casa"
     jogador "Aceito seu desafio!"
-
     # Definição das regras (mantido do seu script original)
     if difficulty == "easy":
         $ perguntas_totais = 10
@@ -34,6 +45,7 @@ label digital:
     else: # difficulty == "hard"
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
+
 
     # Pula para a preparação do quiz
     jump preparar_quiz_digital
