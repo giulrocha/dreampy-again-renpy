@@ -3,8 +3,6 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-# The game starts here.
-
 #Definindo personagens, título e cor dos nomes na tela
 define professor_gilberto = Character("Professor Gilberto", color="#3477eb")
 define jogador = Character("Jogador",  color="#34d8eb")    #nome de user que cadastrou la no tela inicial
@@ -17,8 +15,7 @@ define vanilton = Character("Vanilton", color="#6935db")      ## FASE 2
 define pedro = Character("Pedro", color="#c8cecf")            ## FASE 3
 
 # Declaração de fases
-
-default fase_1_liberada = True      
+default fase_1_liberada = True       
 default fase_2_liberada = False
 default fase_3_liberada = False
 default fase_4_liberada = False
@@ -28,18 +25,19 @@ default volta_pra_casa = False
 ############### FALTA COLOCAR O START, PENSAR NISSO DEPOIS
 
 label start:
-
     call choice_character
 
 
 #Escolhe personagem
 label choice_character:
     scene black with fade
-    show text "Escolha seu personagem [jogador]:" at Position(xalign=0.5, yalign=0.2)
+    show text "Escolha seu personagem:" at Position(xalign=0.5, yalign=0.2)
     menu:
         "Aluna":
+            $ jogador = Character("Aluna", color="#f2b3ed")
             jump dificuldade
         "Aluno":
+            $ jogador = Character("Aluno", color="#b3dff2")
             jump dificuldade
 
 #Escolhe dificuldade do jogo
@@ -49,29 +47,34 @@ label dificuldade:
     menu:
         "Fácil":
             $ difficulty = "easy"
-            jump start_game_easy
+            call intro
+            jump hub_mapa
         "Normal":
             $ difficulty = "normal"
-            jump start_game_normal
+            call intro
+            jump hub_mapa
         "Difícil":
             $ difficulty = "hard"
-            jump start_game_hard
+            call intro
+            jump hub_mapa
 
 
-label start_game_easy:
+# ####################################################################
+# HUB CENTRAL DO MAPA
+# O jogo sempre voltará para este ponto após uma fase.
+# ####################################################################
+label hub_mapa:
+    # Esconde a caixa de diálogo para uma visão limpa do mapa
+    window hide
 
-    call intro
+    # Mostra o ecrã do mapa que definimos no custom_screens.rpy
+    show screen MapUI
 
-    call screen MapUI
+    # MUDANÇA CRÍTICA: O comando 'pause' para o fluxo do jogo e espera por uma
+    # interação (um clique). Como o ecrã do mapa está visível, o clique
+    # será nos botões do mapa, ativando a sua ação 'Jump'.
+    pause
 
-label start_game_normal:
-
-    call intro
-
-    call screen MapUI
-
-label start_game_hard:
-
-    call intro
-
-    call screen MapUI
+    # Este código abaixo só seria executado se algo corresse muito mal.
+    "Algo correu mal com o mapa."
+    return
