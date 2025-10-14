@@ -67,14 +67,11 @@ label hub_mapa:
     # Esconde a caixa de diálogo para uma visão limpa do mapa
     window hide
 
-    # Mostra o ecrã do mapa que definimos no custom_screens.rpy
-    show screen MapUI
+    # SOLUÇÃO: Usamos "call screen" para mostrar o mapa e esperar por uma
+    # interação válida (um clique num botão). Cliques no fundo serão ignorados.
+    call screen MapUI
 
-    # MUDANÇA CRÍTICA: O comando 'pause' para o fluxo do jogo e espera por uma
-    # interação (um clique). Como o ecrã do mapa está visível, o clique
-    # será nos botões do mapa, ativando a sua ação 'Jump'.
-    pause
-
-    # Este código abaixo só seria executado se algo corresse muito mal.
+    # Este código abaixo só será executado se a tela MapUI usar a ação "Return",
+    # o que não deve acontecer no fluxo normal do jogo.
     "Algo correu mal com o mapa."
     return

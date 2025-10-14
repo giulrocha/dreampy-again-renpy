@@ -1,6 +1,10 @@
-## Tela com os diamantes na tela ????? pensar se vou colocar
+# Transform para redimensionar as imagens dos botões do mapa.
+# Você pode ajustar os valores (150, 120) para a largura e altura que desejar.
+transform map_icon_size:
+    size (150, 120)
 
-### exemplo abaixo está com o botão de começar
+
+# Tela da UI principal com o botão para abrir o mapa
 screen gameUI:
     imagebutton:
         xalign 1.0
@@ -8,78 +12,72 @@ screen gameUI:
         xoffset -30
         yoffset 30
         auto "UI/map_%s.png"
-        # AÇÃO CORRIGIDA: Usando "Call" para chamar a tela do mapa diretamente.
-        action Call("MapUI")
+        # Esta ação chama a tela do mapa
+        action Show("MapUI")
 
-# O label "call_mapUI" que estava aqui foi removido, pois estava incorreto.
 
-## Tela de interação com o mapa
+# Tela de interação com o mapa
 screen MapUI:
 
-    # Caminho já estava correto
+    # Imagem de fundo do mapa
     add "images/map/bg map.jpg"
 
+    # --- FASE 1 ---
     if fase_1_liberada:
-        # FASE 1
         imagebutton:
             xpos 618
             ypos 570
-            # Caminho já estava correto
-            idle "images/map/house1_idle.png"
-            #hover "images/map/house1_hover.png"
-            # AÇÃO CORRIGIDA: A ação deve pular para o label "digital", não "quiz_digital"
+            # Aplica a transform de redimensionamento às imagens
+            idle At("images/map/house1_idle.png", map_icon_size)
+            #hover At("images/map/house1_hover.png", map_icon_size)
             action Jump("digital")
 
+    # --- FASE 2 ---
     if fase_2_liberada:
-        # FASE 2
         imagebutton:
             xpos 596
             ypos 165
-            # CAMINHOS CORRIGIDOS
-            idle "images/map/house2_idle.png"
-            #hover "images/map/house2_hover.png"
-            action Jump("cyberpunk") # Presumindo que o label seja "cyberpunk"
+            # Aplica a transform de redimensionamento às imagens
+            idle At("images/map/house2_idle.png", map_icon_size)
+            #hover At("images/map/house2_hover.png", map_icon_size)
+            action Jump("cyberpunk")
 
-
+    # --- FASE 3 ---
     if fase_3_liberada:
-        # FASE 3
         imagebutton:
-            xpos 596
-            ypos 165
-            # CAMINHOS CORRIGIDOS
-            idle "images/map/house3_idle.png"
-            #hover "images/map/house3_hover.png"
-            action Jump("marinho") # Presumindo que o label seja "marinho"
+            xpos 950  # Lembre-se de ajustar a posição!
+            ypos 350  # Lembre-se de ajustar a posição!
+            # Aplica a transform de redimensionamento às imagens
+            idle At("images/map/house3_idle.png", map_icon_size)
+            #hover At("images/map/house3_hover.png", map_icon_size)
+            action Jump("marinho")
 
-
+    # --- FASE 4 ---
     if fase_4_liberada:
-        # FASE 4
         imagebutton:
-            xpos 596
-            ypos 165
-            # CAMINHOS CORRIGIDOS
-            idle "images/map/house4_idle.png"
-            #hover "images/map/house4_hover.png"
-            action Jump("medieval") # Presumindo que o label seja "medieval"
+            xpos 300  # Lembre-se de ajustar a posição!
+            ypos 400  # Lembre-se de ajustar a posição!
+            # Aplica a transform de redimensionamento às imagens
+            idle At("images/map/house4_idle.png", map_icon_size)
+            #hover At("images/map/house4_hover.png", map_icon_size)
+            action Jump("medieval")
 
-
+    # --- FASE 5 ---
     if fase_5_liberada:
-        # FASE 5
         imagebutton:
-            xpos 596
-            ypos 165
-            # CAMINHOS CORRIGIDOS
-            idle "images/map/house5_idle.png"
-            #hover "images/map/house5_hover.png"
-            action Jump("alienigena") # Presumindo que o label seja "alienigena"
+            xpos 800  # Lembre-se de ajustar a posição!
+            ypos 600  # Lembre-se de ajustar a posição!
+            # Aplica a transform de redimensionamento às imagens
+            idle At("images/map/house5_idle.png", map_icon_size)
+            #hover At("images/map/house5_hover.png", map_icon_size)
+            action Jump("alienigena")
 
-
+    # --- VOLTA PRA CASA ---
     if volta_pra_casa:
-         # VAI PRA CASA
         imagebutton:
-            xpos 596
-            ypos 165
-            # CAMINHOS CORRIGIDOS
-            idle "images/map/house6_idle.png"
-            #hover "images/map/house6_hover.png"
+            xpos 120  # Lembre-se de ajustar a posição!
+            ypos 150  # Lembre-se de ajustar a posição!
+            # Aplica a transform de redimensionamento às imagens
+            idle At("images/map/house6_idle.png", map_icon_size)
+            #hover At("images/map/house6_hover.png", map_icon_size)
             action Jump("final")

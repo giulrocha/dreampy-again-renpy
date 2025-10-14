@@ -5,12 +5,42 @@
 # Esta linha deve ficar fora de qualquer label.
 image bg fase1 = "images/background/fase1.jpg"
 
+# --- TELA CUSTOMIZADA PARA O QUIZ ---
+# Esta tela exibe uma pergunta e uma lista de opções como botões.
+screen quiz_screen(question, options):
+    # Usamos um frame para agrupar os elementos do quiz com um fundo semi-transparente.
+    frame:
+        # Alinha o frame no centro da tela
+        xalign 0.5
+        yalign 0.5
+        # Define um preenchimento interno para não colar nas bordas
+        padding (30, 30)
+
+        # Organiza os elementos verticalmente
+        vbox:
+            spacing 20  # Espaço entre a pergunta e as alternativas
+
+            # 1. O Texto da Pergunta
+            # Exibe a pergunta recebida pela tela.
+            text question:
+                xalign 0.5  # Centraliza o texto da pergunta
+
+            # 2. As Alternativas como Botões
+            # Cria um botão para cada opção na lista de 'options'.
+            for option in options:
+                textbutton option:
+                    xalign 0.5  # Centraliza os botões
+                    # A ação 'Return(option)' faz com que a tela seja fechada
+                    # e o texto do botão seja retornado como resultado.
+                    action Return(option)
+
+
 # Bloco de inicialização para carregar as perguntas do JSON uma vez, no início do jogo.
 init python:
     import json
     import random
 
-    # Usamos renpy.open_file() por ser a forma mais segura de abrir ficheiros no Ren'Py
+    # Usamos renpy.open_file() por ser a forma mais segura de abrir ficheiros no Ren'Py.
     try:
         with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
             dados_quiz = json.load(f)
@@ -26,7 +56,6 @@ label digital:
     # Esconde a tela do mapa que estava visível.
     hide screen MapUI
 
-    # --- CORREÇÃO (PARTE 2) ---
     # Agora usamos o nome simples que definimos acima.
     scene bg fase1 with fade
 
@@ -35,6 +64,7 @@ label digital:
     jogador "Quem é você??"
     raimundo "Serei o seu desafiante, caso passe pelos meus desafios e lhe darei a jóia necessária para voltar pra casa"
     jogador "Aceito seu desafio!"
+    
     # Definição das regras (mantido do seu script original)
     if difficulty == "easy":
         $ perguntas_totais = 10
@@ -47,22 +77,48 @@ label digital:
         $ acertos_para_passar = 7
 
 
-    # Pula para a preparação do quiz
-    jump preparar_quiz_digital
+    # --- NOVO: MENU DE DEPURAÇÃO ---
+    # Este menu permite pular o quiz para fins de teste.
+    menu:
+        "Iniciar o questionário normalmente.":
+            # [cite_start]Pula para a preparação normal do quiz. [cite: 10]
+            jump preparar_quiz_digital
+            
+        "DEBUG: Passar direto (100% acertos).":
+            # Pula para uma rotina que força a vitória.
+            jump debug_passar_quiz
+            
+        "DEBUG: Falhar direto (0% acertos).":
+            # Pula para uma rotina que força a derrota.
+            jump debug_falhar_quiz
+
+
+# --- NOVOS LABELS DE DEPURAÇÃO ---
+label debug_passar_quiz:
+    # Define os acertos como o máximo possível para garantir a vitória.
+    $ acertos = perguntas_totais
+    # Pula diretamente para a verificação de resultados.
+    jump verificar_resultado_quiz
+
+label debug_falhar_quiz:
+    # Define os acertos como zero para garantir a derrota.
+    $ acertos = 0
+    # Pula diretamente para a verificação de resultados.
+    jump verificar_resultado_quiz
 
 
 label preparar_quiz_digital:
     # Inicia o contador de acertos para esta tentativa
     $ acertos = 0
 
-    # Mapeia a dificuldade do jogo ("normal") para as chaves do JSON ("médio")
+    # Mapeia a dificuldade do jogo para as chaves do JSON
     $ mapa_dificuldade = {"easy": "fácil", "normal": "médio", "hard": "difícil"}
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
 
     # Pega a lista de perguntas da dificuldade correta
     $ lista_de_perguntas = list(perguntas_fase_1[chave_dificuldade_atual])
 
-    # Embaralha as perguntas para que a ordem seja aleatória a cada jogo
+    # Embaralha as perguntas para que a ordem seja aleatória
     $ random.shuffle(lista_de_perguntas)
 
     # Seleciona apenas o número de perguntas que vamos usar na rodada
@@ -75,30 +131,25 @@ label preparar_quiz_digital:
 label proxima_pergunta:
     # Primeiro, verificamos se a lista de perguntas da sessão já esvaziou
     if not perguntas_da_sessao:
-        # Se sim, o quiz terminou. Vamos verificar o resultado.
+        # Se sim, o quiz terminou. [cite_start]Vamos verificar o resultado. [cite: 12]
         jump verificar_resultado_quiz
 
     # Pega a próxima pergunta da lista e, ao mesmo tempo, a remove
     $ pergunta_atual = perguntas_da_sessao.pop(0)
 
-    # Mostra a pergunta na tela
-    raimundo "[pergunta_atual['pergunta']]"
-
     # Embaralha as opções de resposta para que não apareçam sempre na mesma ordem
     $ random.shuffle(pergunta_atual['opcoes'])
 
-    # --- O Coração do Quiz: A Correção Definitiva ---
-    python:
-        # Criamos uma lista de opções no formato que o Ren'Py entende para menus dinâmicos
-        opcoes_para_menu = []
-        for opcao in pergunta_atual['opcoes']:
-            opcoes_para_menu.append( (opcao, opcao) ) # Formato: (Texto da Opção, Valor de Retorno)
+    # Chamamos a nossa nova tela, passando a pergunta e as opções atuais.
+    call screen quiz_screen(
+        question=pergunta_atual['pergunta'],
+        options=pergunta_atual['opcoes']
+    )
 
-        # A função renpy.display_menu mostra o menu e espera o jogador escolher.
-        # A escolha do jogador é então armazenada na variável.
-        escolha_do_jogador = renpy.display_menu(opcoes_para_menu)
+    # O valor da escolha do jogador é guardado na variável especial '_return'.
+    $ escolha_do_jogador = _return
 
-    # Agora, fora do bloco python, verificamos se a escolha foi correta
+    # Agora, verificamos se a escolha foi correta
     if escolha_do_jogador == pergunta_atual['resposta_correta']:
         $ acertos += 1
         jogador "A resposta é essa. Acho que acertei!"
