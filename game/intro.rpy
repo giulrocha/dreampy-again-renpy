@@ -74,4 +74,4 @@ label hub_controle_1:
 
     #primeira portal fica disponível para clicar no mapa.
 
-    jump digital
+    jump hub_mapa

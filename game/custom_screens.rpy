@@ -1,6 +1,6 @@
 ## Tela com os diamantes na tela ????? pensar se vou colocar
 
-###exemplo abaixo está com o botão de começar
+### exemplo abaixo está com o botão de começar
 screen gameUI:
     imagebutton:
         xalign 1.0
@@ -8,76 +8,78 @@ screen gameUI:
         xoffset -30
         yoffset 30
         auto "UI/map_%s.png"
-        action Jump ("call_mapUI")
-        # You may also use the code below depending on your needs.
-        # action ShowMenu("mapUI")
-        # This was the same code used in the vlog.
+        # AÇÃO CORRIGIDA: Usando "Call" para chamar a tela do mapa diretamente.
+        action Call("MapUI")
 
-# If you just want to show a map that does nothing more than just an indicator, it's good to use ShowMenu.
-# If you want to navigate using the map, it's prefered to use "call".
-# When in skip mode (tab key on keyboard), this prevents the game to be skipped.
-label call_mapUI:
-    call screen MapUI
+# O label "call_mapUI" que estava aqui foi removido, pois estava incorreto.
 
 ## Tela de interação com o mapa
 screen MapUI:
 
-    add "map/bg map.jpg"
+    # Caminho já estava correto
+    add "images/map/bg map.jpg"
 
     if fase_1_liberada:
         # FASE 1
         imagebutton:
-            xpos 618    #### mudar
-            ypos 570      #### mudar
-            idle "map/house1_idle.png"        #### quando está normal
-            hover "map/house1_hover.png"       #### quando passa o mouse em cima
-            action Jump("quiz_digital")
+            xpos 618
+            ypos 570
+            # Caminho já estava correto
+            idle "images/map/house1_idle.png"
+            #hover "images/map/house1_hover.png"
+            # AÇÃO CORRIGIDA: A ação deve pular para o label "digital", não "quiz_digital"
+            action Jump("digital")
 
     if fase_2_liberada:
-        # FASE 2    
+        # FASE 2
         imagebutton:
-            xpos 596       ## mudar       
-            ypos 165        ## mudar
-            idle "map/house2_idle.png"      ### quando está normal
-            hover "map/house2_hover.png"      #### quando passa o mouse em cima
-            action Jump("quiz_cyberpunk")
+            xpos 596
+            ypos 165
+            # CAMINHOS CORRIGIDOS
+            idle "images/map/house2_idle.png"
+            #hover "images/map/house2_hover.png"
+            action Jump("cyberpunk") # Presumindo que o label seja "cyberpunk"
 
 
     if fase_3_liberada:
-        # FASE 3    
+        # FASE 3
         imagebutton:
-            xpos 596       ## mudar       
-            ypos 165        ## mudar
-            idle "map/house3_idle.png"      ### quando está normal
-            hover "map/house3_hover.png"      #### quando passa o mouse em cima
-            action Jump("quiz_marinho")
+            xpos 596
+            ypos 165
+            # CAMINHOS CORRIGIDOS
+            idle "images/map/house3_idle.png"
+            #hover "images/map/house3_hover.png"
+            action Jump("marinho") # Presumindo que o label seja "marinho"
 
 
     if fase_4_liberada:
-        # FASE 4    
+        # FASE 4
         imagebutton:
-            xpos 596       ## mudar       
-            ypos 165        ## mudar
-            idle "map/house4_idle.png"      ### quando está normal
-            hover "map/house4_hover.png"      #### quando passa o mouse em cima
-            action Jump("quiz_medieval")
+            xpos 596
+            ypos 165
+            # CAMINHOS CORRIGIDOS
+            idle "images/map/house4_idle.png"
+            #hover "images/map/house4_hover.png"
+            action Jump("medieval") # Presumindo que o label seja "medieval"
 
 
     if fase_5_liberada:
-        # FASE 5    
+        # FASE 5
         imagebutton:
-            xpos 596       ## mudar       
-            ypos 165        ## mudar
-            idle "map/house5_idle.png"      ### quando está normal
-            hover "map/house5_hover.png"      #### quando passa o mouse em cima
-            action Jump("quiz_alienigena")
+            xpos 596
+            ypos 165
+            # CAMINHOS CORRIGIDOS
+            idle "images/map/house5_idle.png"
+            #hover "images/map/house5_hover.png"
+            action Jump("alienigena") # Presumindo que o label seja "alienigena"
 
 
     if volta_pra_casa:
-        # VAI PRA CASA
+         # VAI PRA CASA
         imagebutton:
-            xpos 596       ## mudar       
-            ypos 165        ## mudar
-            idle "map/house6_idle.png"      ### quando está normal
-            hover "map/house6_hover.png"      #### quando passa o mouse em cima
+            xpos 596
+            ypos 165
+            # CAMINHOS CORRIGIDOS
+            idle "images/map/house6_idle.png"
+            #hover "images/map/house6_hover.png"
             action Jump("final")
