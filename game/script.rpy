@@ -12,9 +12,11 @@ define aluno_1 = Character("Giulie", color="#f2b3ed")
 define aluno_2 = Character("Yasmim", color="#b3dff2")
 define aluno_3 = Character("Luan", color="#e34f61")
 define android = Character("Android Giba", color="#3477eb")
-define raimundo = Character("Raimundo", color="#78c4cc")      ## FASE 1
-define vanilton = Character("Vanilton", color="#6935db")      ## FASE 2
-define pedro = Character("Pedro", color="#c8cecf")            ## FASE 3
+define raimundo = Character("Robô Raimundo", color="#78c4cc")      ## FASE 1
+define vanilton = Character("Vanilton", color="#6935db")           ## FASE 2
+define pedro = Character("Tritão Pedro", color="#c8cecf")          ## FASE 3
+define frank = Character("Mago Frank", color="#c8cecf")            ## FASE 4
+define sergio = Character("Alien Sergio", color="#c8cecf")         ## FASE 5
 
 # Declaração de fases
 
@@ -49,29 +51,31 @@ label dificuldade:
     menu:
         "Fácil":
             $ difficulty = "easy"
-            jump start_game_easy
+            call intro
+            jump hub_mapa
         "Normal":
             $ difficulty = "normal"
-            jump start_game_normal
+            call intro
+            jump hub_mapa
         "Difícil":
             $ difficulty = "hard"
-            jump start_game_hard
+            call intro
+            jump hub_mapa
 
 
-label start_game_easy:
+# ####################################################################
+# HUB CENTRAL DO MAPA
+# O jogo sempre voltará para este ponto após uma fase.
+# ####################################################################
+label hub_mapa:
+    # Esconde a caixa de diálogo para uma visão limpa do mapa
+    window hide
 
-    call intro
-
+    # Usando "call screen" para mostrar o mapa e esperar por uma
+    # interação válida (um clique num botão). Cliques no fundo serão ignorados.
     call screen MapUI
 
-label start_game_normal:
-
-    call intro
-
-    call screen MapUI
-
-label start_game_hard:
-
-    call intro
-
-    call screen MapUI
+    # Só será executado se a tela MapUI usar a ação "Return",
+    # o que não deve acontecer no fluxo normal do jogo.
+    "Algo correu mal com o mapa."
+    return
