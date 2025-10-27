@@ -4,7 +4,9 @@
 # When in skip mode (tab key on keyboard), this prevents the game to be skipped.
 
 transform map_icon_size:
-    size (250, 250)  # Ajuste conforme quiser
+    zoom 2.0
+    # fit "cover" 
+    # size (250, 250)  # Ajuste conforme quiser
     # anchor (0.5, 0.5)  # Centraliza o ponto de clique
     nearest True
 
@@ -21,18 +23,20 @@ screen MapUI:
     if fase_1_liberada:
         # FASE 1
         imagebutton:
-            xpos 320
-            ypos 500
-            idle At("images/map/fase-1-hover.png", map_icon_size)
+            xpos 32    #antes 320
+            ypos 50     #antes 500
+            idle At("images/map/fase-1-idle.png", map_icon_size)
             hover At("images/map/fase-1-hover.png", map_icon_size)
-            action Jump("digital")
+            focus_mask True
+            # action Jump("digital")
+            action [Hide("MapUI"), Jump("digital")]
 
     if fase_2_liberada:
         # FASE 2    
         imagebutton:
-            xpos 480
-            ypos 450
-            idle At("images/map/fase-2-hover.png", map_icon_size)
+            xpos 480    #antes 480
+            ypos 450     #antes 450
+            idle At("images/map/fase-2-idle.png", map_icon_size)
             hover At("images/map/fase-2-hover.png", map_icon_size)
             action Jump("cyberpunk")
 
@@ -42,7 +46,7 @@ screen MapUI:
         imagebutton:
             xpos 650
             ypos 440
-            idle At("images/map/fase-3-hover.png", map_icon_size)
+            idle At("images/map/fase-3-idle.png", map_icon_size)
             hover At("images/map/fase-3-hover.png", map_icon_size)
             action Jump("marinho")
 
@@ -52,7 +56,7 @@ screen MapUI:
         imagebutton:
             xpos 820
             ypos 420
-            idle At("images/map/fase-4-hover.png", map_icon_size)
+            idle At("images/map/fase-4-idle.png", map_icon_size)
             hover At("images/map/fase-4-hover.png", map_icon_size)
             action Jump("medieval")
 
@@ -62,7 +66,7 @@ screen MapUI:
         imagebutton:
             xpos 950
             ypos 380
-            idle At("images/map/fase-5-hover.png", map_icon_size)
+            idle At("images/map/fase-5-idle.png", map_icon_size)
             hover At("images/map/fase-5-hover.png", map_icon_size)
             action Jump("alienigena")
 
@@ -72,6 +76,6 @@ screen MapUI:
         imagebutton:
             xpos 1150
             ypos 200
-            idle At("images/map/volta-pra-casa-hover.png", map_icon_size)
+            idle At("images/map/volta-pra-casa-idle.png", map_icon_size)
             hover At("images/map/volta-pra-casa-hover.png", map_icon_size)
             action Jump("final")

@@ -1,6 +1,6 @@
 ################### FASE 5 ###############################
 
-image bg fase5 = "images/background/bg alienigena.jpg"
+image bg fase5 = "images/background/bg alienigena.png"
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
 screen quiz_screen(question, options):

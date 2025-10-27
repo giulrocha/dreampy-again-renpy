@@ -1,6 +1,6 @@
 ################### FASE 4 ###############################
 
-image bg fase4 = "images/background/bg medieval.jpg"
+image bg fase4 = "images/background/bg medieval.png"
 
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---

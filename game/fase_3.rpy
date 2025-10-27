@@ -1,6 +1,6 @@
 ################### FASE 3 ###############################
 
-image bg fase3 = "images/background/bg marinho.jpg"
+image bg fase3 = "images/background/bg marinho.png"
 
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
