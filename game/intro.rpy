@@ -1,10 +1,27 @@
 #Parte Indrodutória comum a todas as dificuldades
 
+image bg intro = "images/background/bg classroom.png"
+image gilberto_1 = "images/characters/gilberto_1.png"
+image aluna = "images/characters/aluna_andando.png"
+image aluno = "images/characters/aluno_normal.png"
+image giulie = "images/characters/giulie_feliz.png"
+image luan = "images/characters/luan_feliz.png"
+image yasmim = "images/characters/yasmim_feliz.png"
 
 label intro:
 
     #cena da sala de aula
-    scene bg classroom
+    scene expression Transform("bg intro", fit="cover") with fade
+
+    show gilberto_1 at Position(xpos=0.56, ypos=0.58, xanchor=0.5, yanchor=1.0)
+    if jogador == "aluna":
+        show aluna at Position(xpos=0.30, ypos=0.84, xanchor=0.5, yanchor=1.0)
+    else:
+        show aluno at Position(xpos=0.30, ypos=0.74, xanchor=0.5, yanchor=1.0)
+    show giulie at Position(xpos=0.38, ypos=0.84, xanchor=0.5, yanchor=1.0)
+    show yasmim at Position(xpos=0.54, ypos=0.84, xanchor=0.5, yanchor=1.0)
+    show luan   at Position(xpos=0.46, ypos=0.84, xanchor=0.5, yanchor=1.0)
+
 
     #aparece o professor e alunos
 
@@ -17,7 +34,7 @@ label intro:
     aluno_1 "Calma, esquecer faz parte da emoção da reta final! Estudar com um pouco de pressão até me ajuda a focar melhor."
 
     aluno_2 "Ih, lá vem ela com esse papo! Essa aí já devia estar dando aula com o professor Gilberto. Vive acertando tudo! Se eu tirar metade da sua nota, já tô comemorando com bolo e guaraná."
-
+    
     aluno_1 "Que isso, só tento não surtar… muito."
 
     aluno_3 "Então tá fazendo errado, porque surtar é meu plano A! Inclusive, se alguém achar minha calma por aí, favor devolver antes da prova!"

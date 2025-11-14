@@ -35,7 +35,9 @@ init python:
         renpy.error("Falha ao carregar 'quiz_perguntas.json': " + str(e))
 
 
-label alienigena:    
+label alienigena:   
+
+    scene expression Transform("bg fase5", fit="cover") with fade 
 
     sergio "Olá, [jogador]! Seja bem-vindo ao Universo de Listas e Dicionários!"
 

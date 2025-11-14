@@ -44,7 +44,7 @@ label marinho:
 
     hide screen MapUI
 
-    scene bg fase3 with fade
+    scene expression Transform("bg fase3", fit="cover") with fade
 
     pedro "Olá, [jogador]! Seja bem-vindo ao Universo de Estruturas de Repetição!"
 

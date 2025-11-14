@@ -1,6 +1,6 @@
 ################### FASE 2 ###############################
 
-image bg fase2 = "images/background/bg cyberpunk.jpg"
+image bg fase2 = "images/background/bg cyberpunk.png"
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
 screen quiz_screen(question, options):
@@ -47,7 +47,7 @@ label cyberpunk:
 
     hide screen MapUI
 
-    scene bg fase2 with fade
+    scene expression Transform("bg fase2", fit="cover") with fade
 
     vanilton "Olá, [jogador]! Seja bem-vindo ao Universo de Lógica e Estrutura Condicionais!"
 

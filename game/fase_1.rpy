@@ -44,7 +44,9 @@ label digital:
 
     hide screen MapUI
 
-    scene bg fase1 with fade
+    # scene bg fase1 with fade
+
+    scene expression Transform("bg fase1", fit="cover") with fade
 
     raimundo "Olá, [jogador]! Seja bem-vindo ao Universo de Variáveis!"
 

@@ -27,24 +27,78 @@ default fase_4_liberada = False
 default fase_5_liberada = False
 default volta_pra_casa = False
 
-############### FALTA COLOCAR O START, PENSAR NISSO DEPOIS
-
+############# START JOGO
 label start:
 
     call choice_character
 
 
-#Escolhe personagem
-label choice_character:
-    scene black with fade
-    show text "Escolha seu personagem [jogador]:" at Position(xalign=0.5, yalign=0.2)
-    menu:
-        "Aluna":
-            jump dificuldade
-        "Aluno":
-            jump dificuldade
 
-#Escolhe dificuldade do jogo
+############# ESCOLHA DE PERSONAGENS
+
+default personagem_preview = None
+
+image aluna = "images/characters/aluna_andando.png"
+image aluno = "images/characters/aluno_normal.png"
+
+screen escolha_personagem():
+
+    modal True
+    tag menu
+
+    # Fundo da tela
+    add "black"
+
+    # Título
+    text "Escolha seu personagem Jogador:":
+        xalign 0.5
+        yalign 0.1
+        size 40
+
+    # Botões de escolha
+    vbox:
+        xalign 0.5
+        yalign 0.35
+        spacing 20
+
+        textbutton "Aluna":
+            xalign 0.5
+            action Return("aluna")
+            hovered SetVariable("personagem_preview", "aluna")
+            unhovered SetVariable("personagem_preview", None)
+
+        textbutton "Aluno":
+            xalign 0.5
+            action Return("aluno")
+            hovered SetVariable("personagem_preview", "aluno")
+            unhovered SetVariable("personagem_preview", None)
+
+    # --- Área de preview ---
+    if personagem_preview == "aluna":
+        add "images/characters/aluna_andando.png":
+            xalign 0.5
+            yalign 0.75
+
+    if personagem_preview == "aluno":
+        add "images/characters/aluno_normal.png":
+            xalign 0.5
+            yalign 0.75
+
+label choice_character:
+
+    # Chama a tela
+    $ escolha = renpy.call_screen("escolha_personagem")
+
+    # Processa a escolha
+    if escolha == "aluna":
+        $ jogador = "aluna"
+    elif escolha == "aluno":
+        $ jogador = "aluno"
+
+    jump dificuldade
+
+
+#########Escolhe dificuldade do jogo
 label dificuldade:
     scene black with fade
     show text "Escolha o nível de dificuldade:" at Position(xalign=0.5, yalign=0.2)

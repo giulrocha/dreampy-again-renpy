@@ -40,7 +40,7 @@ label medieval:
 
     hide screen MapUI
 
-    scene bg fase4 with fade
+    scene expression Transform("bg fase4", fit="cover") with fade
 
     frank "Olá, [jogador]! Seja bem-vindo ao Universo de Funções e Modularização!"
 
