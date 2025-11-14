@@ -17,7 +17,7 @@ label intro:
     if jogador == "aluna":
         show aluna at Position(xpos=0.30, ypos=0.84, xanchor=0.5, yanchor=1.0)
     else:
-        show aluno at Position(xpos=0.30, ypos=0.74, xanchor=0.5, yanchor=1.0)
+        show aluno at Position(xpos=0.30, ypos=0.84, xanchor=0.5, yanchor=1.0)
     show giulie at Position(xpos=0.38, ypos=0.84, xanchor=0.5, yanchor=1.0)
     show yasmim at Position(xpos=0.54, ypos=0.84, xanchor=0.5, yanchor=1.0)
     show luan   at Position(xpos=0.46, ypos=0.84, xanchor=0.5, yanchor=1.0)
