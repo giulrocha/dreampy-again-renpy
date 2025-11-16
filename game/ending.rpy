@@ -1,8 +1,10 @@
-################### FINAL ###########################33
+################### FINAL ###########################
+
+image bg ending = "images/background/bg classroom.png"
 
 label final:
 
-    ##### JÁ NA SALA PRA PROVA
+    scene expression Transform("bg ending", fit="cover") with fade
 
     professor_gilberto "Bom dia, turma! Chegou o momento de mostrar tudo o que aprenderam. As provas estão em suas mesas. Boa sorte a todos!"
 

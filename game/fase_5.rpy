@@ -1,6 +1,7 @@
 ################### FASE 5 ###############################
 
 image bg fase5 = "images/background/bg alienigena.png"
+image bg hub = "images/background/bg hub.png"
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
 screen quiz_screen(question, options):
@@ -43,7 +44,7 @@ label alienigena:
 
     jogador "E quem é você?"
 
-    sergio "Serei o seu desafiante, caso passe pelos meus desafios e lhe darei a jóia necessária para voltar pra casa"
+    sergio "Serei o seu desafiante, caso passe pelos meus desafios poderá voltar pra casa"
 
     jogador "Aceito seu desafio!"
 
@@ -111,10 +112,10 @@ label proxima_pergunta_alienigena:
     if escolha_do_jogador == pergunta_atual['resposta_correta']:
         $ acertos += 1
         jogador "Essa é a resposta. Acertei!"
-        zorg "Correto! Próxima pergunta."
+        sergio "Correto! Próxima pergunta."
     else:
         jogador "Minha escolha é essa..."
-        zorg "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
+        sergio "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
 
     jump proxima_pergunta_alienigena
 
@@ -157,7 +158,9 @@ label alienigena_triste:
 
 label hub_controle_6_feliz:
 
-    android "Parabéns, [jogador]! Você reuniu todas as cinco Jóias de Conhecimento."
+    scene expression Transform("bg hub", fit="cover") with pixellate
+
+    android "Parabéns, [jogador]! Você conseguiu passar por todos os desafios dos cinco universos."
     android "Sua mente está restaurada. Você dominou variáveis, lógica, laços, funções e estruturas de dados."
     android "Está pronto para acordar… e enfrentar o verdadeiro desafio."
 
@@ -172,6 +175,9 @@ label hub_controle_6_feliz:
 ## Todas as fases liberadas, não pode ir pra casa
 
 label hub_controle_6_triste:
+
+    scene expression Transform("bg hub", fit="cover") with pixellate
+
     android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente"
 
     jogador "Nããããããããããoooooo!"

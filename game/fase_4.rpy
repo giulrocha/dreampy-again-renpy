@@ -1,6 +1,7 @@
 ################### FASE 4 ###############################
 
 image bg fase4 = "images/background/bg medieval.png"
+image bg hub = "images/background/bg hub.png"
 
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
@@ -46,7 +47,7 @@ label medieval:
 
     jogador "E quem é você?"
 
-    frank "Serei o seu desafiante, caso passe pelos meus desafios e lhe darei a jóia necessária para voltar pra casa"
+    frank "Serei o seu desafiante, caso passe pelos meus desafios, ficará mais próximo de voltar pra casa"
 
     jogador "Aceito seu desafio!"   
 
@@ -115,10 +116,10 @@ label proxima_pergunta_medieval:
     if escolha_do_jogador == pergunta_atual['resposta_correta']:
         $ acertos += 1
         jogador "Essa é a resposta. Acertei!"
-        merlin "Correto! Próxima pergunta."
+        frank "Correto! Próxima pergunta."
     else:
         jogador "Minha escolha é essa..."
-        merlin "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
+        frank "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
 
     jump proxima_pergunta_medieval
 
@@ -137,7 +138,7 @@ label medieval_feliz:
 
     $ fase_5_liberada = True
 
-    frank "Parabéns, [jogador]! Você concluiu sua quarta missão no universo e merece seu prêmio"
+    frank "Parabéns, [jogador]! Você concluiu sua quarta missão no universo"
 
     jogador "Finalmente! Só mais uma e posso ir pra casa!"
 
@@ -157,6 +158,8 @@ label medieval_triste:
 
 label hub_controle_5_feliz:
 
+    scene expression Transform("bg hub", fit="cover") with pixellate
+
     android "Parabéns [jogador]! Você conseguiu! Pode seguir para a próxima fase!"
 
     jogador "Pode vir!!"
@@ -167,6 +170,8 @@ label hub_controle_5_feliz:
 ## Fase 1 e 2 e 3 e 4 liberada
 
 label hub_controle_5_triste:
+
+    scene expression Transform("bg hub", fit="cover") with pixellate
 
     android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente"
 

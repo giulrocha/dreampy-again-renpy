@@ -1,6 +1,8 @@
 #Parte Indrodutória comum a todas as dificuldades
 
 image bg intro = "images/background/bg classroom.png"
+image bg bedroom = "images/background/bg bedroom.png"
+image bg hub = "images/background/bg hub.png"
 image gilberto_1 = "images/characters/gilberto_1.png"
 image aluna = "images/characters/aluna_andando.png"
 image aluno = "images/characters/aluno_normal.png"
@@ -41,7 +43,7 @@ label intro:
 
     jogador "Vou logo para casa e virar a noite estudando..."
 
-    scene bg bedroom with pixellate
+    scene expression Transform("bg bedroom", fit="cover") with pixellate
 
     "Você já está estudando a um tempo e o sono começa a vir"
 
@@ -63,13 +65,13 @@ label intro:
 #No sonho já
 label hub_controle_1:
 
-    #cena do hub e do android
+    scene expression Transform("bg hub", fit="cover") with pixellate
 
     android "Bem vindo, [jogador]! Estive esperando por você."
 
     jogador "Onde estou? Quem é você? como saio daqui?"
 
-    android "Você está no (a decidir), sou GIBA - Guardião Integrado de Bases Avançadas. Você caiu aqui porque sua mente começou a colapsar sob o peso do simulado final."
+    android "Você está no Hub de Controle, sou GIBA - Guardião Integrado de Bases Avançadas. Você caiu aqui porque sua mente começou a colapsar sob o peso do simulado final."
 
     jogador "Simulado...? O curso... o diploma!"
 
@@ -79,16 +81,12 @@ label hub_controle_1:
 
     #aparece o mapa e o totem sem joias
 
-    android "Cada portal leva a um setor do seu aprendizado. Para restaurar seu código mental, você deve dominar cada conceito — não apenas lembrar, mas compreender. E ao fazê-lo, você conquistará uma jóia de conhecimento."
+    android "Cada portal leva a um setor do seu aprendizado. Para restaurar seu código mental, você deve dominar cada conceito — não apenas lembrar, mas compreender. E ao fazê-lo, você conquistará a chance de voltar para casa."
 
-    jogador "Jóia?"
+    jogador "Como assim?"
 
-    android "Fragmentos do seu próprio código-fonte. Ao reunir as cinco, você reativará seu núcleo racional. E então, poderá despertar."
+    android "Fragmentos do seu próprio código-fonte. Ao passar pelos 5 universos, você reativará seu núcleo racional. E então, poderá despertar."
 
-    #mostra as joais de fato, como elas são
-
-    android "Conquiste as jóais e mostre aos desafiadores que você é digno, boa sorte!"
-
-    #primeira portal fica disponível para clicar no mapa.
+    android "Conquiste os cinco universos e mostre aos desafiadores que você é digno, boa sorte!"
 
     jump digital

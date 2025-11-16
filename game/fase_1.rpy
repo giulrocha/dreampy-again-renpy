@@ -1,6 +1,7 @@
 ################### FASE 1 ###############################
 
 image bg fase1 = "images/background/bg digital.png"
+image bg hub = "images/background/bg hub.png"
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
 screen quiz_screen(question, options):
@@ -52,7 +53,7 @@ label digital:
 
     jogador "Quem é você??"
 
-    raimundo "Serei o seu desafiante, caso passe pelos meus desafios e lhe darei a jóia necessária para voltar pra casa"
+    raimundo "Serei o seu desafiante, caso passe pelos meus desafios, ficará mais perto de voltar pra casa"
 
     jogador "Aceito seu desafio!"
 
@@ -167,7 +168,7 @@ label digital_feliz:
 
     $ fase_2_liberada = True
 
-    raimundo "Parabéns, [jogador]! Você concluiu sua primeira missão no universo e merece seu prêmio"
+    raimundo "Parabéns, [jogador]! Você concluiu sua primeira missão no universo"
 
     jogador "Finalmente!"
 
@@ -187,6 +188,8 @@ label digital_triste:
 
 label hub_controle_2_feliz:
 
+    scene expression Transform("bg hub", fit="cover") with pixellate
+
     android "Parabéns [jogador]! Você conseguiu! Pode seguir para a próxima fase!"
 
     jogador "Pode vir! Estou pronto"
@@ -197,6 +200,8 @@ label hub_controle_2_feliz:
 ## Fase 1 liberada
 
 label hub_controle_2_triste:
+
+    scene expression Transform("bg hub", fit="cover") with pixellate
 
     android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente"
 

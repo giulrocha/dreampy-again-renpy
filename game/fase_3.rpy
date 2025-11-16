@@ -1,6 +1,7 @@
 ################### FASE 3 ###############################
 
 image bg fase3 = "images/background/bg marinho.png"
+image bg hub = "images/background/bg hub.png"
 
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
@@ -46,11 +47,11 @@ label marinho:
 
     scene expression Transform("bg fase3", fit="cover") with fade
 
-    pedro "Olá, [jogador]! Seja bem-vindo ao Universo de Estruturas de Repetição!"
+    willon "Olá, [jogador]! Seja bem-vindo ao Universo de Estruturas de Repetição!"
 
     jogador "E quem é você?"
 
-    pedro "Serei o seu desafiante, caso passe pelos meus desafios e lhe darei a jóia necessária para voltar pra casa"
+    willon "Serei o seu desafiante, caso passe pelos meus desafios, ficará mais perto de voltar pra casa"
 
     jogador "Aceito seu desafio!"   
 
@@ -118,10 +119,10 @@ label proxima_pergunta_marinho:
     if escolha_do_jogador == pergunta_atual['resposta_correta']:
         $ acertos += 1
         jogador "Essa é a resposta. Acertei!"
-        pedro "Correto! Próxima pergunta."
+        willon "Correto! Próxima pergunta."
     else:
         jogador "Minha escolha é essa..."
-        pedro "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
+        willon "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
 
     jump proxima_pergunta_marinho
 
@@ -139,7 +140,7 @@ label marinho_feliz:
 
     $ fase_4_liberada = True
 
-    pedro "Parabéns, [jogador]! Você concluiu sua terceira missão no universo e merece seu prêmio"
+    willon "Parabéns, [jogador]! Você concluiu sua terceira missão no universo"
 
     jogador "Finalmente! Falta pouco!"
 
@@ -150,7 +151,7 @@ label marinho_feliz:
 
 label marinho_triste:
 
-    pedro "Infelizmente você não está pronto, mas você pode tentar novamente!"
+    willon "Infelizmente você não está pronto, mas você pode tentar novamente!"
 
     jump hub_controle_4_triste
 
@@ -158,6 +159,8 @@ label marinho_triste:
 ## Fase 1 e 2 e 3 e 4 liberada
 
 label hub_controle_4_feliz:
+
+    scene expression Transform("bg hub", fit="cover") with pixellate
 
     android "Parabéns [jogador]! Você conseguiu! Pode seguir para a próxima fase!"
 
@@ -169,6 +172,8 @@ label hub_controle_4_feliz:
 ## Fase 1 e 2 e 3 liberada
  
 label hub_controle_4_triste:
+
+    scene expression Transform("bg hub", fit="cover") with pixellate
 
     android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente"
 

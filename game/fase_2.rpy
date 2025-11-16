@@ -1,6 +1,7 @@
 ################### FASE 2 ###############################
 
 image bg fase2 = "images/background/bg cyberpunk.png"
+image bg hub = "images/background/bg hub.png"
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
 screen quiz_screen(question, options):
@@ -53,7 +54,7 @@ label cyberpunk:
 
     jogador "E quem é você?"
 
-    vanilton "Serei o seu desafiante, caso passe pelos meus desafios e lhe darei a jóia necessária para voltar pra casa"
+    vanilton "Serei o seu desafiante, caso passe pelos meus desafios, ficará mais perto de voltar pra casa"
 
     jogador "Aceito seu desafio!"    
 
@@ -146,7 +147,7 @@ label cyberpunk_feliz:
 
     $ fase_3_liberada = True
 
-    vanilton "Parabéns, [jogador]! Você concluiu sua segunda missão no universo e merece seu prêmio"
+    vanilton "Parabéns, [jogador]! Você concluiu sua segunda missão no universo"
 
     jogador "Finalmente! Falta pouco!"
 
@@ -166,6 +167,8 @@ label cyberpunk_triste:
 ## Fase 1 e 2 e 3 liberada
 
 label hub_controle_3_feliz:
+
+    scene expression Transform("bg hub", fit="cover") with pixellate
     
     android "Parabéns [jogador]! Você conseguiu! Pode seguir para a próxima fase!"
 
@@ -177,6 +180,9 @@ label hub_controle_3_feliz:
 ## Fase 1 e 2 liberada
 
 label hub_controle_3_triste:
+
+    scene expression Transform("bg hub", fit="cover") with pixellate
+
     android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente"
 
     jogador "Não vou desistir!"
