@@ -38,8 +38,8 @@ label start:
 
 default personagem_preview = None
 
-image aluna = "images/characters/aluna_andando.png"
-image aluno = "images/characters/aluno_normal.png"
+image aluna = "images/characters/renata_andando.png"
+image aluno = "images/characters/thiago.png"
 
 screen escolha_personagem():
 
@@ -61,26 +61,26 @@ screen escolha_personagem():
         yalign 0.35
         spacing 20
 
-        textbutton "Aluna":
+        textbutton "Renata":
             xalign 0.5
-            action Return("aluna")
-            hovered SetVariable("personagem_preview", "aluna")
+            action Return("renata")
+            hovered SetVariable("personagem_preview", "renata")
             unhovered SetVariable("personagem_preview", None)
 
-        textbutton "Aluno":
+        textbutton "Thiago":
             xalign 0.5
-            action Return("aluno")
-            hovered SetVariable("personagem_preview", "aluno")
+            action Return("thiago")
+            hovered SetVariable("personagem_preview", "thiago")
             unhovered SetVariable("personagem_preview", None)
 
     # --- Área de preview ---
-    if personagem_preview == "aluna":
-        add "images/characters/aluna_andando.png":
+    if personagem_preview == "renata":
+        add "images/characters/renata_andando.png":
             xalign 0.5
             yalign 0.75
 
-    if personagem_preview == "aluno":
-        add "images/characters/aluno_normal.png":
+    if personagem_preview == "thiago":
+        add "images/characters/thiago.png":
             xalign 0.5
             yalign 0.75
 
@@ -90,10 +90,10 @@ label choice_character:
     $ escolha = renpy.call_screen("escolha_personagem")
 
     # Processa a escolha
-    if escolha == "aluna":
-        $ jogador = "aluna"
-    elif escolha == "aluno":
-        $ jogador = "aluno"
+    if escolha == "renata":
+        $ jogador = "renata"
+    elif escolha == "thiago":
+        $ jogador = "thiago"
 
     jump dificuldade
 

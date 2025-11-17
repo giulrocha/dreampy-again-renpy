@@ -4,11 +4,11 @@ image bg intro = "images/background/bg classroom.png"
 image bg bedroom = "images/background/bg bedroom.png"
 image bg hub = "images/background/bg hub.png"
 image gilberto_1 = "images/characters/gilberto_1.png"
-image aluna = "images/characters/aluna_andando.png"
-image aluno = "images/characters/aluno_normal.png"
-image giulie = "images/characters/giulie_feliz.png"
-image luan = "images/characters/luan_feliz.png"
-image yasmim = "images/characters/yasmim_feliz.png"
+image renata = "images/characters/renata_andando.png"
+image thiago = "images/characters/thiago.png"
+image giulie = "images/characters/giulie.png"
+image luan = "images/characters/luan.png"
+image yasmim = "images/characters/yasmim.png"
 
 label intro:
 
@@ -16,10 +16,10 @@ label intro:
     scene expression Transform("bg intro", fit="cover") with fade
 
     show gilberto_1 at Position(xpos=0.62, ypos=0.60, xanchor=0.5, yanchor=1.0)
-    if jogador == "aluna":
-        show aluna at Position(xpos=0.50, ypos=0.81, xanchor=0.5, yanchor=1.0)
+    if jogador == "renata":
+        show renata at Position(xpos=0.50, ypos=0.81, xanchor=0.5, yanchor=1.0)
     else:
-        show aluno at Position(xpos=0.50, ypos=0.81, xanchor=0.5, yanchor=1.0)
+        show thiago at Position(xpos=0.50, ypos=0.81, xanchor=0.5, yanchor=1.0)
     show giulie at Position(xpos=0.40, ypos=0.84, xanchor=0.5, yanchor=1.0)
     show luan   at Position(xpos=0.30, ypos=0.85, xanchor=0.5, yanchor=1.0)
     show yasmim at Position(xpos=0.65, ypos=0.84, xanchor=0.5, yanchor=1.0)    
