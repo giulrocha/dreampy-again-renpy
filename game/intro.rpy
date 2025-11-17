@@ -16,7 +16,7 @@ label intro:
     scene expression Transform("bg intro", fit="cover") with fade
 
     show gilberto_1 at Position(xpos=0.59, ypos=0.70, xanchor=0.5, yanchor=1.0)
-    if jogador == "renata":
+    if jogador == "Renata":
         show renata at Position(xpos=0.49, ypos=0.72, xanchor=0.5, yanchor=1.0)
     else:
         show thiago at Position(xpos=0.49, ypos=0.72, xanchor=0.5, yanchor=1.0)

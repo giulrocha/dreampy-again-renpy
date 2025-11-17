@@ -91,9 +91,9 @@ label choice_character:
 
     # Processa a escolha
     if escolha == "renata":
-        $ jogador = "renata"
+        $ jogador = "Renata"
     elif escolha == "thiago":
-        $ jogador = "thiago"
+        $ jogador = "Thiago"
 
     jump dificuldade
 
