@@ -15,14 +15,14 @@ label intro:
     #cena da sala de aula
     scene expression Transform("bg intro", fit="cover") with fade
 
-    show gilberto_1 at Position(xpos=0.62, ypos=0.60, xanchor=0.5, yanchor=1.0)
+    show gilberto_1 at Position(xpos=0.59, ypos=0.70, xanchor=0.5, yanchor=1.0)
     if jogador == "renata":
-        show renata at Position(xpos=0.50, ypos=0.81, xanchor=0.5, yanchor=1.0)
+        show renata at Position(xpos=0.49, ypos=0.72, xanchor=0.5, yanchor=1.0)
     else:
-        show thiago at Position(xpos=0.50, ypos=0.81, xanchor=0.5, yanchor=1.0)
-    show giulie at Position(xpos=0.40, ypos=0.84, xanchor=0.5, yanchor=1.0)
-    show luan   at Position(xpos=0.30, ypos=0.85, xanchor=0.5, yanchor=1.0)
-    show yasmim at Position(xpos=0.65, ypos=0.84, xanchor=0.5, yanchor=1.0)    
+        show thiago at Position(xpos=0.49, ypos=0.72, xanchor=0.5, yanchor=1.0)
+    show giulie at Position(xpos=0.39, ypos=0.74, xanchor=0.5, yanchor=1.0)
+    show luan   at Position(xpos=0.31, ypos=0.74, xanchor=0.5, yanchor=1.0)
+    show yasmim at Position(xpos=0.67, ypos=0.74, xanchor=0.5, yanchor=1.0)    
 
 
     #aparece o professor e alunos
