@@ -117,6 +117,16 @@ label dificuldade:
             jump hub_mapa
 
 
+screen contador_quiz:
+    frame:
+        xalign 0.02
+        yalign 0.02
+        padding (10, 5)
+        background "#0008"  
+
+        text "Acertos: [acertos] / [perguntas_totais]" size 28 color "#e650cf"
+
+
 # ####################################################################
 # HUB CENTRAL DO MAPA
 # O jogo sempre voltará para este ponto após uma fase.

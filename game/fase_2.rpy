@@ -96,7 +96,11 @@ label debug_falhar_quiz_cyberpunk:
 
 # --- LÓGICA DO QUIZ ---
 label preparar_quiz_cyberpunk:
+
     $ acertos = 0
+
+    show screen contador_quiz
+
     $ mapa_dificuldade = {"easy": "fácil", "normal": "médio", "hard": "difícil"}
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
     
@@ -134,6 +138,9 @@ label proxima_pergunta_cyberpunk:
 
 
 label verificar_resultado_quiz_cyberpunk:
+
+    hide screen contador_quiz
+
     if acertos >= acertos_para_passar:
         jump cyberpunk_feliz
     else:

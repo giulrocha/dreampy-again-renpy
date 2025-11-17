@@ -90,7 +90,11 @@ label debug_falhar_quiz_medieval:
 
 # --- LÓGICA DO QUIZ ---
 label preparar_quiz_medieval:
+
     $ acertos = 0
+
+    show screen contador_quiz
+
     $ mapa_dificuldade = {"easy": "fácil", "normal": "médio", "hard": "difícil"}
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
     $ lista_de_perguntas = list(perguntas_fase_4[chave_dificuldade_atual])
@@ -125,6 +129,9 @@ label proxima_pergunta_medieval:
 
 
 label verificar_resultado_quiz_medieval:
+
+    hide screen contador_quiz
+
     if acertos >= acertos_para_passar:
         jump medieval_feliz
     else:

@@ -45,8 +45,6 @@ label digital:
 
     hide screen MapUI
 
-    # scene bg fase1 with fade
-
     scene expression Transform("bg fase1", fit="cover") with fade
 
     raimundo "Olá, [jogador]! Seja bem-vindo ao Universo de Variáveis!"
@@ -102,6 +100,8 @@ label preparar_quiz_digital:
     # Inicia o contador de acertos para esta tentativa
     $ acertos = 0
 
+    show screen contador_quiz
+
     # Mapeia a dificuldade do jogo para as chaves do JSON
     $ mapa_dificuldade = {"easy": "fácil", "normal": "médio", "hard": "difícil"}
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
@@ -154,6 +154,9 @@ label proxima_pergunta:
 
 
 label verificar_resultado_quiz:
+
+    hide screen contador_quiz
+
     # Esta verificação SÓ acontece DEPOIS de todas as perguntas terem sido respondidas
     if acertos >= acertos_para_passar:
         jump digital_feliz

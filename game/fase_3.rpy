@@ -93,7 +93,11 @@ label debug_falhar_quiz_marinho:
 
 # --- LÓGICA DO QUIZ ---
 label preparar_quiz_marinho:
+
     $ acertos = 0
+
+    show screen contador_quiz
+
     $ mapa_dificuldade = {"easy": "fácil", "normal": "médio", "hard": "difícil"}
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
     $ lista_de_perguntas = list(perguntas_fase_3[chave_dificuldade_atual])
@@ -128,6 +132,9 @@ label proxima_pergunta_marinho:
 
 
 label verificar_resultado_quiz_marinho:
+
+    hide screen contador_quiz
+
     if acertos >= acertos_para_passar:
         jump marinho_feliz
     else:

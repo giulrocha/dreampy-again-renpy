@@ -86,7 +86,11 @@ label debug_falhar_quiz_alienigena:
 
 # --- LÓGICA DO QUIZ ---
 label preparar_quiz_alienigena:
+
     $ acertos = 0
+
+    show screen contador_quiz
+
     $ mapa_dificuldade = {"easy": "fácil", "normal": "médio", "hard": "difícil"}
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
     $ lista_de_perguntas = list(perguntas_fase_5[chave_dificuldade_atual])
@@ -121,6 +125,9 @@ label proxima_pergunta_alienigena:
 
 
 label verificar_resultado_quiz_alienigena:
+
+    hide screen contador_quiz
+
     if acertos >= acertos_para_passar:
         jump alienigena_feliz
     else:
