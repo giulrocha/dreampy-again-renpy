@@ -48,5 +48,5 @@ label final:
 
     scene bg fim    
     with fade
-    pause 1.0
-    return
+    pause
+    $ renpy.full_restart()

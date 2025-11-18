@@ -29,8 +29,6 @@ label intro:
 
     professor_gilberto "Alunos, informo que o simulado final para conclusão do curso é amanhã! Espero que estejam preparados para mais esse desafio, não me decepcionem!"
 
-    #aparece so alunos, foca neles
-
     jogador "Nossa… tenho que revisar urgentemente tudo! Havia esquecido que a prova estava tão perto!"
 
     aluno_1 "Calma, esquecer faz parte da emoção da reta final! Estudar com um pouco de pressão até me ajuda a focar melhor."

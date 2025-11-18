@@ -31,7 +31,7 @@ init python:
             dados_quiz = json.load(f)
 
         # Armazena as perguntas desta fase numa variável.
-        perguntas_fase_5 = dados_quiz["Listas e Dicionários (criação, acesso, métodos básicos)."]
+        perguntas_fase_5 = dados_quiz["Listas e Dicionários (criação, acesso, métodos básicos)"]
     except Exception as e:
         renpy.error("Falha ao carregar 'quiz_perguntas.json': " + str(e))
 

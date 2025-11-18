@@ -86,6 +86,6 @@ screen MapUI:
             idle im.Scale("images/map/volta-pra-casa-idle.png", 200, 200)   
             hover im.Scale("images/map/volta-pra-casa-hover.png", 200, 200)   
             focus_mask True
-            action Jump("final")
-            # action [Hide("MapUI"), Jump("final")]
+            # action Jump("final")
+            action [Hide("MapUI"), Jump("final")]
             
