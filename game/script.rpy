@@ -1,10 +1,7 @@
 # The script of the game goes in this file.
-
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-
 # The game starts here.
-
 #Definindo personagens, título e cor dos nomes na tela
 define professor_gilberto = Character("Professor Gilberto", color="#3477eb")
 define jogador = Character("Jogador",  color="#34d8eb")    #nome de user que cadastrou la no tela inicial
@@ -18,7 +15,9 @@ define willon = Character("Tritão Willon", color="#c8cecf")          ## FASE 3
 define frank = Character("Mago Frank", color="#c8cecf")            ## FASE 4
 define sergio = Character("Alien Sergio", color="#c8cecf")         ## FASE 5
 
+
 # Declaração de fases
+
 
 default fase_1_liberada = True      
 default fase_2_liberada = False
@@ -26,6 +25,14 @@ default fase_3_liberada = False
 default fase_4_liberada = False
 default fase_5_liberada = False
 default volta_pra_casa = False
+
+
+###############################
+
+# Variáveis do sistema de resposta escrita da Fase 1
+default resposta_digitada = ""
+default feedback_raimundo = ""
+
 
 ############# START JOGO
 label start:

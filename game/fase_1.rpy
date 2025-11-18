@@ -3,6 +3,7 @@
 image bg fase1 = "images/background/bg digital.png"
 image bg hub = "images/background/bg hub.png"
 
+
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
 screen quiz_screen(question, options):
     frame:
@@ -28,6 +29,7 @@ screen quiz_screen(question, options):
 init python:
     import json
     import random
+    import raimundo_ai
 
     try:
         with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
@@ -38,6 +40,42 @@ init python:
     except Exception as e:
         # Se o ficheiro não for encontrado ou tiver um erro, o Ren'Py mostrará uma mensagem clara.
         renpy.error("Falha ao carregar o ficheiro 'quiz_perguntas.json': " + str(e))
+
+
+
+################### FASE 1 ###############################
+
+image bg fase1 = "images/background/bg digital.png"
+image bg hub = "images/background/bg hub.png"
+
+
+# === NOVA TELA DE RESPOSTA ABERTA ===
+screen quiz_escrita_screen(question):
+
+    frame:
+        xalign 0.5
+        yalign 0.5
+        padding (30, 30)
+
+        vbox:
+            spacing 20
+
+            text question:
+                xalign 0.5
+                size 30
+
+            text "Digite sua resposta abaixo:":
+                xalign 0.5
+                size 22
+
+            input:
+                value VariableInputValue("resposta_digitada")
+                length 200
+                xalign 0.5
+
+            textbutton "Enviar":
+                xalign 0.5
+                action Return("enviar")
 
 
 
@@ -120,37 +158,53 @@ label preparar_quiz_digital:
 
 
 label proxima_pergunta:
-    # Primeiro, verifica se a lista de perguntas da sessão já esvaziou
+
+    # Se não tiver mais perguntas, vai pro resultado
     if not perguntas_da_sessao:
-        # Se sim, o quiz terminou. Verifica o resultado.
         jump verificar_resultado_quiz
 
-    # Pega a próxima pergunta da lista e, ao mesmo tempo, a remove
-    $ pergunta_atual = perguntas_da_sessao.pop(0)
+    # Pegamos a pergunta sem remover da lista
+    $ pergunta_atual = perguntas_da_sessao[0]
 
-    # Embaralha as opções de resposta para que não apareçam sempre na mesma ordem
-    $ random.shuffle(pergunta_atual['opcoes'])
+    # Limpa resposta anterior
+    $ resposta_digitada = ""
 
-    # Chamamos a nova tela, passando a pergunta e as opções atuais.
-    call screen quiz_screen(
-        question=pergunta_atual['pergunta'],
-        options=pergunta_atual['opcoes']
+    # Chama a tela com input de texto
+    call screen quiz_escrita_screen(pergunta_atual['pergunta'])
+
+    # Pega o que o jogador digitou
+    $ resposta_do_jogador = resposta_digitada.strip()
+
+    if not resposta_do_jogador:
+        raimundo "Você precisa escrever alguma resposta!"
+        jump proxima_pergunta
+
+    # IA avalia
+    $ status_resposta, feedback_raimundo = raimundo_ai.avaliar_resposta(
+        pergunta_atual['pergunta'],
+        pergunta_atual['resposta_correta'],
+        resposta_do_jogador
     )
 
-    # O valor da escolha do jogador é guardado na variável especial '_return'.
-    $ escolha_do_jogador = _return
+    # Raimundo comenta
+    raimundo "[feedback_raimundo]"
 
-    # Agora, verifica se a escolha foi correta
-    if escolha_do_jogador == pergunta_atual['resposta_correta']:
+    if status_resposta == "correta":
         $ acertos += 1
-        jogador "A resposta é essa. Acho que acertei!"
-        raimundo "Correto! Vamos para a próxima."
-    else:
-        jogador "Vou escolher esta..."
-        raimundo "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
+        $ perguntas_da_sessao.pop(0)
+        jogador "Boa! Vamos para a próxima."
+        jump proxima_pergunta
 
-    # Após responder, volta ao início do loop para pegar a próxima pergunta
-    jump proxima_pergunta
+    elif status_resposta == "quase":
+        jogador "Acho que cheguei perto..."
+        raimundo "Você está quase lá! Tente melhorar um pouco a resposta."
+        jump proxima_pergunta
+
+    else: # errada
+        jogador "Hmm... ainda não."
+        raimundo "Está incorreto. Leia a pergunta com calma e tente novamente."
+        jump proxima_pergunta
+
 
 
 label verificar_resultado_quiz:
