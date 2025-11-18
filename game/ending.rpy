@@ -46,4 +46,7 @@ label final:
 
     show text "FIM — Seu código foi reescrito com sucesso." at Position(xalign=0.5, yalign=0.5)
 
+    scene bg fim    
+    with fade
+    pause 1.0
     return

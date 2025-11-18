@@ -70,11 +70,11 @@ label medieval:
         "Iniciar o questionário normalmente.":
             jump preparar_quiz_medieval
 
-        "DEBUG: Passar direto (100% acertos).":
-            jump debug_passar_quiz_medieval
+        # "DEBUG: Passar direto (100% acertos).":
+        #     jump debug_passar_quiz_medieval
 
-        "DEBUG: Falhar direto (0% acertos).":
-            jump debug_falhar_quiz_medieval
+        # "DEBUG: Falhar direto (0% acertos).":
+        #     jump debug_falhar_quiz_medieval
 
 
 

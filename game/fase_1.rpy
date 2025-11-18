@@ -74,13 +74,13 @@ label digital:
             # Pula para a preparação normal do quiz. [cite: 10]
             jump preparar_quiz_digital
             
-        "DEBUG: Passar direto (100% acertos).":
-            # Pula para uma rotina que força a vitória.
-            jump debug_passar_quiz
+        # "DEBUG: Passar direto (100% acertos).":
+        #     # Pula para uma rotina que força a vitória.
+        #     jump debug_passar_quiz
             
-        "DEBUG: Falhar direto (0% acertos).":
-            # Pula para uma rotina que força a derrota.
-            jump debug_falhar_quiz
+        # "DEBUG: Falhar direto (0% acertos).":
+        #     # Pula para uma rotina que força a derrota.
+        #     jump debug_falhar_quiz
 
 # --- LABELS DE DEPURAÇÃO ---
 label debug_passar_quiz:
