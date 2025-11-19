@@ -1,5 +1,5 @@
 # ----------------------------------------
-# IA DO RAIMUNDO - FASE 1
+# IA DO WILLON - FASE 3
 # ----------------------------------------
 
 import unicodedata
@@ -32,38 +32,37 @@ def avaliar_resposta(pergunta, resposta_correta, resposta_jogador):
     correta_norm = normalize(resposta_correta)
     jogador_norm = normalize(resposta_jogador)
 
-    # ========= NEGATIVO AUTOMÁTICO ==========
     if "nao" in jogador_norm or "não" in jogador_norm:
-        return "errada", "Cuidado! Parece que você negou a resposta correta."
+        return "errada", "Não parece que você está repetindo nada corretamente!"
 
-    # ========= CONTIDO DIRETO ==========
     if correta_norm in jogador_norm:
-        return "correta", "Muito bem! Você acertou direitinho!"
+        return "correta", "Excelente! Você dominou o fluxo das marés da repetição!"
 
-    # ========= APROXIMAÇÃO ==========
     similar = SequenceMatcher(None, jogador_norm, correta_norm).ratio()
-    if similar >= 0.78:
-        return "quase", "Você está muito perto! Falta só um ajuste."
+    if similar >= 0.75:
+        return "quase", "Quase! Só ajuste um detalhezinho no loop."
 
-    # ========= IA COMO SEGUNDA CAMADA ==========
     prompt = f"""
-Você é o Robô Raimundo, mestre de Variáveis e Tipos em Python.
+Você é o Tritão Willon, mestre dos loops.
 
-Avalie se a resposta do aluno está correta considerando:
-- respostas dentro de frases são corretas se contiverem o essencial
-- formas equivalentes são corretas ("string" = str)
-- pequenos erros ⇒ QUASE
-- negações ⇒ ERRADO
+Avalie se o aluno compreendeu:
+- for em Python
+- while
+- range()
+- iterações
+- contadores
+
+Expressões equivalentes (“laço for”, “um while repetindo”, etc.) → CORRETAS.
 
 Pergunta: {pergunta}
 Resposta correta: {resposta_correta}
 Resposta do aluno: {resposta_jogador}
 
-Responda em JSON puro:
+Responda JSON:
 
 {{
-  "status": "correta" ou "quase" ou "errada",
-  "feedback": "mensagem curta"
+  "status": "...",
+  "feedback": "..."
 }}
 """
 
@@ -77,4 +76,4 @@ Responda em JSON puro:
         result = json.loads(raw)
         return result["status"], result["feedback"]
     except:
-        return "quase", "Você está perto! Ajuste e tente novamente."
+        return "quase", "Sua repetição está quase certa!"

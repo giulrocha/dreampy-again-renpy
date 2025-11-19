@@ -2,52 +2,52 @@
   "Valores, Tipos de Dados, Variáveis, Nomes de Variáveis, Palavras-chave": {
     "fácil": [
       {
-        "pergunta": "Qual é o tipo de dado usado para armazenar números inteiros em Python?",
+        "pergunta": " Qual é o tipo de dado usado para armazenar números inteiros em Python?",
         "opcoes": ["int","float","str","bool"],
         "resposta_correta": "int"
       },
       {
-        "pergunta": "Qual é o tipo de dado usado para números com parte decimal?",
+        "pergunta": " Qual é o tipo de dado usado para números com parte decimal?",
         "opcoes": ["int","float","complex","bool"],
         "resposta_correta": "float"
       },
       {
-        "pergunta": "Qual é o tipo de dado usado para texto?",
+        "pergunta": " Qual é o tipo de dado usado para texto?",
         "opcoes": ["str","int","list","dict"],
         "resposta_correta": "str"
       },
       {
-        "pergunta": "Qual é a convenção mais comum para nomes de variáveis em Python?",
+        "pergunta": " Qual é a convenção mais comum para nomes de variáveis em Python?",
         "opcoes": ["CamelCase","snake_case","UPPERCASE","kebab-case"],
         "resposta_correta": "snake_case"
       },
       {
-        "pergunta": "Pode uma variável começar com um número?",
+        "pergunta": " Pode uma variável começar com um número?",
         "opcoes": ["Sim","Não","Depende","Somente em dados externos"],
         "resposta_correta": "Não"
       },
       {
-        "pergunta": "Qual das opções é uma palavra-chave reservada do Python?",
+        "pergunta": " Qual das opções é uma palavra-chave reservada do Python?",
         "opcoes": ["print","for","list","append"],
         "resposta_correta": "for"
       },
       {
-        "pergunta": "Variáveis em Python são sensíveis a maiúsculas e minúsculas?",
+        "pergunta": " Variáveis em Python são sensíveis a maiúsculas e minúsculas Verdadeiro ou Falso?",
         "opcoes": ["Verdadeiro","Falso","Depende","Não se aplica"],
         "resposta_correta": "Verdadeiro"
       },
       {
-        "pergunta": "Qual é a atribuição correta para armazenar o valor 10 na variável 'resultado'?",
+        "pergunta": " Qual é a atribuição correta para armazenar o valor 10 na variável 'resultado'?",
         "opcoes": ["resultado = 10","10 = resultado","result = 10","valor = 10"],
         "resposta_correta": "resultado = 10"
       },
       {
-        "pergunta": "None representa o quê?",
+        "pergunta": " None representa o quê?",
         "opcoes": ["valor nulo","número zero","string vazia","valor verdadeiro"],
         "resposta_correta": "valor nulo"
       },
       {
-        "pergunta": "Como verificar o tipo de uma variável, por exemplo 'x'?",
+        "pergunta": " Como verificar o tipo de uma variável, por exemplo 'x'?",
         "opcoes": ["type(x)","typeof(x)","x.dtype","inspect(x)"],
         "resposta_correta": "type(x)"
       }

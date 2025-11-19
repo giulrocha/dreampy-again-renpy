@@ -1,5 +1,5 @@
 # ----------------------------------------
-# IA DO RAIMUNDO - FASE 1
+# IA DO FRANK - FASE 4
 # ----------------------------------------
 
 import unicodedata
@@ -32,38 +32,34 @@ def avaliar_resposta(pergunta, resposta_correta, resposta_jogador):
     correta_norm = normalize(resposta_correta)
     jogador_norm = normalize(resposta_jogador)
 
-    # ========= NEGATIVO AUTOMÁTICO ==========
     if "nao" in jogador_norm or "não" in jogador_norm:
-        return "errada", "Cuidado! Parece que você negou a resposta correta."
+        return "errada", "Hum... parece que você está negando a função correta."
 
-    # ========= CONTIDO DIRETO ==========
     if correta_norm in jogador_norm:
-        return "correta", "Muito bem! Você acertou direitinho!"
+        return "correta", "Excelente! Sua magia de funções está poderosa!"
 
-    # ========= APROXIMAÇÃO ==========
     similar = SequenceMatcher(None, jogador_norm, correta_norm).ratio()
-    if similar >= 0.78:
-        return "quase", "Você está muito perto! Falta só um ajuste."
+    if similar >= 0.75:
+        return "quase", "Quase lá! Só falta um toque de magia Python."
 
-    # ========= IA COMO SEGUNDA CAMADA ==========
     prompt = f"""
-Você é o Robô Raimundo, mestre de Variáveis e Tipos em Python.
+Você é Frank, mago supremo das Funções em Python.
 
-Avalie se a resposta do aluno está correta considerando:
-- respostas dentro de frases são corretas se contiverem o essencial
-- formas equivalentes são corretas ("string" = str)
-- pequenos erros ⇒ QUASE
-- negações ⇒ ERRADO
+Considere como CORRETO:
+- qualquer frase contendo a forma correta
+- qualquer forma equivalente (“uma função começa com def”)
+- explicações semânticas do conceito
+- chamadas equivalentes
 
 Pergunta: {pergunta}
 Resposta correta: {resposta_correta}
 Resposta do aluno: {resposta_jogador}
 
-Responda em JSON puro:
+JSON apenas:
 
 {{
-  "status": "correta" ou "quase" ou "errada",
-  "feedback": "mensagem curta"
+  "status": "...",
+  "feedback": "..."
 }}
 """
 
@@ -77,4 +73,4 @@ Responda em JSON puro:
         result = json.loads(raw)
         return result["status"], result["feedback"]
     except:
-        return "quase", "Você está perto! Ajuste e tente novamente."
+        return "quase", "Você está muito perto de conjurar a função correta!"
