@@ -17,8 +17,8 @@ init python:
     import willon_ai
 
     try:
-        with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
-            dados_quiz = json.load(f)
+        f = renpy.open_file("quiz_perguntas.json")
+        dados_quiz = json.loads(f.read().decode("utf-8"))
 
         perguntas_fase_3 = dados_quiz["Estrutura de repetição (loops for e while)"]
 
@@ -30,6 +30,8 @@ init python:
 # --------------------------------------------------------
 # INÍCIO DA FASE 3 - MARINHO
 # --------------------------------------------------------
+
+
 
 label marinho:
 
@@ -53,7 +55,7 @@ label marinho:
     hide willon_falando at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
     show willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
-    jogador "Aceito seu desafio!"   
+    jogador "Aceito seu desafio!"
     hide willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     if difficulty == "easy":
@@ -166,7 +168,7 @@ label verificar_resultado_quiz_marinho:
 label marinho_feliz:
 
     $ fase_4_liberada = True
-    
+
     show willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     willon "Excelente, [jogador]! Você dominou os ciclos das profundezas."
@@ -181,7 +183,7 @@ label marinho_feliz:
 ## Se não passar
 
 label marinho_triste:
-    
+
     show willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     willon "Ainda não. Seus laços precisam de ajustes."
