@@ -2,52 +2,52 @@
   "Valores, Tipos de Dados, Variáveis, Nomes de Variáveis, Palavras-chave": {
     "fácil": [
       {
-        "pergunta": "Qual é o tipo de dado usado para armazenar números inteiros em Python?",
+        "pergunta": " Qual é o tipo de dado usado para armazenar números inteiros em Python?",
         "opcoes": ["int","float","str","bool"],
         "resposta_correta": "int"
       },
       {
-        "pergunta": "Qual é o tipo de dado usado para números com parte decimal?",
+        "pergunta": " Qual é o tipo de dado usado para números com parte decimal?",
         "opcoes": ["int","float","complex","bool"],
         "resposta_correta": "float"
       },
       {
-        "pergunta": "Qual é o tipo de dado usado para texto?",
+        "pergunta": " Qual é o tipo de dado usado para texto?",
         "opcoes": ["str","int","list","dict"],
         "resposta_correta": "str"
       },
       {
-        "pergunta": "Qual é a convenção mais comum para nomes de variáveis em Python?",
+        "pergunta": " Qual é a convenção mais comum para nomes de variáveis em Python?",
         "opcoes": ["CamelCase","snake_case","UPPERCASE","kebab-case"],
         "resposta_correta": "snake_case"
       },
       {
-        "pergunta": "Pode uma variável começar com um número?",
+        "pergunta": " Pode uma variável começar com um número?",
         "opcoes": ["Sim","Não","Depende","Somente em dados externos"],
         "resposta_correta": "Não"
       },
       {
-        "pergunta": "Qual das opções é uma palavra-chave reservada do Python?",
+        "pergunta": " Qual das opções é uma palavra-chave reservada do Python?",
         "opcoes": ["print","for","list","append"],
         "resposta_correta": "for"
       },
       {
-        "pergunta": "Variáveis em Python são sensíveis a maiúsculas e minúsculas?",
+        "pergunta": " Variáveis em Python são sensíveis a maiúsculas e minúsculas Verdadeiro ou Falso?",
         "opcoes": ["Verdadeiro","Falso","Depende","Não se aplica"],
         "resposta_correta": "Verdadeiro"
       },
       {
-        "pergunta": "Qual é a atribuição correta para armazenar o valor 10 na variável 'resultado'?",
+        "pergunta": " Qual é a atribuição correta para armazenar o valor 10 na variável 'resultado'?",
         "opcoes": ["resultado = 10","10 = resultado","result = 10","valor = 10"],
         "resposta_correta": "resultado = 10"
       },
       {
-        "pergunta": "None representa o quê?",
+        "pergunta": " None representa o quê?",
         "opcoes": ["valor nulo","número zero","string vazia","valor verdadeiro"],
         "resposta_correta": "valor nulo"
       },
       {
-        "pergunta": "Como verificar o tipo de uma variável, por exemplo 'x'?",
+        "pergunta": " Como verificar o tipo de uma variável, por exemplo 'x'?",
         "opcoes": ["type(x)","typeof(x)","x.dtype","inspect(x)"],
         "resposta_correta": "type(x)"
       }
@@ -142,7 +142,7 @@
       },
       {
         "pergunta": "Qual expressão retorna uma cópia invertida da lista sem alterar a original?",
-        "opcoes": ["lista[::-1]","lista.reverse()","lista[::-1]:","reverse(lista)"],
+        "opcoes": ["lista[::-1]","lista.reverse()","lista[::-1:]","reverse(lista)"],
         "resposta_correta": "lista[::-1]"
       },
       {
@@ -224,7 +224,7 @@
       {
         "pergunta": "Qual é o resultado de 'if not []: print('ok')'?",
         "opcoes": ["Nada é impresso","'ok' é impresso","Erro de sintaxe","Imprime None"],
-        "resposta_correta": "ok é impresso"
+        "resposta_correta": "'ok' é impresso"
       }
     ],
     "difícil": [
@@ -289,12 +289,12 @@
       },
       {
         "pergunta": "Como iterar sobre uma lista 'nomes' com for?",
-        "opcoes": ["for i in nomes:","for nomes in nomes:","for i, nome in enumerate(nomes):","foreach(nome in nomes)"],
+        "opcoes": ["for item in nomes:","for nomes in nomes:","for i, nome in enumerate(nomes):","foreach(nome in nomes)"],
         "resposta_correta": "for item in nomes:"
       },
       {
         "pergunta": "Como criar um range de 5 itens?",
-        "opcoes": ["range(5)","range[5]","range{5}","range(1,5)"],
+        "opcoes": ["range(5)","range[5]","range-5-","range(1,5)"],
         "resposta_correta": "range(5)"
       },
       {
@@ -314,8 +314,8 @@
       },
       {
         "pergunta": "Para percorrer uma lista com índice, qual construção é comum?",
-        "opcoes": ["for i in range(len(lista))","for i, v in enumerate(lista)","for v in lista:","Ambas 1 e 2"],
-        "resposta_correta": "Ambas 1 e 2"
+        "opcoes": ["for i in range(len(lista))","for i, v in enumerate(lista)","for v in lista:","for i in range(len(lista)) ou for i, v in enumerate(lista)"],
+        "resposta_correta": "for i in range(len(lista)) ou for i, v in enumerate(lista)"
       },
       {
         "pergunta": "Qual função retorna ao final de um loop for?",
@@ -325,7 +325,7 @@
       {
         "pergunta": "Como percorrer uma string com um laço for para obter cada caractere?",
         "opcoes": ["for c in 'texto':","for c in texto:","for c in texto[]:","for c in (texto):"],
-        "resposta_correta": "for c in texto:"
+        "resposta_correta": "for c in (texto):"
       },
       {
         "pergunta": "Qual é o uso de 'else' em um loop?",
@@ -467,8 +467,8 @@
       },
       {
         "pergunta": "Como retornar múltiplos valores de uma função?",
-        "opcoes": ["return a,b","return (a,b)","Ambas","Nenhuma"],
-        "resposta_correta": "Ambas"
+        "opcoes": ["return a,b","return (a,b)","return a,b ou return (a,b)","Nenhuma"],
+        "resposta_correta": "return a,b ou return (a,b)"
       },
       {
         "pergunta": "Como tornar uma função visível em outros módulos?",
@@ -600,12 +600,12 @@
       },
       {
         "pergunta": "Como criar uma lista vazia?",
-        "opcoes": ["[]","{}","()","list()"],
-        "resposta_correta": "[]"
+        "opcoes": ["'[]'","{}","()","list()"],
+        "resposta_correta": "'[]'"
       },
       {
         "pergunta": "Como acessar o segundo elemento de uma lista 'nums'?",
-        "opcoes": ["nums[2]","nums[1]","nums(2)","nums{2}"],
+        "opcoes": ["nums[2]","nums[1]","nums(2)","'nums{2}'"],
         "resposta_correta": "nums[1]"
       },
       {
@@ -620,7 +620,7 @@
       },
       {
         "pergunta": "Como acessar a chave 'nome' de um dicionário 'p'?",
-        "opcoes": ["p['nome']","p[nome]","p.nome","p.nome"],
+        "opcoes": ["p['nome']","p[nome]","p.nome","p.nome."],
         "resposta_correta": "p['nome']"
       },
       {
