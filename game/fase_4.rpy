@@ -21,11 +21,11 @@ screen quiz_screen(question, options):
             spacing 20
 
             text question:
-                xalign 0.5  
+                xalign 0.5
 
             for option in options:
                 textbutton option:
-                    xalign 0.5  
+                    xalign 0.5
                     action Return(option)
 
 # Bloco de inicialização para carregar as perguntas da Fase 4 do JSON.
@@ -37,13 +37,12 @@ init python:
         with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
             dados_quiz = json.load(f)
 
-        # Armazena as perguntas desta fase numa variável.
         perguntas_fase_4 = dados_quiz["Funções e modularização (def, return)"]
     except Exception as e:
         renpy.error("Falha ao carregar 'quiz_perguntas.json': " + str(e))
 
 
-label medieval:    
+label medieval:
 
     hide screen MapUI
 
@@ -73,11 +72,9 @@ label medieval:
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
 
-    
     elif difficulty == "normal":
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
-
 
     else:
         $ perguntas_totais = 10
@@ -88,12 +85,6 @@ label medieval:
     menu:
         "Iniciar o questionário normalmente.":
             jump preparar_quiz_medieval
-
-        # "DEBUG: Passar direto (100% acertos).":
-        #     jump debug_passar_quiz_medieval
-
-        # "DEBUG: Falhar direto (0% acertos).":
-        #     jump debug_falhar_quiz_medieval
 
 
 
@@ -196,27 +187,28 @@ label medieval_triste:
     jump hub_controle_5_triste
 
 
-## Fase 1 e 2 e 3 e 4 e 5 liberada
+
+## Fase 1, 2, 3, 4 e 5 liberadas
 
 label hub_controle_5_feliz:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
 
-    android "Parabéns [jogador]! Você conseguiu! Pode seguir para a próxima fase!"
+    android "Parabéns [jogador]! Você conseguiu! Pode seguir para a última fase!"
 
-    jogador "Pode vir!!"
+    jogador "Vamos lá! Eu vou até o fim!"
 
     jump hub_mapa
 
 
-## Fase 1 e 2 e 3 e 4 liberada
+## Fase 1, 2, 3 e 4 liberadas
 
 label hub_controle_5_triste:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
 
-    android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente"
+    android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente."
 
-    jogador "Não vou desistir! Estou muito perto de conseguir!"
+    jogador "Estou quase lá, eu sinto isso. Vou tentar de novo!"
 
     jump hub_mapa

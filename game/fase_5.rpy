@@ -30,33 +30,30 @@ init python:
         with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
             dados_quiz = json.load(f)
 
-        # Armazena as perguntas desta fase numa variável.
         perguntas_fase_5 = dados_quiz["Listas e Dicionários (criação, acesso, métodos básicos)"]
     except Exception as e:
         renpy.error("Falha ao carregar 'quiz_perguntas.json': " + str(e))
 
 
-label alienigena:   
+label alienigena:
 
-    scene expression Transform("bg fase5", fit="cover") with fade 
+    scene expression Transform("bg fase5", fit="cover") with fade
 
     sergio "Olá, [jogador]! Seja bem-vindo ao Universo de Listas e Dicionários!"
 
     jogador "E quem é você?"
 
-    sergio "Serei o seu desafiante, caso passe pelos meus desafios poderá voltar pra casa"
+    sergio "Sou Sérgio, o Alien das Estruturas de Dados. Se passar pelos meus desafios, poderá voltar pra casa."
 
-    jogador "Aceito seu desafio!"
+    jogador "Então vamos terminar isso!"
 
     if difficulty == "easy":
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
 
-    
     elif difficulty == "normal":
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
-        
 
     else:
         $ perguntas_totais = 10
@@ -67,11 +64,6 @@ label alienigena:
         "Iniciar o questionário normalmente.":
             jump preparar_quiz_alienigena
 
-        # "DEBUG: Passar direto (100% acertos).":
-        #     jump debug_passar_quiz_alienigena
-
-        # "DEBUG: Falhar direto (0% acertos).":
-        #     jump debug_falhar_quiz_alienigena    
 
 
 # --- LABELS DE DEPURAÇÃO ---
@@ -135,17 +127,15 @@ label verificar_resultado_quiz_alienigena:
 
 
 
-
-
 ## Se passar
 
 label alienigena_feliz:
 
     $ volta_pra_casa = True
 
-    sergio "Parabéns, [jogador]! Você concluiu sua última missão no universo e merece seu prêmio"
+    sergio "INCRÍVEL, [jogador]! Você dominou as estruturas de dados do universo!"
 
-    jogador "Finalmente! Agora posso ir pra casa!"
+    jogador "Finalmente… eu consegui! Posso voltar pra casa!"
 
     jump hub_controle_6_feliz
 
@@ -154,9 +144,9 @@ label alienigena_feliz:
 
 label alienigena_triste:
 
-    sergio "Infelizmente você não está pronto, mas você pode tentar novamente!"
+    sergio "Ainda não. Mas não desista, você está perto de dominar tudo."
 
-    jogador "Nããããããããããoooooo"
+    jogador "Nãããããããooo! Mas eu volto melhor."
 
     jump hub_controle_6_triste
 
@@ -167,14 +157,11 @@ label hub_controle_6_feliz:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
 
-    android "Parabéns, [jogador]! Você conseguiu passar por todos os desafios dos cinco universos."
-    android "Sua mente está restaurada. Você dominou variáveis, lógica, laços, funções e estruturas de dados."
+    android "Parabéns, [jogador]! Você completou todos os desafios dos cinco universos."
+    android "Sua mente foi restaurada. Você domina variáveis, lógica, laços, funções e estruturas de dados."
     android "Está pronto para acordar… e enfrentar o verdadeiro desafio."
 
-    jogador "Finalmente!! Estou livreeee!!"
-    jogador "Obrigado, android. Eu aprendi que programar é mais do que decorar comandos — é entender como pensar de forma lógica."
-
-    android "Exatamente. Vá, e mostre do que é capaz."
+    jogador "Obrigado! Agora eu sei programar de verdade."
 
     jump hub_mapa
 
@@ -185,10 +172,8 @@ label hub_controle_6_triste:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
 
-    android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente"
+    android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente."
 
-    jogador "Nããããããããããoooooo!"
-
-    jogador "Eu estava tão perto!!"
+    jogador "Eu estava tão perto!! Mas vou voltar ainda mais forte."
 
     jump hub_mapa

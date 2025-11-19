@@ -23,7 +23,7 @@ screen quiz_screen(question, options):
 
             for option in options:
                 textbutton option:
-                    xalign 0.5  
+                    xalign 0.5
                     action Return(option)
 
 
@@ -32,13 +32,10 @@ init python:
     import json
     import random
 
-    # Usamos renpy.open_file() por ser a forma mais segura de abrir ficheiros no Ren'Py.
     try:
         with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
             dados_quiz = json.load(f)
 
-        # Armazenamos apenas as perguntas desta fase numa variável para facilitar o acesso.
-        # ** CORREÇÃO APLICADA AQUI **
         perguntas_fase_3 = dados_quiz["Estrutura de repetição (loops for e while)"]
     except Exception as e:
         # Se o ficheiro não for encontrado ou tiver um erro, o Ren'Py mostrará uma mensagem clara.
@@ -74,11 +71,9 @@ label marinho:
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
 
-    
     elif difficulty == "normal":
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
-
 
     else:
         $ perguntas_totais = 10
@@ -89,11 +84,6 @@ label marinho:
         "Iniciar o questionário normalmente.":
             jump preparar_quiz_marinho
 
-        # "DEBUG: Passar direto (100% acertos).":
-        #     jump debug_passar_quiz_marinho
-
-        # "DEBUG: Falhar direto (0% acertos).":
-        #     jump debug_falhar_quiz_marinho
 
 
 # --- LABELS DE DEPURAÇÃO ---
@@ -172,9 +162,9 @@ label marinho_feliz:
     
     show willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
-    willon "Parabéns, [jogador]! Você concluiu sua terceira missão no universo"
+    willon "Excelente, [jogador]! Você dominou os ciclos das profundezas."
 
-    jogador "Finalmente! Falta pouco!"
+    jogador "Falta cada vez menos pra voltar pra casa!"
 
     hide willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
@@ -187,14 +177,17 @@ label marinho_triste:
     
     show willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
-    willon "Infelizmente você não está pronto, mas você pode tentar novamente!"
+    willon "Ainda não. Seus laços precisam de ajustes."
+
+    jogador "Eu vou praticar mais!"
 
     hide willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     jump hub_controle_4_triste
 
 
-## Fase 1 e 2 e 3 e 4 liberada
+
+## Fase 1, 2, 3 e 4 liberadas
 
 label hub_controle_4_feliz:
 
@@ -202,13 +195,13 @@ label hub_controle_4_feliz:
 
     android "Parabéns [jogador]! Você conseguiu! Pode seguir para a próxima fase!"
 
-    jogador "Pode vir! Estou muito perto do meu objetivo!"
+    jogador "Vamos lá, próxima missão!"
 
     jump hub_mapa
 
 
-## Fase 1 e 2 e 3 liberada
- 
+## Fase 1, 2 e 3 liberadas
+
 label hub_controle_4_triste:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
