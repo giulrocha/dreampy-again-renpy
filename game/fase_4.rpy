@@ -137,11 +137,19 @@ label proxima_pergunta_medieval:
 
     if escolha_do_jogador == pergunta_atual['resposta_correta']:
         $ acertos += 1
+        show frank at grande, center
         jogador "Essa é a resposta. Acertei!"
+        hide frank at grande, center
+        show frank_feliz at grande, center
         frank "Correto! Próxima pergunta."
+        hide frank_feliz at grande, center
     else:
+        show frank at grande, center
         jogador "Minha escolha é essa..."
+        hide frank at grande, center
+        show frank_erro at grande, center
         frank "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
+        hide frank_erro at grande, center
 
     jump proxima_pergunta_medieval
 
@@ -169,6 +177,8 @@ label medieval_feliz:
 
     jogador "Finalmente! Só mais uma e posso ir pra casa!"
 
+    hide frank_feliz at grande, center
+
     jump hub_controle_5_feliz
 
 
@@ -179,6 +189,8 @@ label medieval_triste:
     show frank_erro at grande, center
     
     frank "Infelizmente você não está pronto, mas você pode tentar novamente!"
+
+    hide frank_erro at grande, center
 
     jump hub_controle_5_triste
 

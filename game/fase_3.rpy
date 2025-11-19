@@ -176,6 +176,8 @@ label marinho_feliz:
 
     jogador "Finalmente! Falta pouco!"
 
+    hide willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
+
     jump hub_controle_4_feliz
 
 
@@ -186,6 +188,8 @@ label marinho_triste:
     show willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     willon "Infelizmente você não está pronto, mas você pode tentar novamente!"
+
+    hide willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     jump hub_controle_4_triste
 
