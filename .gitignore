@@ -1,4 +1,7 @@
 # Directories that Ren'Py changes files in.
+
+.idea
+
 /game/saves
 /game/cache
 

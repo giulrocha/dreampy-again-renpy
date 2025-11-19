@@ -3,6 +3,7 @@
 image bg fase2 = "images/background/bg cyberpunk.png"
 image bg hub = "images/background/bg hub.png"
 image vanilton = "images/characters/vanilton.png"
+image gilberto_android = "images/characters/gilberto_android.png"
 
 transform grande: 
     zoom 2.3
@@ -52,8 +53,8 @@ label cyberpunk:
     hide screen MapUI
 
     scene expression Transform("bg fase2", fit="cover") with fade
-
-    show vanilton at grande, center
+    
+    show vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     vanilton "Olá, [jogador]! Seja bem-vindo ao Universo de Lógica e Estruturas Condicionais!"
 
@@ -62,6 +63,8 @@ label cyberpunk:
     vanilton "Sou Vanilton. Vou testar se sua lógica é forte o suficiente para continuar."
 
     jogador "Pode mandar, eu aceito o desafio!"
+
+    hide vanilton
 
     if difficulty == "easy":
         $ perguntas_totais = 10
@@ -149,9 +152,13 @@ label cyberpunk_feliz:
 
     $ fase_3_liberada = True
 
+    show vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+
     vanilton "Parabéns, [jogador]! Sua lógica passou nos meus testes."
 
     jogador "Ótimo, mais um passo pra casa!"
+
+    hide vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jump hub_controle_3_feliz
 
@@ -161,9 +168,13 @@ label cyberpunk_feliz:
 
 label cyberpunk_triste:
 
+    show vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+
     vanilton "Você ainda não domina bem as estruturas condicionais. Mas pode tentar de novo."
 
     jogador "Não vou desistir. Vou ajustar minha lógica!"
+
+    hide vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jump hub_controle_3_triste
 
@@ -174,6 +185,7 @@ label cyberpunk_triste:
 label hub_controle_3_feliz:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Parabéns [jogador]! Você conseguiu! Pode seguir para a próxima fase!"
 
@@ -188,6 +200,7 @@ label hub_controle_3_feliz:
 label hub_controle_3_triste:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Que pena [jogador], mas você pode tentar novamente."
 

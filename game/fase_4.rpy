@@ -192,6 +192,7 @@ label medieval_triste:
 label hub_controle_5_feliz:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Parabéns [jogador]! Você conseguiu! Pode seguir para a última fase!"
 
@@ -205,6 +206,7 @@ label hub_controle_5_feliz:
 label hub_controle_5_triste:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente."
 

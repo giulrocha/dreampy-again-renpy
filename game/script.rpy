@@ -9,7 +9,7 @@ define aluno_1 = Character("Giulie", color="#f2b3ed")
 define aluno_2 = Character("Yasmim", color="#b3dff2")
 define aluno_3 = Character("Luan", color="#e34f61")
 define android = Character("Android Giba", color="#3477eb")
-define raimundo = Character("Robô Raimundo", color="#78c4cc")      ## FASE 1
+define raimundo = Character("Cientista Raimundo", color="#78c4cc")      ## FASE 1
 define vanilton = Character("Vanilton", color="#6935db")           ## FASE 2
 define willon = Character("Tritão Willon", color="#c8cecf")          ## FASE 3
 define frank = Character("Mago Frank", color="#c8cecf")            ## FASE 4

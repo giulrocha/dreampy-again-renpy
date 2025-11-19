@@ -160,7 +160,7 @@ label verificar_resultado_quiz_marinho:
 label marinho_feliz:
 
     $ fase_4_liberada = True
-    
+
     show willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     willon "Excelente, [jogador]! Você dominou os ciclos das profundezas."
@@ -175,7 +175,7 @@ label marinho_feliz:
 ## Se não passar
 
 label marinho_triste:
-    
+
     show willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     willon "Ainda não. Seus laços precisam de ajustes."
@@ -193,6 +193,7 @@ label marinho_triste:
 label hub_controle_4_feliz:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Parabéns [jogador]! Você conseguiu! Pode seguir para a próxima fase!"
 
@@ -206,6 +207,7 @@ label hub_controle_4_feliz:
 label hub_controle_4_triste:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Que pena [jogador], mas você pode tentar novamente."
 

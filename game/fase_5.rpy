@@ -2,6 +2,11 @@
 
 image bg fase5 = "images/background/bg alienigena.png"
 image bg hub = "images/background/bg hub.png"
+image sergio = "images/characters/sergio.png"
+image sergio_erro = "images/characters/sergio_erro.png"
+image sergio_falando = "images/characters/sergio_falando.png"
+image sergio_feliz = "images/characters/sergio_feliz.png"
+image gilberto_android = "images/characters/gilberto_android.png"
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
 screen quiz_screen(question, options):
@@ -38,14 +43,26 @@ init python:
 label alienigena:
 
     scene expression Transform("bg fase5", fit="cover") with fade
+    show sergio_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     sergio "Olá, [jogador]! Seja bem-vindo ao Universo de Listas e Dicionários!"
 
+    hide sergio_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    show sergio at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+
     jogador "E quem é você?"
+
+    hide sergio at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    show sergio_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     sergio "Sou Sérgio, o Alien das Estruturas de Dados. Se passar pelos meus desafios, poderá voltar pra casa."
 
+    hide sergio_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    show sergio_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+
     jogador "Então vamos terminar isso!"
+
+    hide sergio_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     if difficulty == "easy":
         $ perguntas_totais = 10
@@ -133,9 +150,13 @@ label alienigena_feliz:
 
     $ volta_pra_casa = True
 
+    show sergio_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+
     sergio "INCRÍVEL, [jogador]! Você dominou as estruturas de dados do universo!"
 
     jogador "Finalmente… eu consegui! Posso voltar pra casa!"
+
+    hide sergio_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jump hub_controle_6_feliz
 
@@ -144,9 +165,13 @@ label alienigena_feliz:
 
 label alienigena_triste:
 
+    show sergio_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+
     sergio "Ainda não. Mas não desista, você está perto de dominar tudo."
 
     jogador "Nãããããããooo! Mas eu volto melhor."
+
+    hide sergio_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jump hub_controle_6_triste
 
@@ -156,6 +181,7 @@ label alienigena_triste:
 label hub_controle_6_feliz:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Parabéns, [jogador]! Você completou todos os desafios dos cinco universos."
     android "Sua mente foi restaurada. Você domina variáveis, lógica, laços, funções e estruturas de dados."
@@ -171,6 +197,7 @@ label hub_controle_6_feliz:
 label hub_controle_6_triste:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente."
 
