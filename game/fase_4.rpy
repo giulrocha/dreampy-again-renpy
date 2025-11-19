@@ -2,6 +2,11 @@
 
 image bg fase4 = "images/background/bg medieval.png"
 image bg hub = "images/background/bg hub.png"
+image frank = "images/characters/frank.png"
+image frank_erro = "images/characters/frank_erro.png"
+image frank_falando = "images/characters/frank_falando.png"
+image frank_feliz = "images/characters/frank_feliz.png"
+
 
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
@@ -42,14 +47,26 @@ label medieval:
     hide screen MapUI
 
     scene expression Transform("bg fase4", fit="cover") with fade
+    show frank_falando at grande, center
 
     frank "Olá, [jogador]! Seja bem-vindo ao Universo de Funções e Modularização!"
 
+    hide frank_falando at grande, center
+    show frank at grande, center
+
     jogador "E quem é você?"
 
+    hide frank at grande, center
+    show frank_falando at grande, center
+
     frank "Serei o seu desafiante, caso passe pelos meus desafios, ficará mais próximo de voltar pra casa"
+   
+    hide frank_falando at grande, center
+    show frank_feliz at grande, center
 
     jogador "Aceito seu desafio!"   
+    hide frank_feliz at grande, center
+    hide frank at grande, center
 
     if difficulty == "easy":
         $ perguntas_totais = 10
@@ -64,6 +81,7 @@ label medieval:
     else:
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
+
 
     # --- MENU DE DEPURAÇÃO ---
     menu:
@@ -144,6 +162,8 @@ label verificar_resultado_quiz_medieval:
 label medieval_feliz:
 
     $ fase_5_liberada = True
+    
+    show frank_feliz at grande, center
 
     frank "Parabéns, [jogador]! Você concluiu sua quarta missão no universo"
 
@@ -156,6 +176,8 @@ label medieval_feliz:
 
 label medieval_triste:
 
+    show frank_erro at grande, center
+    
     frank "Infelizmente você não está pronto, mas você pode tentar novamente!"
 
     jump hub_controle_5_triste
