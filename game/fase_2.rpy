@@ -2,6 +2,10 @@
 
 image bg fase2 = "images/background/bg cyberpunk.png"
 image bg hub = "images/background/bg hub.png"
+image vanilton = "images/characters/vanilton.png"
+
+transform grande: 
+    zoom 2.2
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
 screen quiz_screen(question, options):
@@ -49,6 +53,8 @@ label cyberpunk:
     hide screen MapUI
 
     scene expression Transform("bg fase2", fit="cover") with fade
+    
+    show vanilton at grande, center
 
     vanilton "Olá, [jogador]! Seja bem-vindo ao Universo de Lógica e Estrutura Condicionais!"
 

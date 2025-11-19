@@ -2,6 +2,10 @@
 
 image bg fase3 = "images/background/bg marinho.png"
 image bg hub = "images/background/bg hub.png"
+image willon = "images/characters/willon_serio.png"
+image willon_falando = "images/characters/willon_falando.png"
+image willon_feliz = "images/characters/willon_feliz.png"
+image willon_desapontado = "images/characters/willon_desapontado.png"
 
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
@@ -46,14 +50,25 @@ label marinho:
     hide screen MapUI
 
     scene expression Transform("bg fase3", fit="cover") with fade
+    show willon_falando at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     willon "Olá, [jogador]! Seja bem-vindo ao Universo de Estruturas de Repetição!"
 
+    hide willon_falando at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
+    show willon at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
+
     jogador "E quem é você?"
+
+    hide willon at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
+    show willon_falando at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     willon "Serei o seu desafiante, caso passe pelos meus desafios, ficará mais perto de voltar pra casa"
 
+    hide willon_falando at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
+    show willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
+
     jogador "Aceito seu desafio!"   
+    hide willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     if difficulty == "easy":
         $ perguntas_totais = 10
@@ -122,11 +137,19 @@ label proxima_pergunta_marinho:
 
     if escolha_do_jogador == pergunta_atual['resposta_correta']:
         $ acertos += 1
+        show willon at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
         jogador "Essa é a resposta. Acertei!"
+        hide willon at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
+        show willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
         willon "Correto! Próxima pergunta."
+        hide willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
     else:
+        show willon at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
         jogador "Minha escolha é essa..."
+        hide willon at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
+        show willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
         willon "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
+        hide willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     jump proxima_pergunta_marinho
 
@@ -146,6 +169,8 @@ label verificar_resultado_quiz_marinho:
 label marinho_feliz:
 
     $ fase_4_liberada = True
+    
+    show willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     willon "Parabéns, [jogador]! Você concluiu sua terceira missão no universo"
 
@@ -157,6 +182,8 @@ label marinho_feliz:
 ## Se não passar
 
 label marinho_triste:
+    
+    show willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     willon "Infelizmente você não está pronto, mas você pode tentar novamente!"
 
