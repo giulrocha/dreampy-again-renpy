@@ -101,30 +101,30 @@ label intro:
     #cara de cansado, tipo gatinho sem bateria
 
     if jogador == "Renata":
-        show renata_sono at Position(xpos=0.49, ypos=0.82, xanchor=0.5, yanchor=1.0)
+        show renata_sono at Position(xpos=0.49, ypos=0.78, xanchor=0.5, yanchor=1.0)
     else:
-        show thiago_sono at Position(xpos=0.49, ypos=0.82, xanchor=0.5, yanchor=1.0)
+        show thiago_sono at Position(xpos=0.49, ypos=0.78, xanchor=0.5, yanchor=1.0)
 
     jogador "Nossa...estou com muito sono..."
 
     #meio determinado
 
     if jogador == "Renata":
-        hide renata_sono at Position(xpos=0.49, ypos=0.72, xanchor=0.5, yanchor=1.0)
+        hide renata_sono at Position(xpos=0.49, ypos=0.78, xanchor=0.5, yanchor=1.0)
     else:
-        hide thiago_sono at Position(xpos=0.49, ypos=0.72, xanchor=0.5, yanchor=1.0)
+        hide thiago_sono at Position(xpos=0.49, ypos=0.78, xanchor=0.5, yanchor=1.0)
 
     if jogador == "Renata":
-        show renata_vou_conseguir at Position(xpos=0.49, ypos=0.82, xanchor=0.5, yanchor=1.0)
+        show renata_vou_conseguir at Position(xpos=0.49, ypos=0.78, xanchor=0.5, yanchor=1.0)
     else:
-        show thiago_vou_conseguir at Position(xpos=0.49, ypos=0.82, xanchor=0.5, yanchor=1.0)
+        show thiago_vou_conseguir at Position(xpos=0.49, ypos=0.78, xanchor=0.5, yanchor=1.0)
     
     jogador "Mas tenho que continuar"
 
     if jogador == "Renata":
-        hide renata_vou_conseguir at Position(xpos=0.49, ypos=0.82, xanchor=0.5, yanchor=1.0)
+        hide renata_vou_conseguir at Position(xpos=0.49, ypos=0.78, xanchor=0.5, yanchor=1.0)
     else:
-        hide thiago_vou_conseguir at Position(xpos=0.49, ypos=0.82, xanchor=0.5, yanchor=1.0)
+        hide thiago_vou_conseguir at Position(xpos=0.49, ypos=0.78, xanchor=0.5, yanchor=1.0)
 
     #portal aparece e puxa ele para outra dimensão
     #(cenário 1 e 2 cutscene com opção de botão de skip para pular a história toda para a próxima cena)
