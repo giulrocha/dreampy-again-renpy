@@ -1,7 +1,6 @@
 # ----------------------------------------
-# IA DO FRANK - FASE 4
+# IA DO FRANK - FASE 4 (INTELIGENTE)
 # ----------------------------------------
-
 import unicodedata
 import json
 import urllib.request
@@ -32,45 +31,60 @@ def avaliar_resposta(pergunta, resposta_correta, resposta_jogador):
     correta_norm = normalize(resposta_correta)
     jogador_norm = normalize(resposta_jogador)
 
-    if "nao" in jogador_norm or "não" in jogador_norm:
-        return "errada", "Hum... parece que você está negando a função correta."
+    equivalencias = {
+        "funcao": "def",
+        "function": "def",
+        "declarar": "def",
+        "retorno": "return",
+        "resultado": "return"
+    }
+
+    if jogador_norm in equivalencias:
+        jogador_norm = equivalencias[jogador_norm]
 
     if correta_norm in jogador_norm:
-        return "correta", "Excelente! Sua magia de funções está poderosa!"
+        return "correta", "Perfeito! Sua magia de funções está impecável!"
 
     similar = SequenceMatcher(None, jogador_norm, correta_norm).ratio()
-    if similar >= 0.75:
-        return "quase", "Quase lá! Só falta um toque de magia Python."
+    if similar >= 0.78:
+        return "quase", "Quase lá! Só falta um toque arcano na função."
 
     prompt = f"""
-Você é Frank, mago supremo das Funções em Python.
+Você é Frank, mago supremo das Funções.
 
-Considere como CORRETO:
-- qualquer frase contendo a forma correta
-- qualquer forma equivalente (“uma função começa com def”)
-- explicações semânticas do conceito
-- chamadas equivalentes
+Avalie equivalências:
+- “uma função começa com def” = CORRETO
+- “retorna o valor usando return” = CORRETO
+- resposta dentro de frases = CORRETO
 
 Pergunta: {pergunta}
-Resposta correta: {resposta_correta}
-Resposta do aluno: {resposta_jogador}
+Correta: {resposta_correta}
+Aluno: {resposta_jogador}
 
-JSON apenas:
-
-{{
-  "status": "...",
-  "feedback": "..."
-}}
+JSON:
+{{"status":"...","feedback":"..."}}
 """
 
     payload = {"contents": [{"parts": [{"text": prompt}]}]}
 
     try:
-        req = urllib.request.Request(API_URL, data=json.dumps(payload).encode(),
-                                     headers={"Content-Type": "application/json"}, method="POST")
+        req = urllib.request.Request(API_URL,
+                                     data=json.dumps(payload).encode(),
+                                     headers={"Content-Type": "application/json"},
+                                     method="POST")
         data = urllib.request.urlopen(req, context=ssl_context).read()
         raw = json.loads(data)["candidates"][0]["content"]["parts"][0]["text"]
         result = json.loads(raw)
+
+        if result["status"] == "errada" and correta_norm in jogador_norm:
+            return "correta", "Correto! Você expressou a função de maneira válida."
+
         return result["status"], result["feedback"]
+
     except:
-        return "quase", "Você está muito perto de conjurar a função correta!"
+        if correta_norm in jogador_norm:
+            return "correta", "Correto! (fallback seguro)"
+        elif similar >= 0.60:
+            return "quase", "Quase! Falta pouco para conjurar a função certa."
+        else:
+            return "errada", "Ainda não é essa estrutura de função."

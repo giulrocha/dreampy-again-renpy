@@ -1,7 +1,6 @@
 # ----------------------------------------
-# IA DO WILLON - FASE 3
+# IA DO WILLON - FASE 3 (INTELIGENTE)
 # ----------------------------------------
-
 import unicodedata
 import json
 import urllib.request
@@ -32,48 +31,64 @@ def avaliar_resposta(pergunta, resposta_correta, resposta_jogador):
     correta_norm = normalize(resposta_correta)
     jogador_norm = normalize(resposta_jogador)
 
-    if "nao" in jogador_norm or "não" in jogador_norm:
-        return "errada", "Não parece que você está repetindo nada corretamente!"
+    equivalencias = {
+        "repeticao": "loop",
+        "loop": "for",
+        "laço": "for",
+        "laco": "for",
+        "enquanto": "while"
+    }
+
+    if jogador_norm in equivalencias:
+        jogador_norm = equivalencias[jogador_norm]
 
     if correta_norm in jogador_norm:
-        return "correta", "Excelente! Você dominou o fluxo das marés da repetição!"
+        return "correta", "Excelente! Você surfou bem pelas marés da repetição!"
 
     similar = SequenceMatcher(None, jogador_norm, correta_norm).ratio()
-    if similar >= 0.75:
-        return "quase", "Quase! Só ajuste um detalhezinho no loop."
+    if similar >= 0.78:
+        return "quase", "Está quase! Ajuste a estrutura do loop."
 
     prompt = f"""
-Você é o Tritão Willon, mestre dos loops.
+Você é Willon, tritão mestre dos loops.
 
-Avalie se o aluno compreendeu:
-- for em Python
+Avalie se o aluno entendeu:
+- laços for
 - while
 - range()
-- iterações
-- contadores
+- iteração por elementos
 
-Expressões equivalentes (“laço for”, “um while repetindo”, etc.) → CORRETAS.
+Similaridades → QUASE
+Equivalências (“repetição”, “loop”, “laço”) → CORRETO
 
 Pergunta: {pergunta}
 Resposta correta: {resposta_correta}
-Resposta do aluno: {resposta_jogador}
+Aluno: {resposta_jogador}
 
-Responda JSON:
-
-{{
-  "status": "...",
-  "feedback": "..."
-}}
+JSON:
+{{"status":"...","feedback":"..."}}
 """
 
     payload = {"contents": [{"parts": [{"text": prompt}]}]}
 
     try:
-        req = urllib.request.Request(API_URL, data=json.dumps(payload).encode(),
-                                     headers={"Content-Type": "application/json"}, method="POST")
+        req = urllib.request.Request(API_URL,
+                                     data=json.dumps(payload).encode(),
+                                     headers={"Content-Type": "application/json"},
+                                     method="POST")
         data = urllib.request.urlopen(req, context=ssl_context).read()
         raw = json.loads(data)["candidates"][0]["content"]["parts"][0]["text"]
         result = json.loads(raw)
+
+        if result["status"] == "errada" and correta_norm in jogador_norm:
+            return "correta", "Correto! Você entendeu o fluxo da repetição."
+
         return result["status"], result["feedback"]
+
     except:
-        return "quase", "Sua repetição está quase certa!"
+        if correta_norm in jogador_norm:
+            return "correta", "Correto! (fallback seguro)"
+        elif similar >= 0.60:
+            return "quase", "Quase! Você entendeu a ideia."
+        else:
+            return "errada", "Ainda não é essa repetição."
