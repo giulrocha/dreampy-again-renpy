@@ -82,7 +82,7 @@ label final:
     if jogador == "Renata":
         show renata_vou_conseguir at Position(xpos=0.49, ypos=0.72, xanchor=0.5, yanchor=1.0)
     else:
-        show thiago_vou_conseguir at Position(xpos=0.49, ypos=0.72, xanchor=0.5, yanchor=1.0)
+        show thiago_vou_conseguir at Position(xpos=0.49, ypos=0.73, xanchor=0.5, yanchor=1.0)
 
     jogador "Dessa vez, estou pronto."
 
@@ -188,7 +188,8 @@ label final:
 
     show text "FIM — Seu código foi reescrito com sucesso." at Position(xalign=0.5, yalign=0.5)
 
-    scene bg fim    
+
+    scene expression Transform("bg fim", fit="cover") with pixellate
     with fade
     pause
     $ renpy.full_restart()
