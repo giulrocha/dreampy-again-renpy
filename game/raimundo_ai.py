@@ -1,7 +1,6 @@
 # ----------------------------------------
-# IA DO RAIMUNDO - FASE 1
+# IA DO RAIMUNDO - FASE 1 (VERSÃO INTELIGENTE)
 # ----------------------------------------
-
 import unicodedata
 import json
 import urllib.request
@@ -32,49 +31,76 @@ def avaliar_resposta(pergunta, resposta_correta, resposta_jogador):
     correta_norm = normalize(resposta_correta)
     jogador_norm = normalize(resposta_jogador)
 
-    # ========= NEGATIVO AUTOMÁTICO ==========
-    if "nao" in jogador_norm or "não" in jogador_norm:
-        return "errada", "Cuidado! Parece que você negou a resposta correta."
+    # ========== 1) EQUIVALÊNCIAS COMUNS ==========
+    equivalencias = {
+        "string": "str",
+        "texto": "str",
+        "palavra": "str",
+        "numero": "int",
+        "inteiro": "int"
+    }
 
-    # ========= CONTIDO DIRETO ==========
+    if jogador_norm in equivalencias:
+        jogador_norm = equivalencias[jogador_norm]
+
+    # ========== 2) SE A RESPOSTA CERTA APARECE NA RESPOSTA ==========
     if correta_norm in jogador_norm:
-        return "correta", "Muito bem! Você acertou direitinho!"
+        return "correta", "Muito bem! A resposta está certa."
 
-    # ========= APROXIMAÇÃO ==========
+    # ========== 3) SIMILARIDADE ==========
     similar = SequenceMatcher(None, jogador_norm, correta_norm).ratio()
+
     if similar >= 0.78:
-        return "quase", "Você está muito perto! Falta só um ajuste."
+        return "quase", "Quase lá! Você entendeu o conceito, só precisa ajustar um detalhe."
 
-    # ========= IA COMO SEGUNDA CAMADA ==========
+    # ========== 4) IA COMO CAMADA EXTRA (NÃO DECIDE SOZINHA) ==========
     prompt = f"""
-Você é o Robô Raimundo, mestre de Variáveis e Tipos em Python.
+    Você é o Robô Raimundo, mestre de Variáveis e Tipos em Python.
+    Avalie se a resposta está correta com base na lógica e equivalência de significados.
 
-Avalie se a resposta do aluno está correta considerando:
-- respostas dentro de frases são corretas se contiverem o essencial
-- formas equivalentes são corretas ("string" = str)
-- pequenos erros ⇒ QUASE
-- negações ⇒ ERRADO
+    Pergunta: {pergunta}
+    Resposta correta: {resposta_correta}
+    Resposta do aluno: {resposta_jogador}
 
-Pergunta: {pergunta}
-Resposta correta: {resposta_correta}
-Resposta do aluno: {resposta_jogador}
+    Considere:
+    - Respostas dentro de frases são corretas se contiverem o essencial.
+    - Equivalentes como "string" = "str" devem ser aceitas como corretas.
+    - Só marque errado se realmente estiver incorreta.
+    - Se estiver quase certa, retorne "quase".
 
-Responda em JSON puro:
-
-{{
-  "status": "correta" ou "quase" ou "errada",
-  "feedback": "mensagem curta"
-}}
-"""
+    Responda SOMENTE em JSON:
+    {{
+      "status": "correta" | "quase" | "errada",
+      "feedback": "mensagem curta"
+    }}
+    """
 
     payload = {"contents": [{"parts": [{"text": prompt}]}]}
 
     try:
-        req = urllib.request.Request(API_URL, data=json.dumps(payload).encode(),
-                                     headers={"Content-Type": "application/json"}, method="POST")
+        req = urllib.request.Request(
+            API_URL,
+            data=json.dumps(payload).encode(),
+            headers={"Content-Type": "application/json"},
+            method="POST"
+        )
+
         data = urllib.request.urlopen(req, context=ssl_context).read()
         raw = json.loads(data)["candidates"][0]["content"]["parts"][0]["text"]
+
         result = json.loads(raw)
+
+        # IA não pode marcar errado se a resposta contém o correto
+        if result["status"] == "errada" and correta_norm in jogador_norm:
+            return "correta", "Correto! Você respondeu dentro de uma frase."
+
         return result["status"], result["feedback"]
+
     except:
-        return "quase", "Você está perto! Ajuste e tente novamente."
+        # FALLBACK SEGURO — nunca devolve errado por falha da API
+        if correta_norm in jogador_norm:
+            return "correta", "Acertou! (fallback seguro)"
+        elif similar >= 0.60:
+            return "quase", "Quase! Ajuste um pouco sua resposta."
+        else:
+            return "errada", "Não é bem isso. Vamos tentar outra."
