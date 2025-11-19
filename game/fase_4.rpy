@@ -7,7 +7,8 @@ image frank_erro = "images/characters/frank_erro.png"
 image frank_falando = "images/characters/frank_falando.png"
 image frank_feliz = "images/characters/frank_feliz.png"
 
-
+transform frankfit:
+    zoom 2
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
 screen quiz_screen(question, options):
@@ -47,26 +48,26 @@ label medieval:
     hide screen MapUI
 
     scene expression Transform("bg fase4", fit="cover") with fade
-    show frank_falando at grande, center
+    show frank_falando at frankfit, center
 
     frank "Olá, [jogador]! Seja bem-vindo ao Universo de Funções e Modularização!"
 
-    hide frank_falando at grande, center
-    show frank at grande, center
+    hide frank_falando at frankfit, center
+    show frank at frankfit, center
 
     jogador "E quem é você?"
 
-    hide frank at grande, center
-    show frank_falando at grande, center
+    hide frank at frankfit, center
+    show frank_falando at frankfit, center
 
     frank "Serei o seu desafiante, caso passe pelos meus desafios, ficará mais próximo de voltar pra casa"
    
-    hide frank_falando at grande, center
-    show frank_feliz at grande, center
+    hide frank_falando at frankfit, center
+    show frank_feliz at frankfit, center
 
     jogador "Aceito seu desafio!"   
-    hide frank_feliz at grande, center
-    hide frank at grande, center
+    hide frank_feliz at frankfit, center
+    hide frank at frankfit, center
 
     if difficulty == "easy":
         $ perguntas_totais = 10
