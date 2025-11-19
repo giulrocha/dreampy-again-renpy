@@ -1,7 +1,6 @@
 # ----------------------------------------
-# IA DO SERGIO - FASE 5
+# IA DO SERGIO - FASE 5 (INTELIGENTE)
 # ----------------------------------------
-
 import unicodedata
 import json
 import urllib.request
@@ -32,45 +31,61 @@ def avaliar_resposta(pergunta, resposta_correta, resposta_jogador):
     correta_norm = normalize(resposta_correta)
     jogador_norm = normalize(resposta_jogador)
 
-    if "nao" in jogador_norm or "não" in jogador_norm:
-        return "errada", "Parece que você negou a estrutura correta."
+    equivalencias = {
+        "lista": "[]",
+        "vetor": "[]",
+        "colecao": "[]",
+        "dicionario": "{}",
+        "tabela": "{}",
+        "mapa": "{}"
+    }
+
+    if jogador_norm in equivalencias:
+        jogador_norm = equivalencias[jogador_norm]
 
     if correta_norm in jogador_norm:
-        return "correta", "Muito bem! Você manipulou listas e dicionários como um alien expert!"
+        return "correta", "Muito bem! Você manipulou listas e dicionários como um alien especialista!"
 
     similar = SequenceMatcher(None, jogador_norm, correta_norm).ratio()
-    if similar >= 0.75:
-        return "quase", "Quase! Ajuste a estrutura e ficará perfeito."
+    if similar >= 0.78:
+        return "quase", "Quase! Só ajustar a estrutura do elemento."
 
     prompt = f"""
-Você é Sérgio, alien mestre de Listas e Dicionários.
+Você é Sérgio, alien mestre de listas e dicionários.
 
-Avalie:
-- listas: []
-- dicionários: {{"chave": valor}}
-- acessos: lista[0], dict["chave"]
-- equivalências ("uma lista usa colchetes", "um dicionário usa chaves") → CORRETO
+Considere:
+- explicações dentro de frases = CORRETAS
+- equivalências (“uma lista usa colchetes”) = CORRETAS
+- acessos semelhantes → QUASE
 
 Pergunta: {pergunta}
-Resposta correta: {resposta_correta}
-Resposta do aluno: {resposta_jogador}
+Correta: {resposta_correta}
+Aluno: {resposta_jogador}
 
-Responda JSON:
-
-{{
-  "status": "...",
-  "feedback": "..."
-}}
+JSON:
+{{"status":"...","feedback":"..."}}
 """
 
     payload = {"contents": [{"parts": [{"text": prompt}]}]}
 
     try:
-        req = urllib.request.Request(API_URL, data=json.dumps(payload).encode(),
-                                     headers={"Content-Type": "application/json"}, method="POST")
+        req = urllib.request.Request(API_URL,
+                                     data=json.dumps(payload).encode(),
+                                     headers={"Content-Type": "application/json"},
+                                     method="POST")
         data = urllib.request.urlopen(req, context=ssl_context).read()
         raw = json.loads(data)["candidates"][0]["content"]["parts"][0]["text"]
         result = json.loads(raw)
+
+        if result["status"] == "errada" and correta_norm in jogador_norm:
+            return "correta", "Correto! Você respondeu dentro de uma frase válida."
+
         return result["status"], result["feedback"]
+
     except:
-        return "quase", "Sua resposta está quase no formato correto!"
+        if correta_norm in jogador_norm:
+            return "correta", "Correto! (fallback seguro)"
+        elif similar >= 0.60:
+            return "quase", "Quase! Estrutura quase perfeita."
+        else:
+            return "errada", "Não é essa estrutura de dados."

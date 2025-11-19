@@ -1,7 +1,6 @@
 # ----------------------------------------
-# IA DO VANILTON - FASE 2
+# IA DO VANILTON - FASE 2 (VERSÃO INTELIGENTE)
 # ----------------------------------------
-
 import unicodedata
 import json
 import urllib.request
@@ -32,46 +31,66 @@ def avaliar_resposta(pergunta, resposta_correta, resposta_jogador):
     correta_norm = normalize(resposta_correta)
     jogador_norm = normalize(resposta_jogador)
 
-    if "nao" in jogador_norm or "não" in jogador_norm:
-        return "errada", "Parece que você negou a condição verdadeira."
+    equivalencias = {
+        "igual": "==",
+        "igualdade": "==",
+        "comparacao": "==",
+        "condicao": "if",
+        "se": "if",
+        "senao": "else",
+        "caso contrario": "else"
+    }
+
+    if jogador_norm in equivalencias:
+        jogador_norm = equivalencias[jogador_norm]
 
     if correta_norm in jogador_norm:
         return "correta", "Boa! Sua lógica está afiada como uma lâmina cyberpunk!"
 
     similar = SequenceMatcher(None, jogador_norm, correta_norm).ratio()
-    if similar >= 0.75:
-        return "quase", "Quase lá! Ajuste um detalhe lógico."
+    if similar >= 0.78:
+        return "quase", "Quase! Só falta um detalhe na condição."
 
+    # IA EXTRA — não decide sozinha, mas reforça
     prompt = f"""
 Você é Vanilton, mestre da lógica no universo Cyberpunk.
 
-Avalie estruturas condicionais (if, elif, else), operadores (<, >, ==, and, or).
-
-Regra:
-- se o aluno expressa a mesma condição corretamente, mesmo em frases → CORRETO
-- se for equivalente (“se x é igual a 10” = x == 10) → CORRETO
-- erro pequeno → QUASE
-- negação da correta → ERRADO
+Avalie a resposta considerando:
+- estruturas condicionais (if, elif, else)
+- equivalências semânticas (“se x é igual a 10” = x == 10)
+- respostas dentro de frases
+- não penalizar explicações longas
+- só marcar ERRADO se realmente estiver incorreta
 
 Pergunta: {pergunta}
 Resposta correta: {resposta_correta}
 Resposta do aluno: {resposta_jogador}
 
-Retorne somente JSON:
-{{
-  "status": "...",
-  "feedback": "..."
-}}
+Responda SOMENTE JSON:
+{{"status": "...", "feedback": "..."}}
 """
 
     payload = {"contents": [{"parts": [{"text": prompt}]}]}
 
     try:
-        req = urllib.request.Request(API_URL, data=json.dumps(payload).encode(),
-                                     headers={"Content-Type": "application/json"}, method="POST")
+        req = urllib.request.Request(API_URL,
+                                     data=json.dumps(payload).encode(),
+                                     headers={"Content-Type": "application/json"},
+                                     method="POST")
         data = urllib.request.urlopen(req, context=ssl_context).read()
         raw = json.loads(data)["candidates"][0]["content"]["parts"][0]["text"]
         result = json.loads(raw)
+
+        # IA nunca pode marcar errado se contém a resposta
+        if result["status"] == "errada" and correta_norm in jogador_norm:
+            return "correta", "Correto! Você expressou a lógica dentro de um contexto."
+
         return result["status"], result["feedback"]
+
     except:
-        return "quase", "Sua lógica está quase perfeita!"
+        if correta_norm in jogador_norm:
+            return "correta", "Correto! (fallback seguro)"
+        elif similar >= 0.60:
+            return "quase", "Quase! Só ajustar um detalhe lógico."
+        else:
+            return "errada", "Não parece a condição correta."
