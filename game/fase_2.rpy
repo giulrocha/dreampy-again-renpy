@@ -5,7 +5,7 @@ image bg hub = "images/background/bg hub.png"
 image vanilton = "images/characters/vanilton.png"
 
 transform grande: 
-    zoom 2.2
+    zoom 2.3
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
 screen quiz_screen(question, options):
