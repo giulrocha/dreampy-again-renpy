@@ -37,6 +37,7 @@ init python:
             dados_quiz = json.load(f)
 
         perguntas_fase_3 = dados_quiz["Estrutura de repetição (loops for e while)"]
+
     except Exception as e:
         # Se o ficheiro não for encontrado ou tiver um erro, o Ren'Py mostrará uma mensagem clara.
         renpy.error("Falha ao carregar o ficheiro 'quiz_perguntas.json': " + str(e))
@@ -174,7 +175,7 @@ label marinho_feliz:
 ## Se não passar
 
 label marinho_triste:
-
+    
     show willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     willon "Ainda não. Seus laços precisam de ajustes."
