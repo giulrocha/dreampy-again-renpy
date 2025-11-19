@@ -55,12 +55,6 @@ label alienigena:
         "Iniciar o questionário normalmente.":
             jump preparar_quiz_alienigena
 
-        "DEBUG: Passar direto (100% acertos).":
-            jump debug_passar_quiz_alienigena
-
-        "DEBUG: Falhar direto (0% acertos).":
-            jump debug_falhar_quiz_alienigena
-
 
 
 # --- LABELS DE DEPURAÇÃO ---

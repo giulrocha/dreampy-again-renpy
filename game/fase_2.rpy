@@ -65,12 +65,6 @@ label cyberpunk:
         "Iniciar o questionário normalmente.":
             jump preparar_quiz_cyberpunk
 
-        "DEBUG: Passar direto (100% acertos).":
-            jump debug_passar_quiz_cyberpunk
-
-        "DEBUG: Falhar direto (0% acertos).":
-            jump debug_falhar_quiz_cyberpunk
-
 
 
 # --- LABELS DE DEPURAÇÃO ---

@@ -73,12 +73,6 @@ label marinho:
         "Iniciar o questionário normalmente.":
             jump preparar_quiz_marinho
 
-        "DEBUG: Passar direto (100% acertos).":
-            jump debug_passar_quiz_marinho
-
-        "DEBUG: Falhar direto (0% acertos).":
-            jump debug_falhar_quiz_marinho
-
 
 
 # --- LABELS DE DEPURAÇÃO ---
