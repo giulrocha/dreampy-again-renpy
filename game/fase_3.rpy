@@ -6,11 +6,10 @@ image willon = "images/characters/willon_serio.png"
 image willon_falando = "images/characters/willon_falando.png"
 image willon_feliz = "images/characters/willon_feliz.png"
 image willon_desapontado = "images/characters/willon_desapontado.png"
+image gilberto_android = "images/characters/gilberto_android.png"
 
-
-# --------------------------------------------------------
 # CARREGANDO PERGUNTAS FASE 3
-# --------------------------------------------------------
+
 init python:
     import json
     import random
@@ -24,13 +23,6 @@ init python:
 
     except Exception as e:
         renpy.error("Falha ao carregar o ficheiro 'quiz_perguntas.json' (Fase 3): " + str(e))
-
-
-
-# --------------------------------------------------------
-# INÍCIO DA FASE 3 - MARINHO
-# --------------------------------------------------------
-
 
 
 label marinho:
@@ -201,6 +193,7 @@ label marinho_triste:
 label hub_controle_4_feliz:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Parabéns [jogador]! Você conseguiu! Pode seguir para a próxima fase!"
 
@@ -214,6 +207,7 @@ label hub_controle_4_feliz:
 label hub_controle_4_triste:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Que pena [jogador], mas você pode tentar novamente."
 

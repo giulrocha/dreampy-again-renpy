@@ -11,11 +11,15 @@ image renata = "images/characters/renata_feliz.png"
 image renata_comemorando = "images/characters/renata_comemorando.png"
 image renata_raiva = "images/characters/renata_raiva.png"
 image renata_triste = "images/characters/renata_triste.png"
+image renata_sono = "images/characters/renata_sono.png"
+image renata_vou_conseguir = "images/characters/renata_vou_conseguir.png"
 image thiago = "images/characters/thiago.png"
 image thiago_comemorando = "images/characters/thiago_comemorando.png"
 image thiago_duvida = "images/characters/thiago_duvida.png"
 image thiago_raiva = "images/characters/thiago_raiva.png"
 image thiago_triste = "images/characters/thiago_triste.png"
+image thiago_sono = "images/characters/thiago_sono.png"
+image thiago_vou_conseguir = "images/characters/thiago_vou_conseguir.png"
 image giulie_feliz = "images/characters/giulie_feliz.png"
 image giulie_triste = "images/characters/giulie_triste.png"
 image giulie = "images/characters/giulie.png"
@@ -25,6 +29,7 @@ image luan_surtando = "images/characters/luan_surtando.png"
 image yasmim = "images/characters/yasmim.png"
 image yasmim_falando = "images/characters/yasmim_falando.png"
 image yasmim_feliz = "images/characters/yasmim_feliz.png"
+image gilberto_android = "images/characters/gilberto_android.png"
 
 label intro:
 
@@ -95,11 +100,31 @@ label intro:
 
     #cara de cansado, tipo gatinho sem bateria
 
+    if jogador == "Renata":
+        show renata_sono at Position(xpos=0.49, ypos=0.82, xanchor=0.5, yanchor=1.0)
+    else:
+        show thiago_sono at Position(xpos=0.49, ypos=0.82, xanchor=0.5, yanchor=1.0)
+
     jogador "Nossa...estou com muito sono..."
 
     #meio determinado
 
+    if jogador == "Renata":
+        hide renata_sono at Position(xpos=0.49, ypos=0.72, xanchor=0.5, yanchor=1.0)
+    else:
+        hide thiago_sono at Position(xpos=0.49, ypos=0.72, xanchor=0.5, yanchor=1.0)
+
+    if jogador == "Renata":
+        show renata_vou_conseguir at Position(xpos=0.49, ypos=0.82, xanchor=0.5, yanchor=1.0)
+    else:
+        show thiago_vou_conseguir at Position(xpos=0.49, ypos=0.82, xanchor=0.5, yanchor=1.0)
+    
     jogador "Mas tenho que continuar"
+
+    if jogador == "Renata":
+        hide renata_vou_conseguir at Position(xpos=0.49, ypos=0.82, xanchor=0.5, yanchor=1.0)
+    else:
+        hide thiago_vou_conseguir at Position(xpos=0.49, ypos=0.82, xanchor=0.5, yanchor=1.0)
 
     #portal aparece e puxa ele para outra dimensão
     #(cenário 1 e 2 cutscene com opção de botão de skip para pular a história toda para a próxima cena)
@@ -112,6 +137,7 @@ label intro:
 label hub_controle_1:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Bem vindo, [jogador]! Estive esperando por você."
 

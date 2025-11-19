@@ -6,13 +6,13 @@ image frank = "images/characters/frank.png"
 image frank_erro = "images/characters/frank_erro.png"
 image frank_falando = "images/characters/frank_falando.png"
 image frank_feliz = "images/characters/frank_feliz.png"
+image gilberto_android = "images/characters/gilberto_android.png"
 
 transform frankfit:
     zoom 2
 
-# --------------------------------------------------------
 # CARREGANDO PERGUNTAS FASE 4
-# --------------------------------------------------------
+
 init python:
     import json
     import random
@@ -26,11 +26,6 @@ init python:
     except Exception as e:
         renpy.error("Falha ao carregar 'quiz_perguntas.json' (Fase 4): " + str(e))
 
-
-
-# --------------------------------------------------------
-# INÍCIO DA FASE 4 - MEDIEVAL
-# --------------------------------------------------------
 
 label medieval:
 
@@ -88,10 +83,6 @@ label debug_falhar_quiz_medieval:
     jump verificar_resultado_quiz_medieval
 
 
-
-# --------------------------------------------------------
-# LÓGICA DO QUIZ - FASE 4
-# --------------------------------------------------------
 
 label preparar_quiz_medieval:
 
@@ -200,6 +191,7 @@ label medieval_triste:
 label hub_controle_5_feliz:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Parabéns [jogador]! Você conseguiu! Pode seguir para a última fase!"
 
@@ -213,6 +205,7 @@ label hub_controle_5_feliz:
 label hub_controle_5_triste:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente."
 

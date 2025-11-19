@@ -2,6 +2,11 @@
 
 image bg fase1 = "images/background/bg digital.png"
 image bg hub = "images/background/bg hub.png"
+image raimundo = "images/characters/raimundo.png"
+image raimundo_erro = "images/characters/raimundo_erro.png"
+image raimundo_falando = "images/characters/raimundo_falando.png"
+image raimundo_feliz = "images/characters/raimundo_feliz.png"
+image gilberto_android = "images/characters/gilberto_android.png"
 
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
@@ -84,14 +89,26 @@ label digital:
     hide screen MapUI
 
     scene expression Transform("bg fase1", fit="cover") with fade
+    show raimundo_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     raimundo "Olá, [jogador]! Seja bem-vindo ao Universo de Variáveis!"
 
+    hide raimundo_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    show raimundo at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+
     jogador "Quem é você??"
 
-    raimundo "Serei o seu desafiante, caso passe pelos meus desafios, ficará mais perto de voltar pra casa"
+    hide raimundo at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    show raimundo_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+
+    raimundo "Sou o Cientista Raimundo, caso passe pelos meus desafios, ficará mais perto de voltar pra casa"
+
+    hide raimundo_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    show raimundo_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jogador "Aceito seu desafio!"
+
+    hide raimundo_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     if difficulty == "easy":
         $ perguntas_totais = 10
@@ -225,9 +242,13 @@ label digital_feliz:
 
     $ fase_2_liberada = True
 
+    show raimundo_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+
     raimundo "Parabéns, [jogador]! Você concluiu sua primeira missão no universo"
 
     jogador "Finalmente!"
+
+    hide raimundo_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jump hub_controle_2_feliz
 
@@ -236,7 +257,11 @@ label digital_feliz:
 
 label digital_triste:
 
+    show raimundo_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+
     raimundo "Infelizmente você não está pronto, mas você pode tentar novamente!"
+
+    hide raimundo_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jump hub_controle_2_triste
 
@@ -246,6 +271,7 @@ label digital_triste:
 label hub_controle_2_feliz:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Parabéns [jogador]! Você conseguiu! Pode seguir para a próxima fase!"
 
@@ -259,6 +285,7 @@ label hub_controle_2_feliz:
 label hub_controle_2_triste:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
+    show gilberto_android at Position(xpos=0.35, ypos=0.86, xanchor=0.8, yanchor=1.0)
 
     android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente"
 
