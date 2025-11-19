@@ -4,40 +4,29 @@ image bg fase4 = "images/background/bg medieval.png"
 image bg hub = "images/background/bg hub.png"
 
 
-# --- TELA CUSTOMIZADA PARA O QUIZ ---
-screen quiz_screen(question, options):
-    frame:
-        xalign 0.5
-        yalign 0.5
-        padding (30, 30)
-
-        vbox:
-            spacing 20
-
-            text question:
-                xalign 0.5  
-
-            for option in options:
-                textbutton option:
-                    xalign 0.5  
-                    action Return(option)
-
-# Bloco de inicialização para carregar as perguntas da Fase 4 do JSON.
+# --------------------------------------------------------
+# CARREGANDO PERGUNTAS FASE 4
+# --------------------------------------------------------
 init python:
     import json
     import random
+    import frank_ai
 
     try:
         with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
             dados_quiz = json.load(f)
 
-        # Armazena as perguntas desta fase numa variável.
         perguntas_fase_4 = dados_quiz["Funções e modularização (def, return)"]
     except Exception as e:
-        renpy.error("Falha ao carregar 'quiz_perguntas.json': " + str(e))
+        renpy.error("Falha ao carregar 'quiz_perguntas.json' (Fase 4): " + str(e))
 
 
-label medieval:    
+
+# --------------------------------------------------------
+# INÍCIO DA FASE 4 - MEDIEVAL
+# --------------------------------------------------------
+
+label medieval:
 
     hide screen MapUI
 
@@ -47,19 +36,17 @@ label medieval:
 
     jogador "E quem é você?"
 
-    frank "Serei o seu desafiante, caso passe pelos meus desafios, ficará mais próximo de voltar pra casa"
+    frank "Sou o Mago Frank. Suas funções serão colocadas à prova."
 
-    jogador "Aceito seu desafio!"   
+    jogador "Então vamos testar essa magia!"
 
     if difficulty == "easy":
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
 
-    
     elif difficulty == "normal":
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
-
 
     else:
         $ perguntas_totais = 10
@@ -70,11 +57,11 @@ label medieval:
         "Iniciar o questionário normalmente.":
             jump preparar_quiz_medieval
 
-        # "DEBUG: Passar direto (100% acertos).":
-        #     jump debug_passar_quiz_medieval
+        "DEBUG: Passar direto (100% acertos).":
+            jump debug_passar_quiz_medieval
 
-        # "DEBUG: Falhar direto (0% acertos).":
-        #     jump debug_falhar_quiz_medieval
+        "DEBUG: Falhar direto (0% acertos).":
+            jump debug_falhar_quiz_medieval
 
 
 
@@ -88,7 +75,11 @@ label debug_falhar_quiz_medieval:
     jump verificar_resultado_quiz_medieval
 
 
-# --- LÓGICA DO QUIZ ---
+
+# --------------------------------------------------------
+# LÓGICA DO QUIZ - FASE 4
+# --------------------------------------------------------
+
 label preparar_quiz_medieval:
 
     $ acertos = 0
@@ -97,35 +88,56 @@ label preparar_quiz_medieval:
 
     $ mapa_dificuldade = {"easy": "fácil", "normal": "médio", "hard": "difícil"}
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
+
     $ lista_de_perguntas = list(perguntas_fase_4[chave_dificuldade_atual])
     $ random.shuffle(lista_de_perguntas)
+
     $ perguntas_da_sessao = lista_de_perguntas[:perguntas_totais]
+
     jump proxima_pergunta_medieval
+
 
 
 label proxima_pergunta_medieval:
+
     if not perguntas_da_sessao:
         jump verificar_resultado_quiz_medieval
 
-    $ pergunta_atual = perguntas_da_sessao.pop(0)
-    $ random.shuffle(pergunta_atual['opcoes'])
+    $ pergunta_atual = perguntas_da_sessao[0]
 
-    call screen quiz_screen(
-        question=pergunta_atual['pergunta'],
-        options=pergunta_atual['opcoes']
+    $ resposta_digitada = ""
+
+    call screen quiz_escrita_screen(pergunta_atual['pergunta'])
+    $ resposta_do_jogador = resposta_digitada.strip()
+
+    if not resposta_do_jogador:
+        frank "Você precisa escrever algo para eu avaliar sua magia de funções."
+        jump proxima_pergunta_medieval
+
+    $ status_resposta, feedback_frank = frank_ai.avaliar_resposta(
+        pergunta_atual['pergunta'],
+        pergunta_atual['resposta_correta'],
+        resposta_do_jogador
     )
 
-    $ escolha_do_jogador = _return
+    frank "[feedback_frank]"
 
-    if escolha_do_jogador == pergunta_atual['resposta_correta']:
+    if status_resposta == "correta":
         $ acertos += 1
-        jogador "Essa é a resposta. Acertei!"
-        frank "Correto! Próxima pergunta."
-    else:
-        jogador "Minha escolha é essa..."
-        frank "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
+        $ perguntas_da_sessao.pop(0)
+        jogador "Minha função foi conjurada com sucesso!"
+        jump proxima_pergunta_medieval
 
-    jump proxima_pergunta_medieval
+    elif status_resposta == "quase":
+        jogador "Acho que errei algum detalhe da função..."
+        frank "Sua lógica está perto. Ajuste parâmetros, retornos ou sintaxe e tente de novo."
+        jump proxima_pergunta_medieval
+
+    else:
+        jogador "Ok... essa função bugou."
+        frank "Sua magia falhou. Releia a pergunta e pense em como a função deveria ser escrita."
+        jump proxima_pergunta_medieval
+
 
 
 label verificar_resultado_quiz_medieval:
@@ -145,9 +157,9 @@ label medieval_feliz:
 
     $ fase_5_liberada = True
 
-    frank "Parabéns, [jogador]! Você concluiu sua quarta missão no universo"
+    frank "Parabéns, [jogador]! Você dominou as artes das funções e da modularização!"
 
-    jogador "Finalmente! Só mais uma e posso ir pra casa!"
+    jogador "Só mais uma fase e eu posso voltar pra casa!"
 
     jump hub_controle_5_feliz
 
@@ -156,32 +168,35 @@ label medieval_feliz:
 
 label medieval_triste:
 
-    frank "Infelizmente você não está pronto, mas você pode tentar novamente!"
+    frank "Ainda não está pronto, mas continue praticando. Funções exigem treino."
+
+    jogador "Eu vou voltar com magia mais forte!"
 
     jump hub_controle_5_triste
 
 
-## Fase 1 e 2 e 3 e 4 e 5 liberada
+
+## Fase 1, 2, 3, 4 e 5 liberadas
 
 label hub_controle_5_feliz:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
 
-    android "Parabéns [jogador]! Você conseguiu! Pode seguir para a próxima fase!"
+    android "Parabéns [jogador]! Você conseguiu! Pode seguir para a última fase!"
 
-    jogador "Pode vir!!"
+    jogador "Vamos lá! Eu vou até o fim!"
 
     jump hub_mapa
 
 
-## Fase 1 e 2 e 3 e 4 liberada
+## Fase 1, 2, 3 e 4 liberadas
 
 label hub_controle_5_triste:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
 
-    android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente"
+    android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente."
 
-    jogador "Não vou desistir! Estou muito perto de conseguir!"
+    jogador "Estou quase lá, eu sinto isso. Vou tentar de novo!"
 
     jump hub_mapa

@@ -1,5 +1,5 @@
 # ----------------------------------------
-# IA DO RAIMUNDO - FASE 1
+# IA DO VANILTON - FASE 2
 # ----------------------------------------
 
 import unicodedata
@@ -32,38 +32,35 @@ def avaliar_resposta(pergunta, resposta_correta, resposta_jogador):
     correta_norm = normalize(resposta_correta)
     jogador_norm = normalize(resposta_jogador)
 
-    # ========= NEGATIVO AUTOMÁTICO ==========
     if "nao" in jogador_norm or "não" in jogador_norm:
-        return "errada", "Cuidado! Parece que você negou a resposta correta."
+        return "errada", "Parece que você negou a condição verdadeira."
 
-    # ========= CONTIDO DIRETO ==========
     if correta_norm in jogador_norm:
-        return "correta", "Muito bem! Você acertou direitinho!"
+        return "correta", "Boa! Sua lógica está afiada como uma lâmina cyberpunk!"
 
-    # ========= APROXIMAÇÃO ==========
     similar = SequenceMatcher(None, jogador_norm, correta_norm).ratio()
-    if similar >= 0.78:
-        return "quase", "Você está muito perto! Falta só um ajuste."
+    if similar >= 0.75:
+        return "quase", "Quase lá! Ajuste um detalhe lógico."
 
-    # ========= IA COMO SEGUNDA CAMADA ==========
     prompt = f"""
-Você é o Robô Raimundo, mestre de Variáveis e Tipos em Python.
+Você é Vanilton, mestre da lógica no universo Cyberpunk.
 
-Avalie se a resposta do aluno está correta considerando:
-- respostas dentro de frases são corretas se contiverem o essencial
-- formas equivalentes são corretas ("string" = str)
-- pequenos erros ⇒ QUASE
-- negações ⇒ ERRADO
+Avalie estruturas condicionais (if, elif, else), operadores (<, >, ==, and, or).
+
+Regra:
+- se o aluno expressa a mesma condição corretamente, mesmo em frases → CORRETO
+- se for equivalente (“se x é igual a 10” = x == 10) → CORRETO
+- erro pequeno → QUASE
+- negação da correta → ERRADO
 
 Pergunta: {pergunta}
 Resposta correta: {resposta_correta}
 Resposta do aluno: {resposta_jogador}
 
-Responda em JSON puro:
-
+Retorne somente JSON:
 {{
-  "status": "correta" ou "quase" ou "errada",
-  "feedback": "mensagem curta"
+  "status": "...",
+  "feedback": "..."
 }}
 """
 
@@ -77,4 +74,4 @@ Responda em JSON puro:
         result = json.loads(raw)
         return result["status"], result["feedback"]
     except:
-        return "quase", "Você está perto! Ajuste e tente novamente."
+        return "quase", "Sua lógica está quase perfeita!"
