@@ -60,7 +60,7 @@ label medieval:
     show frank_falando at frankfit, center
 
     frank "Serei o seu desafiante, caso passe pelos meus desafios, ficará mais próximo de voltar pra casa"
-   
+
     hide frank_falando at frankfit, center
     show frank_feliz at frankfit, center
 
@@ -79,7 +79,6 @@ label medieval:
     else:
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
-
 
     # --- MENU DE DEPURAÇÃO ---
     menu:
@@ -162,12 +161,12 @@ label verificar_resultado_quiz_medieval:
 label medieval_feliz:
 
     $ fase_5_liberada = True
-    
+
     show frank_feliz at grande, center
 
-    frank "Parabéns, [jogador]! Você concluiu sua quarta missão no universo"
+    frank "Parabéns, [jogador]! Você dominou as artes das funções e da modularização!"
 
-    jogador "Finalmente! Só mais uma e posso ir pra casa!"
+    jogador "Só mais uma fase e eu posso voltar pra casa!"
 
     hide frank_feliz at grande, center
 
@@ -179,7 +178,7 @@ label medieval_feliz:
 label medieval_triste:
 
     show frank_erro at grande, center
-    
+
     frank "Infelizmente você não está pronto, mas você pode tentar novamente!"
 
     hide frank_erro at grande, center

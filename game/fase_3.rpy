@@ -64,7 +64,7 @@ label marinho:
     hide willon_falando at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
     show willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
-    jogador "Aceito seu desafio!"   
+    jogador "Aceito seu desafio!"
     hide willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     if difficulty == "easy":
@@ -174,7 +174,7 @@ label marinho_feliz:
 ## Se não passar
 
 label marinho_triste:
-    
+
     show willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     willon "Ainda não. Seus laços precisam de ajustes."
@@ -206,8 +206,8 @@ label hub_controle_4_triste:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
 
-    android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente"
+    android "Que pena [jogador], mas você pode tentar novamente."
 
-    jogador "Não vou desistir! Estou muito perto de conseguir!"
+    jogador "Vou voltar mais forte!"
 
     jump hub_mapa

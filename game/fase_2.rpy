@@ -52,7 +52,7 @@ label cyberpunk:
     hide screen MapUI
 
     scene expression Transform("bg fase2", fit="cover") with fade
-    
+
     show vanilton at grande, center
 
     vanilton "Olá, [jogador]! Seja bem-vindo ao Universo de Lógica e Estruturas Condicionais!"
@@ -103,9 +103,7 @@ label preparar_quiz_cyberpunk:
 
     $ lista_de_perguntas = list(perguntas_fase_2[chave_dificuldade_atual])
     $ random.shuffle(lista_de_perguntas)
-
     $ perguntas_da_sessao = lista_de_perguntas[:perguntas_totais]
-
     jump proxima_pergunta_cyberpunk
 
 
@@ -191,8 +189,8 @@ label hub_controle_3_triste:
 
     scene expression Transform("bg hub", fit="cover") with pixellate
 
-    android "Que pena [jogador], infelizmente não foi dessa vez. Mas você pode tentar novamente"
+    android "Que pena [jogador], mas você pode tentar novamente."
 
-    jogador "Não vou desistir!"
+    jogador "Eu volto mais forte!"
 
     jump hub_mapa
