@@ -124,11 +124,19 @@ label proxima_pergunta_alienigena:
 
     if escolha_do_jogador == pergunta_atual['resposta_correta']:
         $ acertos += 1
+        show sergio at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
         jogador "Essa é a resposta. Acertei!"
+        hide sergio at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+        show sergio_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
         sergio "Correto! Próxima pergunta."
+        hide sergio_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
     else:
+        show sergio at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
         jogador "Minha escolha é essa..."
+        hide sergio at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+        show sergio_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
         sergio "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
+        hide sergio_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jump proxima_pergunta_alienigena
 

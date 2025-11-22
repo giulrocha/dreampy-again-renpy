@@ -186,8 +186,7 @@ label final:
 
     professor_gilberto "Nunca se esqueça, [jogador]: programar é como sonhar acordado — basta transformar suas ideias em lógica."
 
-    show text "FIM — Seu código foi reescrito com sucesso." at Position(xalign=0.5, yalign=0.5)
-
+    #### FIM ####
 
     scene expression Transform("bg fim", fit="cover") with pixellate
     with fade

@@ -160,11 +160,15 @@ label proxima_pergunta:
     # Agora, verifica se a escolha foi correta
     if escolha_do_jogador == pergunta_atual['resposta_correta']:
         $ acertos += 1
+        show raimundo_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0) 
         jogador "A resposta é essa. Acho que acertei!"
         raimundo "Correto! Vamos para a próxima."
+        hide raimundo_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
     else:
+        show raimundo_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
         jogador "Vou escolher esta..."
         raimundo "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
+        hide raimundo_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     # Após responder, volta ao início do loop para pegar a próxima pergunta
     jump proxima_pergunta

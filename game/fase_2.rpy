@@ -126,11 +126,15 @@ label proxima_pergunta_cyberpunk:
 
     if escolha_do_jogador == pergunta_atual['resposta_correta']:
         $ acertos += 1
+        show vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
         jogador "Essa parece a escolha lógica."
         vanilton "Exato! Seu raciocínio está correto."
+        hide vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
     else:
+        show vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
         jogador "Acho que é esta..."
         vanilton "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
+        hide vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jump proxima_pergunta_cyberpunk
 
