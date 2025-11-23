@@ -126,29 +126,34 @@
         "resposta_correta": "int(s)"
       },
       {
-        "pergunta": "O que retorna a expressão 'len({1, 2, 3})'?",
-        "opcoes": ["3","2","1","0"],
-        "resposta_correta": "3"
+        "pergunta": "Qual é o tipo de b'abc'?",
+        "opcoes": ["str", "bytes", "bytearray", "memoryview"],
+        "resposta_correta": "bytes"
       },
       {
-        "pergunta": "Como verificar se uma chave existe em um dicionário sem criar a chave?",
-        "opcoes": ["in","get","has_key","isset"],
-        "resposta_correta": "in"
+        "pergunta": "Quais tipos são imutáveis?",
+        "opcoes": ["list e dict", "set e list", "tuple e str", "bytes e bytearray"],
+        "resposta_correta": "tuple e str"
       },
       {
-        "pergunta": "Qual é a diferença entre listas e arrays do módulo 'array'?",
-        "opcoes": ["Listas são dinâmicas, arrays do módulo são restritos a tipos","Arrays são imutáveis","Não há diferença","Listas não existem"],
-        "resposta_correta": "Listas são dinâmicas, arrays do módulo são restritos a tipos"
+        "pergunta": "O que a função id() retorna?",
+        "opcoes": ["O tamanho do objeto", "O identificador de memória do objeto", "A classe do objeto", "O conteúdo do objeto"],
+        "resposta_correta": "O identificador de memória do objeto"
       },
       {
-        "pergunta": "Qual expressão retorna uma cópia invertida da lista sem alterar a original?",
-        "opcoes": ["lista[::-1]","lista.reverse()","lista[::-1:]","reverse(lista)"],
-        "resposta_correta": "lista[::-1]"
+        "pergunta": "Qual é o tipo de um número complexo em Python?",
+        "opcoes": ["complex", "float", "int", "bool"],
+        "resposta_correta": "complex"
       },
       {
-        "pergunta": "Qual é o resultado de: lista = [1, 2, 3]; lista.append(4); lista",
-        "opcoes": ["[1, 2, 3, 4]","[4, 1, 2, 3]","[1, 2, 3]","[1, 2, 3, 4, 5]"],
-        "resposta_correta": "[1, 2, 3, 4]"
+        "pergunta": "Qual é o operador de exponenciação em Python?",
+        "opcoes": ["**", "^", "//", "*"],
+        "resposta_correta": "**"
+      },
+      {
+        "pergunta": "Qual é o resultado de: a=5; b=a; a=a+1; print(b)?",
+        "opcoes": ["5", "6", "Error", "None"],
+        "resposta_correta": "5"
       }
     ]
   },
@@ -222,9 +227,44 @@
         "resposta_correta": "if not cond:"
       },
       {
-        "pergunta": "Qual é o resultado de 'if not []: print('ok')'?",
-        "opcoes": ["Nada é impresso","'ok' é impresso","Erro de sintaxe","Imprime None"],
-        "resposta_correta": "'ok' é impresso"
+        "pergunta": "Como combinar várias condições usando operadores lógicos em um if?",
+        "opcoes": ["and, or, not", "plus, minus", "merge, split", "join, compare"],
+        "resposta_correta": "and, or, not"
+      },
+      {
+        "pergunta": "Qual é a saída de um if aninhado sem condição verdadeira interna?",
+        "opcoes": ["executa none","executa else","não executa","gera erro"],
+        "resposta_correta": "não executa"
+      },
+      {
+        "pergunta": "Qual expressão retorna True se pelo menos uma condição for verdadeira?",
+        "opcoes": ["A and B", "A or B", "A not B", "A xor B"],
+        "resposta_correta": "A or B"
+      },
+      {
+        "pergunta": "O que acontece se todas as condições de um if/elif forem falsas?",
+        "opcoes": ["Nenhuma ação; o programa continua","Gera erro","Executa o último else automaticamente","Reinicia o script"],
+        "resposta_correta": "Nenhuma ação; o programa continua"
+      },
+      {
+        "pergunta": "Qual bloco é executado apenas se todas as condições anteriores falharem?",
+        "opcoes": ["elif","else","then","catch"],
+        "resposta_correta": "else"
+      },
+      {
+        "pergunta": "Pode haver mais de um 'elif' em uma única estrutura condicional?",
+        "opcoes": ["Sim, quantos forem necessários","Não, apenas um","Somente um por função","Depende do tipo da variável"],
+        "resposta_correta": "Sim, quantos forem necessários"
+      },
+      {
+        "pergunta": "Se x = 0, qual saída do seguinte código: if x: print('A') elif not x: print('B')",
+        "opcoes": ["A","B","Nenhuma","Erro"],
+        "resposta_correta": "B"
+      },
+      {
+        "pergunta": "O que acontece se uma condição em um if lança uma exceção?",
+        "opcoes": ["O código continua","A exceção propaga para o chamador","A função retorna None","O programa encerra automaticamente"],
+        "resposta_correta": "A exceção propaga para o chamador"
       }
     ],
     "difícil": [
@@ -323,9 +363,9 @@
         "resposta_correta": "O fluxo continua"
       },
       {
-        "pergunta": "Como percorrer uma string com um laço for para obter cada caractere?",
-        "opcoes": ["for c in 'texto':","for c in texto:","for c in texto[]:","for c in (texto):"],
-        "resposta_correta": "for c in (texto):"
+        "pergunta": "O que acontece ao percirrer uma lista vazia com um laço for?",
+        "opcoes": ["O corpo não é executado","Gera erro","Imprime None","Retorna a lista"],
+        "resposta_correta": "O corpo não é executado"
       },
       {
         "pergunta": "Qual é o uso de 'else' em um loop?",
@@ -340,9 +380,9 @@
         "resposta_correta": "range(inicio, fim, passo)"
       },
       {
-        "pergunta": "Como percorrer uma lista ao contrário sem inverter a lista?",
-        "opcoes": ["for i in reversed(lista)","for i in lista[::-1]","range(len(lista)-1, -1, -1)","Todas as anteriores"],
-        "resposta_correta": "Todas as anteriores"
+        "pergunta": "Qual é a saída de um laço for que imprime i, onde i percorre range(2)?",
+        "opcoes": ["0 1","0 1 2","1 2","0 1 2 3"],
+        "resposta_correta": "0 1"
       },
       {
         "pergunta": "Como combinar duas condições usando AND em um while?",
@@ -365,14 +405,14 @@
         "resposta_correta": "for i, v in enumerate(lista)"
       },
       {
-        "pergunta": "Como transformar uma lista em uma cópia invertida sem modificar a original?",
-        "opcoes": ["lista[::-1]","lista.reverse()","lista[::-1] com atribuição","reverse(lista)"],
-        "resposta_correta": "lista[::-1]"
+        "pergunta": "Como criar um laço while que nunca termina (banco de código)?",
+        "opcoes": ["while True:", "while false:", "while 0:", "while loop:"],
+        "resposta_correta": "while True:"
       },
       {
-        "pergunta": "Qual expressão retorna uma cópia da lista em ordem inversa sem alterar a original?",
-        "opcoes": ["lista[::-1]","lista.reverse()","lista[:: -1]","Todas as anteriores"],
-        "resposta_correta": "lista[::-1]"
+        "pergunta": "Qual é a diferença entre break e return dentro de um loop?",
+        "opcoes": ["break quebra o loop; return sai da função","return quebra o loop; break sai da função","ambos quebram o loop","nenhuma diferença"],
+        "resposta_correta": "break quebra o loop; return sai da função"
       },
       {
         "pergunta": "O que acontece se o laço for executado sem encontrar um 'break'?",
@@ -412,11 +452,6 @@
         "resposta_correta": "Menor probabilidade de erros de contagem"
       },
       {
-        "pergunta": "Como inverter rapidamente uma lista sem alterar a original usando slicing?",
-        "opcoes": ["lista[::-1]","lista.reverse()","lista.invert()","lista[::-1:]"],
-        "resposta_correta": "lista[::-1]"
-      },
-      {
         "pergunta": "Qual é o efeito de 'for x in range(n):' quando n é 0 ou negativo?",
         "opcoes": ["Executa zero vezes","Executa uma vez","Gera erro","Executa indefinidamente"],
         "resposta_correta": "Executa zero vezes"
@@ -427,9 +462,19 @@
         "resposta_correta": "Executa se o loop não foi encerrado por 'break'"
       },
       {
-        "pergunta": "Qual é a forma correta de percorrer uma lista com seu índice e valor, de trás para frente?",
-        "opcoes": ["for i in range(len(lista)-1, -1, -1):","for i in range(len(lista)):","for i, v in enumerate(lista[::-1]):","for i in range(len(lista),-1,-1):"],
-        "resposta_correta": "for i in range(len(lista)-1, -1, -1):"
+        "pergunta": "Como interromper todos os loops aninhados com uma única instrução?",
+        "opcoes": ["Não há instrução padrão; usar flags","break","continue","return"],
+        "resposta_correta": "Não há instrução padrão; usar flags"
+      },
+      {
+        "pergunta": "Qual é o comportamento de 'while True' sem 'break'?",
+        "opcoes": ["Loop infinito","Loop que roda apenas uma vez","Gera erro","Não executa"],
+        "resposta_correta": "Loop infinito"
+      },
+      {
+        "pergunta": "Como otimizar loops que percorrem grandes listas de números com operações simples?",
+        "opcoes": ["Utilizar list comprehension ou map","Usar while sem condição","Usar nested loops","Evitar funções"],
+        "resposta_correta": "Utilizar list comprehension ou map"
       }
     ]
   },
@@ -600,13 +645,13 @@
       },
       {
         "pergunta": "Como criar uma lista vazia?",
-        "opcoes": ["'[]'","{}","()","list()"],
-        "resposta_correta": "'[]'"
+        "opcoes": ["'com cochetes'","com chaves","com parênteses","com list()"],
+        "resposta_correta": "'com cochetes'"
       },
       {
-        "pergunta": "Como acessar o segundo elemento de uma lista 'nums'?",
-        "opcoes": ["nums[2]","nums[1]","nums(2)","'nums{2}'"],
-        "resposta_correta": "nums[1]"
+        "pergunta": "Qual é o método para obter valor com chave, retornando None se não existir?",
+        "opcoes": ["get","find","lookup","retrieve"],
+        "resposta_correta": "get"
       },
       {
         "pergunta": "Qual método adiciona um item ao final de uma lista?",
@@ -614,14 +659,14 @@
         "resposta_correta": "append"
       },
       {
-        "pergunta": "Como criar um dicionário com as chaves 'nome' e 'idade'?",
-        "opcoes": ["{'nome': 'João', 'idade': 30}","{'nome', 'idade': 30}","{'nome': ['João'], 'idade': 30}","{'nome':30, 'idade': 'João'}"],
-        "resposta_correta": "{'nome': 'João', 'idade': 30}"
+        "pergunta": "Como criar um dicionário vazio?",
+        "opcoes": ["com chaves", "com parênteses", "com cochetes", "com dict()"],
+        "resposta_correta": "com chaves"
       },
       {
-        "pergunta": "Como acessar a chave 'nome' de um dicionário 'p'?",
-        "opcoes": ["p['nome']","p[nome]","p.nome","p.nome."],
-        "resposta_correta": "p['nome']"
+        "pergunta": "Qual é o método para verificar se uma chave está no dicionário?",
+        "opcoes": ["has_key","in","contains","exists"],
+        "resposta_correta": "in"
       },
       {
         "pergunta": "Qual método para obter todas as chaves de um dicionário 'd'?",
@@ -646,11 +691,6 @@
     ],
     "médio": [
       {
-        "pergunta": "Como criar uma lista por compreensão simples?",
-        "opcoes": ["[i for i in range(5)]","(i for i in range(5))","{i for i in range(5)}","<i for i in range(5)>"],
-        "resposta_correta": "[i for i in range(5)]"
-      },
-      {
         "pergunta": "Qual é o método para obter itens de um dicionário como uma lista de pares (chave, valor)?",
         "opcoes": ["d.items()","d.values()","d.keys()","list(d)"],
         "resposta_correta": "d.items()"
@@ -659,11 +699,6 @@
         "pergunta": "Como inserir um par chave:valor em um dicionário existente?",
         "opcoes": ["d['novo'] = 1","d.add('novo',1)","d.insert('novo',1)","d['novo'] : 1"],
         "resposta_correta": "d['novo'] = 1"
-      },
-      {
-        "pergunta": "Como verificar se uma lista está vazia de forma confiável?",
-        "opcoes": ["len(lista) == 0","lista == []","not lista","Todas as anteriores"],
-        "resposta_correta": "Todas as anteriores"
       },
       {
         "pergunta": "Qual é o uso de 'set' em relação a listas?",
@@ -676,11 +711,6 @@
         "resposta_correta": "d.copy()"
       },
       {
-        "pergunta": "Como mesclar dois dicionários 'a' e 'b' em um novo?",
-        "opcoes": ["{**a, **b}","a.update(b)","{a, b}","merge(a, b)"],
-        "resposta_correta": "{**a, **b}"
-      },
-      {
         "pergunta": "Qual é o método para obter valor de chave com valor padrão se não existir?",
         "opcoes": ["get('chave')","get('chave', default)","setdefault('chave', default)","Todas as anteriores"],
         "resposta_correta": "get('chave', default)"
@@ -689,14 +719,29 @@
         "pergunta": "Como ordenar um dicionário pelas chaves em ordem alfabética?",
         "opcoes": ["sorted(d)","d.sort_keys()","order(d)","sorted(d.keys())"],
         "resposta_correta": "sorted(d.keys())"
+      },
+      {
+        "pergunta": "Como mesclar duas listas em uma nova lista?",
+        "opcoes": ["lista3 = lista1 + lista2","lista3 = lista1.append(lista2)","lista3 = list.merge(lista1, lista2)","lista3 = lista1 | lista2"],
+        "resposta_correta": "lista3 = lista1 + lista2"
+      },
+      {
+        "pergunta": "Qual é a diferença entre append e extend?",
+        "opcoes": ["append adiciona um elemento inteiro; extend adiciona múltiplos","append e extend são iguais","append monta uma lista dentro; extend insere um item","extend adiciona um único elemento; append adiciona vários"],
+        "resposta_correta": "append adiciona um elemento inteiro; extend adiciona múltiplos"
+      },
+      {
+        "pergunta": "Como verificar se uma lista contém um elemento?",
+        "opcoes": ["elem in lista","lista.contains(elem)","lista.has(elem)","contains(lista, elem)"],
+        "resposta_correta": "elem in lista"
+      },
+      {
+        "pergunta": "Qual a diferença entre listas e tuplas?",
+        "opcoes": ["Listas são mutáveis; tuplas são imutáveis","Tuplas são mutáveis; listas imutáveis","Ambas imutáveis","Não há diferença"],
+        "resposta_correta": "Listas são mutáveis; tuplas são imutáveis"
       }
     ],
     "difícil": [
-      {
-        "pergunta": "Como criar um dicionário por desempenho via compreensão de dicionário?",
-        "opcoes": ["{k: v for k, v in iterable}","dict((k,v) for k,v in iterable)","{k: v for (k,v) in iterable}","Todas as anteriores"],
-        "resposta_correta": "Todas as anteriores"
-      },
       {
         "pergunta": "Qual é a diferença entre 'list' e 'append' quando usados com uma lista existente?",
         "opcoes": ["list cria lista; append adiciona item","append adiciona item; list cria nova lista","Não há diferença","append substitui a lista inteira"],
@@ -713,9 +758,9 @@
         "resposta_correta": "Obtém o valor de uma chave ou define um valor padrão se não existir"
       },
       {
-        "pergunta": "Como evitar alterações acidentais em dados gravados quando se compartilha um dicionário entre funções?",
-        "opcoes": ["Usar cópia profunda (deepcopy)","Não compartilhar","Usar objetos imutáveis","Não há solução"],
-        "resposta_correta": "Usar cópia profunda (deepcopy)"
+        "pergunta": "Qual é o resultado de: lista = [1, 2, 3]; lista.append(4); lista",
+        "opcoes": ["[1, 2, 3, 4]","[4, 1, 2, 3]","[1, 2, 3]","[1, 2, 3, 4, 5]"],
+        "resposta_correta": "[1, 2, 3, 4]"
       },
       {
         "pergunta": "Qual é a diferença entre 'd.items()' e 'd.items'?",
@@ -741,6 +786,11 @@
         "pergunta": "Qual técnica é útil para evitar efeitos colaterais ao passar estruturas mutáveis como parâmetros de função?",
         "opcoes": ["Passar cópia imutável","Usar cópia profunda (deep copy)","Nunca retornar","Usar global"],
         "resposta_correta": "Usar cópia profunda (deep copy)"
+      },
+      {
+        "pergunta": "Se houver um dicionário cuja chave é uma lista, isso é permitido?",
+        "opcoes": ["Não, listas não são hasheáveis","Sim, desde que a lista não mude","Sim, listas podem ser chaves","Não, dicionários não aceitam chaves mutáveis"],
+        "resposta_correta": "Não, listas não são hasheáveis"
       }
     ]
   }

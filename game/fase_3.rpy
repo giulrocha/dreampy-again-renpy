@@ -22,22 +22,47 @@ screen quiz_screen(question, options):
                 xalign 0.5  # Centraliza o texto da pergunta
 
             for option in options:
-                textbutton option:
-                    xalign 0.5
+                textbutton option["text"]:
                     action Return(option)
 
 
 # Bloco de inicialização para carregar as perguntas da Fase 3 do JSON.
+# init python:
+#     import json
+#     import random
+
+#     try:
+#         with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
+#             dados_quiz = json.load(f)
+
+#         perguntas_fase_3 = dados_quiz["Estrutura de repetição (loops for e while)"]
+
+#     except Exception as e:
+#         # Se o ficheiro não for encontrado ou tiver um erro, o Ren'Py mostrará uma mensagem clara.
+#         renpy.error("Falha ao carregar o ficheiro 'quiz_perguntas.json': " + str(e))
+
 init python:
     import json
     import random
+    import requests
+
+    API_URL = 'http://10.177.250.32:8000/api/core/quiz/'
+
+    r = requests.get(API_URL)
+    print(r.json())
+
+    def pegar_texto():
+        try:
+            r = requests.get(API_URL)
+            return r.json()
+        except Exception as e:
+            return f"Erro ao buscar dados.{e}"
 
     try:
-        with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
-            dados_quiz = json.load(f)
+        dados_quiz = pegar_texto()
 
+        # Armazenamos apenas as perguntas desta fase numa variável para facilitar o acesso.
         perguntas_fase_3 = dados_quiz["Estrutura de repetição (loops for e while)"]
-
     except Exception as e:
         # Se o ficheiro não for encontrado ou tiver um erro, o Ren'Py mostrará uma mensagem clara.
         renpy.error("Falha ao carregar o ficheiro 'quiz_perguntas.json': " + str(e))
@@ -68,11 +93,11 @@ label marinho:
     jogador "Aceito seu desafio!"
     hide willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
-    if difficulty == "easy":
+    if difficulty == "fácil":
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
 
-    elif difficulty == "normal":
+    elif difficulty == "médio":
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
 
@@ -104,7 +129,7 @@ label preparar_quiz_marinho:
 
     show screen contador_quiz
 
-    $ mapa_dificuldade = {"easy": "fácil", "normal": "médio", "hard": "difícil"}
+    $ mapa_dificuldade = {"fácil": "fácil", "médio": "médio", "difícil": "difícil"}
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
     $ lista_de_perguntas = list(perguntas_fase_3[chave_dificuldade_atual])
     $ random.shuffle(lista_de_perguntas)
@@ -117,16 +142,16 @@ label proxima_pergunta_marinho:
         jump verificar_resultado_quiz_marinho
 
     $ pergunta_atual = perguntas_da_sessao.pop(0)
-    $ random.shuffle(pergunta_atual['opcoes'])
+    $ random.shuffle(pergunta_atual['options'])
 
     call screen quiz_screen(
-        question=pergunta_atual['pergunta'],
-        options=pergunta_atual['opcoes']
+        question=pergunta_atual['answer'],
+        options=pergunta_atual['options']
     )
 
     $ escolha_do_jogador = _return
 
-    if escolha_do_jogador == pergunta_atual['resposta_correta']:
+    if escolha_do_jogador['text'] == pergunta_atual['answer_correct']:
         $ acertos += 1
         show willon at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
         jogador "Essa é a resposta. Acertei!"
@@ -139,7 +164,7 @@ label proxima_pergunta_marinho:
         jogador "Minha escolha é essa..."
         hide willon at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
         show willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
-        willon "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
+        willon "Incorreto. A resposta certa era: [pergunta_atual['answer_correct']]"
         hide willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     jump proxima_pergunta_marinho

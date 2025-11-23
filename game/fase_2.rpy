@@ -22,29 +22,53 @@ screen quiz_screen(question, options):
             text question:
                 xalign 0.5  # Centraliza o texto da pergunta
 
-            # As Alternativas como Botões
             for option in options:
-                textbutton option:
-                    xalign 0.5  # Centraliza os botões
+                textbutton option["text"]:
                     action Return(option)
 
 
 
 # Bloco de inicialização para carregar as perguntas da Fase 2 do JSON.
+# init python:
+#     import json
+#     import random
+
+#     try:
+#         if 'dados_quiz' not in globals():
+#             with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
+#                 dados_quiz = json.load(f)
+
+#         # Chave exatamente como está no JSON
+#         perguntas_fase_2 = dados_quiz["Lógica e estruturas condicionais (if, else, elif)"]
+
+#     except Exception as e:
+#         renpy.error("Falha ao carregar as perguntas da Fase 2 do 'quiz_perguntas.json': " + str(e))
+
 init python:
     import json
     import random
+    import requests
+
+    API_URL = 'http://10.177.250.32:8000/api/core/quiz/'
+
+    r = requests.get(API_URL)
+    print(r.json())
+
+    def pegar_texto():
+        try:
+            r = requests.get(API_URL)
+            return r.json()
+        except Exception as e:
+            return f"Erro ao buscar dados.{e}"
 
     try:
-        if 'dados_quiz' not in globals():
-            with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
-                dados_quiz = json.load(f)
+        dados_quiz = pegar_texto()
 
-        # Chave exatamente como está no JSON
+        # Armazenamos apenas as perguntas desta fase numa variável para facilitar o acesso.
         perguntas_fase_2 = dados_quiz["Lógica e estruturas condicionais (if, else, elif)"]
-
     except Exception as e:
-        renpy.error("Falha ao carregar as perguntas da Fase 2 do 'quiz_perguntas.json': " + str(e))
+        # Se o ficheiro não for encontrado ou tiver um erro, o Ren'Py mostrará uma mensagem clara.
+        renpy.error("Falha ao carregar o ficheiro 'quiz_perguntas.json': " + str(e))
 
 
 
@@ -66,11 +90,11 @@ label cyberpunk:
 
     hide vanilton
 
-    if difficulty == "easy":
+    if difficulty == "fácil":
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
 
-    elif difficulty == "normal":
+    elif difficulty == "médio":
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
 
@@ -101,7 +125,7 @@ label preparar_quiz_cyberpunk:
 
     show screen contador_quiz
 
-    $ mapa_dificuldade = {"easy": "fácil", "normal": "médio", "hard": "difícil"}
+    $ mapa_dificuldade = {"fácil": "fácil", "médio": "médio", "difícil": "difícil"}
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
 
     $ lista_de_perguntas = list(perguntas_fase_2[chave_dificuldade_atual])
@@ -115,16 +139,16 @@ label proxima_pergunta_cyberpunk:
         jump verificar_resultado_quiz_cyberpunk
 
     $ pergunta_atual = perguntas_da_sessao.pop(0)
-    $ random.shuffle(pergunta_atual['opcoes'])
+    $ random.shuffle(pergunta_atual['options'])
 
     call screen quiz_screen(
-        question=pergunta_atual['pergunta'],
-        options=pergunta_atual['opcoes']
+        question=pergunta_atual['answer'],
+        options=pergunta_atual['options']
     )
 
     $ escolha_do_jogador = _return
 
-    if escolha_do_jogador == pergunta_atual['resposta_correta']:
+    if escolha_do_jogador['text'] == pergunta_atual['answer_correct']:
         $ acertos += 1
         show vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
         jogador "Essa parece a escolha lógica."
@@ -133,7 +157,7 @@ label proxima_pergunta_cyberpunk:
     else:
         show vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
         jogador "Acho que é esta..."
-        vanilton "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
+        vanilton "Incorreto. A resposta certa era: [pergunta_atual['answer_correct']]"
         hide vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jump proxima_pergunta_cyberpunk

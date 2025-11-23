@@ -60,7 +60,7 @@ screen escolha_personagem():
         yalign 0.35
         spacing 20
 
-        textbutton "Renata":
+        textbutton "Renata" + pegar_texto():
             xalign 0.5
             action Return("renata")
             hovered SetVariable("personagem_preview", "renata")
@@ -83,6 +83,17 @@ screen escolha_personagem():
             xalign 0.5
             yalign 0.75
 
+
+init python:
+    import requests
+
+    def pegar_texto():
+        try:
+            r = requests.get("http://10.177.250.32:8000/api/core/quiz/")
+            return str(r.json()['Valores, Tipos de Dados, Variáveis, Nomes de Variáveis, Palavras-chave']['id'])
+        except Exception as e:
+            return f"Erro ao buscar dados.{e}"
+
 label choice_character:
 
     # Chama a tela
@@ -103,15 +114,15 @@ label dificuldade:
     show text "Escolha o nível de dificuldade:" at Position(xalign=0.5, yalign=0.2)
     menu:
         "Fácil":
-            $ difficulty = "easy"
+            $ difficulty = "fácil"
             call intro
             jump hub_mapa
         "Normal":
-            $ difficulty = "normal"
+            $ difficulty = "médio"
             call intro
             jump hub_mapa
         "Difícil":
-            $ difficulty = "hard"
+            $ difficulty = "difícil"
             call intro
             jump hub_mapa
 

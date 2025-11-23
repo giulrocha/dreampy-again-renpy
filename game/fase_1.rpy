@@ -19,24 +19,36 @@ screen quiz_screen(question, options):
             spacing 20  # Espaço entre a pergunta e as alternativas
 
             # O Texto da Pergunta
-            text question:
+            text question + 'frank':
                 xalign 0.5  # Centraliza o texto da pergunta
 
-            # As Alternativas como Botões
             for option in options:
-                textbutton option:
-                    xalign 0.5  # Centraliza os botões
+                textbutton option["text"]:
                     action Return(option)
-
 
 # Bloco de inicialização para carregar as perguntas da Fase 1
 init python:
     import json
     import random
+    import requests
+
+    API_URL = 'http://10.177.250.32:8000/api/core/quiz/'
+
+    r = requests.get(API_URL)
+    print(r.json())
+
+    def pegar_texto():
+        try:
+            r = requests.get(API_URL)
+            return r.json()
+        except Exception as e:
+            return f"Erro ao buscar dados.{e}"
 
     try:
-        with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
-            dados_quiz = json.load(f)
+        # with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
+        #     dados_quiz = json.load(f)
+
+        dados_quiz = pegar_texto()
 
         # Armazenamos apenas as perguntas desta fase numa variável para facilitar o acesso.
         perguntas_fase_1 = dados_quiz["Valores, Tipos de Dados, Variáveis, Nomes de Variáveis, Palavras-chave"]
@@ -72,11 +84,11 @@ label digital:
 
     hide raimundo_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
-    if difficulty == "easy":
+    if difficulty == "fácil":
         $ perguntas_totais = 10
         $ acertos_para_passar = 7
     
-    elif difficulty == "normal":
+    elif difficulty == "médio":
         $ perguntas_totais = 10
         $ acertos_para_passar = 7 
 
@@ -120,7 +132,7 @@ label preparar_quiz_digital:
     show screen contador_quiz
 
     # Mapeia a dificuldade do jogo para as chaves do JSON
-    $ mapa_dificuldade = {"easy": "fácil", "normal": "médio", "hard": "difícil"}
+    $ mapa_dificuldade = {"fácil": "fácil", "médio": "médio", "difícil": "difícil"}
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
 
     # Pega a lista de perguntas da dificuldade correta
@@ -146,19 +158,19 @@ label proxima_pergunta:
     $ pergunta_atual = perguntas_da_sessao.pop(0)
 
     # Embaralha as opções de resposta para que não apareçam sempre na mesma ordem
-    $ random.shuffle(pergunta_atual['opcoes'])
+    $ random.shuffle(pergunta_atual['options'])
 
     # Chamamos a nova tela, passando a pergunta e as opções atuais.
     call screen quiz_screen(
-        question=pergunta_atual['pergunta'],
-        options=pergunta_atual['opcoes']
+        question=pergunta_atual['answer'],
+        options=pergunta_atual['options']
     )
 
     # O valor da escolha do jogador é guardado na variável especial '_return'.
     $ escolha_do_jogador = _return
 
     # Agora, verifica se a escolha foi correta
-    if escolha_do_jogador == pergunta_atual['resposta_correta']:
+    if escolha_do_jogador['text'] == pergunta_atual['answer_correct']:
         $ acertos += 1
         show raimundo_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0) 
         jogador "A resposta é essa. Acho que acertei!"
@@ -167,7 +179,7 @@ label proxima_pergunta:
     else:
         show raimundo_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
         jogador "Vou escolher esta..."
-        raimundo "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
+        raimundo "Incorreto. A resposta certa era: [pergunta_atual['answer_correct']]"
         hide raimundo_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     # Após responder, volta ao início do loop para pegar a próxima pergunta
