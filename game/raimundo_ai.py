@@ -38,9 +38,9 @@ def normalize(text):
     return text
 
 
-def avaliar_resposta(pergunta, resposta_correta, resposta_jogador, numero_pergunta):
-    correta_norm = normalize(resposta_correta)
-    jogador_norm = normalize(resposta_jogador)
+def avaliar_resposta(answer, answer_correct, resposta_do_jogador, numero_da_pergunta):
+    correta_norm = normalize(answer_correct)
+    jogador_norm = normalize(resposta_do_jogador)
 
     # ========================
     # 1 - ACERTO IDÊNTICO
@@ -121,39 +121,39 @@ Retorne SOMENTE JSON:
 
         # ---- QUASE (mas consideramos incorreta mesmo assim) ----
         if status == "quase":
-            if numero_pergunta < 10:
+            if numero_da_pergunta < 10:
                 return (
                     "errada",
-                    f"Quase! Mas ainda assim está incorreta.\nA resposta correta é: {resposta_correta}\nVamos para a próxima!"
+                    f"Quase! Mas ainda assim está incorreta.\nA resposta correta é: {answer_correct}\nVamos para a próxima!"
                 )
             else:
                 return (
                     "errada",
-                    f"Quase! Mas ainda assim está incorreta.\nA resposta correta é: {resposta_correta}"
+                    f"Quase! Mas ainda assim está incorreta.\nA resposta correta é: {answer_correct}"
                 )
 
         # ---- ERRADA ----
-        if numero_pergunta < 10:
+        if numero_da_pergunta < 10:
             return (
                 "errada",
-                f"Você errou! A resposta correta é: {resposta_correta}\nVamos para a próxima!"
+                f"Você errou! A resposta correta é: {answer_correct}\nVamos para a próxima!"
             )
         else:
             return (
                 "errada",
-                f"Você errou! A resposta correta é: {resposta_correta}"
+                f"Você errou! A resposta correta é: {answer_correct}"
             )
 
     except Exception as e:
         log_debug("EXCEÇÃO: " + str(e))
 
-        if numero_pergunta < 10:
+        if numero_da_pergunta < 10:
             return (
                 "errada",
-                f"Ocorreu um erro ao analisar sua resposta.\nA resposta correta é: {resposta_correta}\nVamos para a próxima!"
+                f"Ocorreu um erro ao analisar sua resposta.\nA resposta correta é: {answer_correct}\nVamos para a próxima!"
             )
         else:
             return (
                 "errada",
-                f"Ocorreu um erro ao analisar sua resposta.\nA resposta correta é: {resposta_correta}"
+                f"Ocorreu um erro ao analisar sua resposta.\nA resposta correta é: {answer_correct}"
             )

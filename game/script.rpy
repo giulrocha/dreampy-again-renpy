@@ -37,7 +37,7 @@ default feedback_raimundo = ""
 ############# START JOGO
 label start:
 
-    call choice_character
+    call choice_character from _call_choice_character
 
 
 
@@ -112,15 +112,15 @@ label dificuldade:
     menu:
         "Fácil":
             $ difficulty = "easy"
-            call intro
+            call intro from _call_intro
             jump hub_mapa
         "Normal":
             $ difficulty = "normal"
-            call intro
+            call intro from _call_intro_1
             jump hub_mapa
         "Difícil":
             $ difficulty = "hard"
-            call intro
+            call intro from _call_intro_2
             jump hub_mapa
 
 

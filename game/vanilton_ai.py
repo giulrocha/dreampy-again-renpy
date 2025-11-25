@@ -41,9 +41,9 @@ def normalize(text):
     return text
 
 
-def avaliar_resposta(pergunta, resposta_correta, resposta_jogador, numero_pergunta):
-    correta_norm = normalize(resposta_correta)
-    jogador_norm = normalize(resposta_jogador)
+def avaliar_resposta(answer, answer_correct, resposta_do_jogador, numero_da_pergunta):
+    correta_norm = normalize(answer_correct)
+    jogador_norm = normalize(resposta_do_jogador)
 
     # ==================================
     # 1 - ACERTO IDÊNTICO
@@ -129,24 +129,24 @@ Retorne SOMENTE JSON:
             if numero_pergunta < 10:
                 return (
                     "errada",
-                    f"Quase! Está perto, mas ainda não é o ideal.\nA lógica correta é: {resposta_correta}\nContinue!"
+                    f"Quase! Está perto, mas ainda não é o ideal.\nA lógica correta é: {answer_correct}\nContinue!"
                 )
             else:
                 return (
                     "errada",
-                    f"Quase! Mas ainda assim está incorreta.\nA lógica correta é: {resposta_correta}"
+                    f"Quase! Mas ainda assim está incorreta.\nA lógica correta é: {answer_correct}"
                 )
 
         # ---- ERRADA ----
-        if numero_pergunta < 10:
+        if numero_da_pergunta < 10:
             return (
                 "errada",
-                f"Resposta incorreta.\nA lógica correta é: {resposta_correta}\nVamos para a próxima!"
+                f"Resposta incorreta.\nA lógica correta é: {answer_correct}\nVamos para a próxima!"
             )
         else:
             return (
                 "errada",
-                f"Você errou.\nA lógica correta é: {resposta_correta}"
+                f"Você errou.\nA lógica correta é: {answer_correct}"
             )
 
     except Exception as e:
@@ -162,25 +162,25 @@ Retorne SOMENTE JSON:
         # quase
         similar = SequenceMatcher(None, jogador_norm, correta_norm).ratio()
         if similar >= 0.70:
-            if numero_pergunta < 10:
+            if numero_da_pergunta < 10:
                 return (
                     "errada",
-                    f"Quase! Falta um ajuste.\nA lógica correta é: {resposta_correta}"
+                    f"Quase! Falta um ajuste.\nA lógica correta é: {answer_correct}"
                 )
             else:
                 return (
                     "errada",
-                    f"Quase! Mas a lógica correta é: {resposta_correta}"
+                    f"Quase! Mas a lógica correta é: {answer_correct}"
                 )
 
         # erro mesmo
-        if numero_pergunta < 10:
+        if numero_da_pergunta < 10:
             return (
                 "errada",
-                f"Ocorreu um erro interno. A lógica correta é: {resposta_correta}\nVamos continuar!"
+                f"Ocorreu um erro interno. A lógica correta é: {answer_correct}\nVamos continuar!"
             )
         else:
             return (
                 "errada",
-                f"Ocorreu um erro. A resposta correta é: {resposta_correta}"
+                f"Ocorreu um erro. A resposta correta é: {answer_correct}"
             )

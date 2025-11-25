@@ -13,13 +13,21 @@ transform grande:
 init python:
     import json
     import random
+    import requests
     import vanilton_ai
 
     try:
-        with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
-            dados_quiz = json.load(f)
+        url_json = "https://senselessly-patronal-jorge.ngrok-free.dev/api/core/quiz/?format=json"
 
-        # Chave exatamente como está no JSON
+        resposta = requests.get(url_json)
+        renpy.log("STATUS: " + str(resposta.status_code))
+        renpy.log("CONTENT RAW: " + resposta.text[:500])  # exibe conteúdo bruto
+
+        resposta.raise_for_status()
+        dados_quiz = resposta.json()
+
+        renpy.log("JSON CARREGADO: " + str(dados_quiz)[:500])
+
         perguntas_fase_2 = dados_quiz["Lógica e estruturas condicionais (if, else, elif)"]
 
     except Exception as e:
@@ -106,7 +114,7 @@ label proxima_pergunta_cyberpunk:
     $ resposta_digitada = ""
 
     # Tela global
-    call screen quiz_escrita_screen(pergunta_atual['pergunta'])
+    call screen quiz_escrita_screen(pergunta_atual['answer'])
 
     # Coleta a resposta
     $ resposta_do_jogador = resposta_digitada.strip()
@@ -120,8 +128,8 @@ label proxima_pergunta_cyberpunk:
 
     # IA do Vanilton (versão padronizada)
     $ status_resposta, feedback_vanilton = vanilton_ai.avaliar_resposta(
-        pergunta_atual['pergunta'],
-        pergunta_atual['resposta_correta'],
+        pergunta_atual['answer'],
+        pergunta_atual['answer_correct'],
         resposta_do_jogador,
         numero_da_pergunta
     )

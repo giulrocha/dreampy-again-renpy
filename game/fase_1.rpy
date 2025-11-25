@@ -26,16 +26,31 @@ screen quiz_screen(question, options):
 init python:
     import json
     import random
+    import requests
     import raimundo_ai
 
+    def enviar_quiz_por_enter():
+        renpy.return_statement("enviar")
+
+    config.keymap['enviar_quiz'] = ['K_RETURN', 'K_KP_ENTER']  # ENTER e ENTER do teclado numérico
+
     try:
-        with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
-            dados_quiz = json.load(f)
+        url_json = "https://senselessly-patronal-jorge.ngrok-free.dev/api/core/quiz/?format=json"
+
+        resposta = requests.get(url_json)
+        renpy.log("STATUS: " + str(resposta.status_code))
+        renpy.log("CONTENT RAW: " + resposta.text[:500])  # exibe conteúdo bruto
+
+        resposta.raise_for_status()
+        dados_quiz = resposta.json()
+
+        renpy.log("JSON CARREGADO: " + str(dados_quiz)[:500])
 
         perguntas_fase_1 = dados_quiz["Valores, Tipos de Dados, Variáveis, Nomes de Variáveis, Palavras-chave"]
 
     except Exception as e:
-        renpy.error("Falha ao carregar o ficheiro 'quiz_perguntas.json': " + str(e))
+        renpy.error("Erro ao carregar o JSON externo: " + str(e))
+
 
 
 
@@ -47,6 +62,9 @@ image bg hub = "images/background/bg hub.png"
 
 # === NOVA TELA DE RESPOSTA ABERTA ===
 screen quiz_escrita_screen(question):
+
+    key "enviar_quiz" action Return("enviar")
+
 
     frame:
         xalign 0.5
@@ -141,7 +159,7 @@ label proxima_pergunta:
     $ pergunta_atual = perguntas_da_sessao[0]
     $ resposta_digitada = ""
 
-    call screen quiz_escrita_screen(pergunta_atual['pergunta'])
+    call screen quiz_escrita_screen(pergunta_atual['answer'])
     $ resposta_do_jogador = resposta_digitada.strip()
 
     if not resposta_do_jogador:
@@ -153,8 +171,8 @@ label proxima_pergunta:
 
     # IA avalia
     $ status_resposta, feedback_raimundo = raimundo_ai.avaliar_resposta(
-        pergunta_atual['pergunta'],
-        pergunta_atual['resposta_correta'],
+        pergunta_atual['answer'],
+        pergunta_atual['answer_correct'],
         resposta_do_jogador,
         numero_da_pergunta
     )
