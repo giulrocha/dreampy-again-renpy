@@ -99,46 +99,46 @@ label proxima_pergunta_cyberpunk:
     if not perguntas_da_sessao:
         jump verificar_resultado_quiz_cyberpunk
 
-    # Pega a primeira pergunta da fila (sem embaralhar mais)
+    # Pega a pergunta atual
     $ pergunta_atual = perguntas_da_sessao[0]
 
-    # Limpa o texto anterior
+    # Limpa texto anterior
     $ resposta_digitada = ""
 
-    # Chama a tela global de resposta aberta
+    # Tela global
     call screen quiz_escrita_screen(pergunta_atual['pergunta'])
 
-    # Coleta o que foi digitado
+    # Coleta a resposta
     $ resposta_do_jogador = resposta_digitada.strip()
 
     if not resposta_do_jogador:
-        vanilton "Você precisa digitar alguma coisa para eu avaliar a sua lógica."
+        vanilton "Você precisa digitar alguma coisa para eu avaliar sua lógica."
         jump proxima_pergunta_cyberpunk
 
-    # IA DO VANILTON
+    # Número da pergunta (necessário para IA padronizada)
+    $ numero_da_pergunta = (perguntas_totais - len(perguntas_da_sessao)) + 1
+
+    # IA do Vanilton (versão padronizada)
     $ status_resposta, feedback_vanilton = vanilton_ai.avaliar_resposta(
         pergunta_atual['pergunta'],
         pergunta_atual['resposta_correta'],
-        resposta_do_jogador
+        resposta_do_jogador,
+        numero_da_pergunta
     )
 
+    # Feedback do Vanilton
     vanilton "[feedback_vanilton]"
 
+    # Contabiliza acerto
     if status_resposta == "correta":
         $ acertos += 1
-        $ perguntas_da_sessao.pop(0)
-        jogador "Minha lógica está afiada! Próxima."
-        jump proxima_pergunta_cyberpunk
 
-    elif status_resposta == "quase":
-        jogador "Acho que estou quase entendendo..."
-        vanilton "Você está perto, ajuste um pouco sua condição."
-        jump proxima_pergunta_cyberpunk
+    # Remove pergunta da fila
+    $ perguntas_da_sessao.pop(0)
 
-    else:  # errada
-        jogador "Hmm... essa não foi."
-        vanilton "Sua condição não está certa ainda. Leia a pergunta com atenção e tente de novo."
-        jump proxima_pergunta_cyberpunk
+    # Vai para a próxima
+    jump proxima_pergunta_cyberpunk
+
 
 
 
