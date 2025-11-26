@@ -26,6 +26,9 @@ default fase_4_liberada = False
 default fase_5_liberada = False
 default volta_pra_casa = False
 
+default resultado = None
+default thinking_dots = 0
+
 
 ###############################
 

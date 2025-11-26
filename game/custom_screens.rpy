@@ -89,3 +89,31 @@ screen MapUI:
             # action Jump("final")
             action [Hide("MapUI"), Jump("final")]
             
+# screen thinking_screen():
+#     frame:
+#         xalign 0.5
+#         yalign 0.5
+#         padding (50, 50)  # ✅ tuple, não int
+#         background "#0008"
+#         text "Pensando..." size 32 color "#fff"
+
+
+# Use default apenas se ainda não foi declarado em outro lugar
+# if "thinking_dots" not in globals():
+#     default thinking_dots = 0
+
+screen thinking_screen_auto_hide():
+    modal True
+    frame:
+        xalign 0.5
+        yalign 0.5
+        padding (20, 30)
+        background "#0008"
+
+        text "Pensando" + "." * thinking_dots:
+            size 30
+            color "#ffffff"
+
+    timer 0.5 action SetVariable("thinking_dots", (thinking_dots + 1) % 4) repeat True
+    # Timer que verifica se o resultado chegou, e fecha a tela automaticamente
+    timer 0.2 repeat True action If(resultado != None, Hide("thinking_screen_auto_hide"))

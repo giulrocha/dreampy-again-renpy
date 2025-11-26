@@ -136,12 +136,29 @@ label proxima_pergunta_medieval:
 
     $ numero_da_pergunta = (perguntas_totais - len(perguntas_da_sessao)) + 1
 
-    $ resultado = frank_ai.avaliar_resposta(
-        pergunta_atual['answer'],
-        pergunta_atual['answer_correct'],
-        resposta_do_jogador,
-        numero_da_pergunta
-    )
+    $ resultado = None
+
+    python:
+        import renpy.store as store
+
+        def chamar_ia_async():
+            store.resultado = frank_ai.avaliar_resposta(
+                pergunta_atual['answer'],
+                pergunta_atual['answer_correct'],
+                resposta_do_jogador,
+                numero_da_pergunta
+            )
+
+        renpy.invoke_in_thread(chamar_ia_async)
+        
+    show screen thinking_screen_auto_hide
+
+    $ renpy.pause(0.1, hard=False)
+
+    while resultado is None:
+        $ renpy.pause(0.1, hard=False)
+
+    hide screen thinking_screen_auto_hide
     $ status_resposta = resultado.get("status")
     $ feedback_frank = resultado.get("feedback")
 
