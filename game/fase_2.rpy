@@ -94,6 +94,15 @@ label preparar_quiz_cyberpunk:
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
 
     $ lista_de_perguntas = list(perguntas_fase_2[chave_dificuldade_atual])
+    python:
+        perguntas_unicas = []
+        vistas = set()
+        for p in lista_de_perguntas:
+            # usa o texto da pergunta como chave de unicidade
+            key = p.get("answer", "")
+            if key not in vistas:
+                vistas.add(key)
+                perguntas_unicas.append(p)
     $ random.shuffle(lista_de_perguntas)
 
     $ perguntas_da_sessao = lista_de_perguntas[:perguntas_totais]
@@ -107,44 +116,37 @@ label proxima_pergunta_cyberpunk:
     if not perguntas_da_sessao:
         jump verificar_resultado_quiz_cyberpunk
 
-    # Pega a pergunta atual
     $ pergunta_atual = perguntas_da_sessao[0]
-
-    # Limpa texto anterior
     $ resposta_digitada = ""
 
-    # Tela global
     call screen quiz_escrita_screen(pergunta_atual['answer'])
-
-    # Coleta a resposta
     $ resposta_do_jogador = resposta_digitada.strip()
 
     if not resposta_do_jogador:
         vanilton "Você precisa digitar alguma coisa para eu avaliar sua lógica."
         jump proxima_pergunta_cyberpunk
 
-    # Número da pergunta (necessário para IA padronizada)
     $ numero_da_pergunta = (perguntas_totais - len(perguntas_da_sessao)) + 1
 
     # IA do Vanilton (versão padronizada)
-    $ status_resposta, feedback_vanilton = vanilton_ai.avaliar_resposta(
+    $ resultado = vanilton_ai.avaliar_resposta(
         pergunta_atual['answer'],
         pergunta_atual['answer_correct'],
         resposta_do_jogador,
         numero_da_pergunta
     )
+    $ status_resposta = resultado.get("status")
+    $ feedback_vanilton = resultado.get("feedback")
 
-    # Feedback do Vanilton
+    show vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
     vanilton "[feedback_vanilton]"
+    hide vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
-    # Contabiliza acerto
     if status_resposta == "correta":
         $ acertos += 1
 
-    # Remove pergunta da fila
     $ perguntas_da_sessao.pop(0)
 
-    # Vai para a próxima
     jump proxima_pergunta_cyberpunk
 
 

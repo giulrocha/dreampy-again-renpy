@@ -14,10 +14,19 @@ init python:
     import json
     import random
     import willon_ai
+    import requests
 
     try:
-        f = renpy.open_file("quiz_perguntas.json")
-        dados_quiz = json.loads(f.read().decode("utf-8"))
+        url_json = "https://senselessly-patronal-jorge.ngrok-free.dev/api/core/quiz/?format=json"
+
+        resposta = requests.get(url_json)
+        renpy.log("STATUS: " + str(resposta.status_code))
+        renpy.log("CONTENT RAW: " + resposta.text[:500])  # exibe conteúdo bruto
+
+        resposta.raise_for_status()
+        dados_quiz = resposta.json()
+
+        renpy.log("JSON CARREGADO: " + str(dados_quiz)[:500])
 
         perguntas_fase_3 = dados_quiz["Estrutura de repetição (loops for e while)"]
 
@@ -80,9 +89,7 @@ label debug_falhar_quiz_marinho:
 
 
 
-# --------------------------------------------------------
 # LÓGICA DO QUIZ - FASE 3
-# --------------------------------------------------------
 
 label preparar_quiz_marinho:
 
@@ -94,6 +101,15 @@ label preparar_quiz_marinho:
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
 
     $ lista_de_perguntas = list(perguntas_fase_3[chave_dificuldade_atual])
+    python:
+        perguntas_unicas = []
+        vistas = set()
+        for p in lista_de_perguntas:
+            # usa o texto da pergunta como chave de unicidade
+            key = p.get("answer", "")
+            if key not in vistas:
+                vistas.add(key)
+                perguntas_unicas.append(p)
     $ random.shuffle(lista_de_perguntas)
 
     $ perguntas_da_sessao = lista_de_perguntas[:perguntas_totais]
@@ -108,39 +124,44 @@ label proxima_pergunta_marinho:
         jump verificar_resultado_quiz_marinho
 
     $ pergunta_atual = perguntas_da_sessao[0]
-
     $ resposta_digitada = ""
 
-    call screen quiz_escrita_screen(pergunta_atual['pergunta'])
+    call screen quiz_escrita_screen(pergunta_atual['answer'])
     $ resposta_do_jogador = resposta_digitada.strip()
 
     if not resposta_do_jogador:
         willon "Você precisa digitar uma resposta para continuar o fluxo."
         jump proxima_pergunta_marinho
-
-    $ status_resposta, feedback_willon = willon_ai.avaliar_resposta(
-        pergunta_atual['pergunta'],
-        pergunta_atual['resposta_correta'],
-        resposta_do_jogador
+    $ numero_da_pergunta = (perguntas_totais - len(perguntas_da_sessao)) + 1
+    $ resultado = willon_ai.avaliar_resposta(
+        pergunta_atual['answer'],
+        pergunta_atual['answer_correct'],
+        resposta_do_jogador,
+        numero_da_pergunta
     )
 
+    $ status_resposta = resultado.get("status")
+    $ feedback_willon = resultado.get("feedback")
+
+    if status_resposta == "correta":
+        show willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
+    elif status_resposta == "errada":
+        show willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
+    else:
+        show willon_normal at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
     willon "[feedback_willon]"
+    if status_resposta == "correta":
+        hide willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
+    elif status_resposta == "errada":
+        hide willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
+    else:
+        hide willon_normal at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
 
     if status_resposta == "correta":
         $ acertos += 1
-        show willon at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
-        jogador "Essa é a resposta. Acertei!"
-        hide willon at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
-        show willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
-        willon "Correto! Próxima pergunta."
-        hide willon_feliz at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
-    else:
-        show willon at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
-        jogador "Minha escolha é essa..."
-        hide willon at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
-        show willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
-        willon "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
-        hide willon_desapontado at Position(xpos=0.75, ypos=0.75, xanchor=0.5, yanchor=1.0)
+    $ perguntas_da_sessao.pop(0)
+
+    jump proxima_pergunta_marinho
 
 
 

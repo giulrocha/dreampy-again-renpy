@@ -138,10 +138,27 @@ label preparar_quiz_digital:
     $ mapa_dificuldade = {"easy": "fácil", "normal": "médio", "hard": "difícil"}
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
 
+    # Lista bruta (vinda do JSON)
     $ lista_de_perguntas = list(perguntas_fase_1[chave_dificuldade_atual])
-    $ random.shuffle(lista_de_perguntas)
 
-    $ perguntas_da_sessao = lista_de_perguntas[:perguntas_totais]
+    # --- REMOVER DUPLICADAS: bloco Python (uso de for requires python: ) ---
+    python:
+        perguntas_unicas = []
+        vistas = set()
+        for p in lista_de_perguntas:
+            # usa o texto da pergunta como chave de unicidade
+            key = p.get("answer", "")
+            if key not in vistas:
+                vistas.add(key)
+                perguntas_unicas.append(p)
+
+    # logs para depuração (opcional)
+    $ renpy.log("TOTAL BRUTO: " + str(len(lista_de_perguntas)))
+    $ renpy.log("TOTAL UNICO: " + str(len(perguntas_unicas)))
+
+    # embaralha e seleciona somente as que vai usar
+    $ random.shuffle(perguntas_unicas)
+    $ perguntas_da_sessao = perguntas_unicas[:perguntas_totais]
 
     jump proxima_pergunta
 
@@ -170,12 +187,14 @@ label proxima_pergunta:
     $ numero_da_pergunta = (perguntas_totais - len(perguntas_da_sessao)) + 1
 
     # IA avalia
-    $ status_resposta, feedback_raimundo = raimundo_ai.avaliar_resposta(
+    $ resultado = raimundo_ai.avaliar_resposta(
         pergunta_atual['answer'],
         pergunta_atual['answer_correct'],
         resposta_do_jogador,
         numero_da_pergunta
     )
+    $ status_resposta = resultado.get("status")
+    $ feedback_raimundo = resultado.get("feedback")
 
     raimundo "[feedback_raimundo]"
 

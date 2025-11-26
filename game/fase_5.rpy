@@ -87,6 +87,15 @@ label preparar_quiz_alienigena:
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
 
     $ lista_de_perguntas = list(perguntas_fase_5[chave_dificuldade_atual])
+    python:
+        perguntas_unicas = []
+        vistas = set()
+        for p in lista_de_perguntas:
+            # usa o texto da pergunta como chave de unicidade
+            key = p.get("answer", "")
+            if key not in vistas:
+                vistas.add(key)
+                perguntas_unicas.append(p)
     $ random.shuffle(lista_de_perguntas)
 
     $ perguntas_da_sessao = lista_de_perguntas[:perguntas_totais]
@@ -101,40 +110,32 @@ label proxima_pergunta_alienigena:
         jump verificar_resultado_quiz_alienigena
 
     $ pergunta_atual = perguntas_da_sessao[0]
-
     $ resposta_digitada = ""
 
-    call screen quiz_escrita_screen(pergunta_atual['pergunta'])
+    call screen quiz_escrita_screen(pergunta_atual['answer'])
     $ resposta_do_jogador = resposta_digitada.strip()
 
     if not resposta_do_jogador:
-        sergio "Você precisa digitar algo para eu analisar sua estrutura de dados."
+        frank "Você precisa escrever algo para eu avaliar sua magia de funções."
         jump proxima_pergunta_alienigena
 
-    $ status_resposta, feedback_sergio = sergio_ai.avaliar_resposta(
-        pergunta_atual['pergunta'],
-        pergunta_atual['resposta_correta'],
-        resposta_do_jogador
-    )
+    $ numero_da_pergunta = (perguntas_totais - len(perguntas_da_sessao)) + 1
 
-    sergio "[feedback_sergio]"
+    $ resultado = sergio_ai.avaliar_resposta(
+        pergunta_atual['answer'],
+        pergunta_atual['answer_correct'],
+        resposta_do_jogador,
+        numero_da_pergunta
+    )
+    $ status_resposta = resultado.get("status")
+    $ feedback_sergio = resultado.get("feedback")
+
+    frank "[feedback_sergio]"
 
     if status_resposta == "correta":
         $ acertos += 1
-        $ perguntas_da_sessao.pop(0)
-        jogador "Minhas listas e dicionários estão perfeitos!"
-        jump proxima_pergunta_alienigena
 
-    elif status_resposta == "quase":
-        jogador "Acho que ainda estou me confundindo com índices e chaves."
-        sergio "Você está quase lá. Pense em como acessar os elementos corretamente."
-        jump proxima_pergunta_alienigena
-
-    else:
-        jogador "Ai... confundi chave com índice de novo."
-        sergio "Sua resposta não está correta. Reflita sobre como listas e dicionários são estruturados."
-        jump proxima_pergunta_alienigena
-
+    jump proxima_pergunta_alienigena
 
 
 label verificar_resultado_quiz_alienigena:

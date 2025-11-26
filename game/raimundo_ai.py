@@ -1,16 +1,12 @@
 import unicodedata
 import json
 import urllib.request
+import requests
 import urllib.error
 import ssl
 from difflib import SequenceMatcher
 import os
 
-API_KEY = "AIzaSyAZSKswUirIOfEE7-A01azX5betVuWwiD0"
-API_URL = (
-    "https://generativelanguage.googleapis.com/v1beta/models/"
-    "gemini-2.5-flash:generateContent?key=" + API_KEY
-)
 
 ssl_context = ssl.create_default_context()
 ssl_context.check_hostname = False
@@ -39,121 +35,17 @@ def normalize(text):
 
 
 def avaliar_resposta(answer, answer_correct, resposta_do_jogador, numero_da_pergunta):
-    correta_norm = normalize(answer_correct)
-    jogador_norm = normalize(resposta_do_jogador)
-
-    # ========================
-    # 1 - ACERTO IDÊNTICO
-    # ========================
-    if jogador_norm == correta_norm:
-        return "correta", "Você acertou! Excelente!"
-
-    # ========================
-    # 2 - ACERTO CONTIDO (variações)
-    # ========================
-    if correta_norm in jogador_norm:
-        return (
-            "correta",
-            "Você acertou! Sua resposta está certa e equivalente à resposta esperada."
-        )
-
-    # ========================
-    # 3 - IA COMO SEGUNDA CAMADA
-    # ========================
-    prompt = f"""
-Você é o Robô Raimundo, mestre em Python.
-
-Avalie se a resposta do aluno está correta ou incorreta.
-
-Explique rapidamente o motivo.
-
-Retorne SOMENTE JSON:
-
-{{
-  "status": "correta" ou "quase" ou "errada",
-  "feedback": "mensagem curta explicando",
-  "explicacao_equivalente": "como poderia ser dito de outra forma mantendo o sentido"
-}}
-"""
-
-    payload = {
-        "contents": [
-            {"parts": [{"text": prompt}]}
-        ]
-    }
-
     try:
-        req = urllib.request.Request(
-            API_URL,
-            data=json.dumps(payload).encode(),
-            headers={"Content-Type": "application/json"},
-            method="POST"
+        r = requests.post(
+            "https://senselessly-patronal-jorge.ngrok-free.dev/avaliar_resposta_api/",
+            json={
+                "answer": answer,
+                "answer_correct": answer_correct,
+                "resposta_do_jogador": resposta_do_jogador
+            },
+            # timeout=10
         )
-
-        data = urllib.request.urlopen(req, context=ssl_context).read()
-        raw = json.loads(data)["candidates"][0]["content"]["parts"][0]["text"]
-
-        log_debug("RAW RESPONSE:\n" + raw)
-
-        json_start = raw.find("{")
-        json_end = raw.rfind("}")
-
-        if json_start == -1 or json_end == -1:
-            log_debug("JSON inválido detectado.")
-            status = "errada"
-            exp = ""
-        else:
-            result = json.loads(raw[json_start:json_end+1])
-
-            status = result.get("status", "errada")
-            exp = result.get("explicacao_equivalente", "")
-
-        # ==========================
-        # RESPOSTAS DA IA
-        # ==========================
-
-        # ---- CORRETA ----
-        if status == "correta":
-            msg = "Você acertou!"
-            if exp:
-                msg += f" {exp}"
-            return "correta", msg
-
-        # ---- QUASE (mas consideramos incorreta mesmo assim) ----
-        if status == "quase":
-            if numero_da_pergunta < 10:
-                return (
-                    "errada",
-                    f"Quase! Mas ainda assim está incorreta.\nA resposta correta é: {answer_correct}\nVamos para a próxima!"
-                )
-            else:
-                return (
-                    "errada",
-                    f"Quase! Mas ainda assim está incorreta.\nA resposta correta é: {answer_correct}"
-                )
-
-        # ---- ERRADA ----
-        if numero_da_pergunta < 10:
-            return (
-                "errada",
-                f"Você errou! A resposta correta é: {answer_correct}\nVamos para a próxima!"
-            )
-        else:
-            return (
-                "errada",
-                f"Você errou! A resposta correta é: {answer_correct}"
-            )
-
+        r.raise_for_status()
+        return r.json()
     except Exception as e:
-        log_debug("EXCEÇÃO: " + str(e))
-
-        if numero_da_pergunta < 10:
-            return (
-                "errada",
-                f"Ocorreu um erro ao analisar sua resposta.\nA resposta correta é: {answer_correct}\nVamos para a próxima!"
-            )
-        else:
-            return (
-                "errada",
-                f"Ocorreu um erro ao analisar sua resposta.\nA resposta correta é: {answer_correct}"
-            )
+        return {"status": "errada", "feedback": f"Erro: {e}", "equivalencia": ""}

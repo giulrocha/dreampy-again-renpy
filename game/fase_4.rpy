@@ -94,6 +94,15 @@ label preparar_quiz_medieval:
     $ chave_dificuldade_atual = mapa_dificuldade[difficulty]
 
     $ lista_de_perguntas = list(perguntas_fase_4[chave_dificuldade_atual])
+    python:
+        perguntas_unicas = []
+        vistas = set()
+        for p in lista_de_perguntas:
+            # usa o texto da pergunta como chave de unicidade
+            key = p.get("answer", "")
+            if key not in vistas:
+                vistas.add(key)
+                perguntas_unicas.append(p)
     $ random.shuffle(lista_de_perguntas)
 
     $ perguntas_da_sessao = lista_de_perguntas[:perguntas_totais]
@@ -108,39 +117,32 @@ label proxima_pergunta_medieval:
         jump verificar_resultado_quiz_medieval
 
     $ pergunta_atual = perguntas_da_sessao[0]
-
     $ resposta_digitada = ""
 
-    call screen quiz_escrita_screen(pergunta_atual['pergunta'])
+    call screen quiz_escrita_screen(pergunta_atual['answer'])
     $ resposta_do_jogador = resposta_digitada.strip()
 
     if not resposta_do_jogador:
         frank "Você precisa escrever algo para eu avaliar sua magia de funções."
         jump proxima_pergunta_medieval
 
-    $ status_resposta, feedback_frank = frank_ai.avaliar_resposta(
-        pergunta_atual['pergunta'],
-        pergunta_atual['resposta_correta'],
-        resposta_do_jogador
+    $ numero_da_pergunta = (perguntas_totais - len(perguntas_da_sessao)) + 1
+
+    $ resultado = frank_ai.avaliar_resposta(
+        pergunta_atual['answer'],
+        pergunta_atual['answer_correct'],
+        resposta_do_jogador,
+        numero_da_pergunta
     )
+    $ status_resposta = resultado.get("status")
+    $ feedback_frank = resultado.get("feedback")
 
     frank "[feedback_frank]"
 
     if status_resposta == "correta":
         $ acertos += 1
-        show frank at grande, center
-        jogador "Essa é a resposta. Acertei!"
-        hide frank at grande, center
-        show frank_feliz at grande, center
-        frank "Correto! Próxima pergunta."
-        hide frank_feliz at grande, center
-    else:
-        show frank at grande, center
-        jogador "Minha escolha é essa..."
-        hide frank at grande, center
-        show frank_erro at grande, center
-        frank "Incorreto. A resposta certa era: [pergunta_atual['resposta_correta']]"
-        hide frank_erro at grande, center
+
+    jump proxima_pergunta_medieval
 
 
 
