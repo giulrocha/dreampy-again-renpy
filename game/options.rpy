@@ -12,7 +12,7 @@
 ##
 ## O _() ao redor da string a marca como elegível para tradução.
 
-define config.name = _("Teste")
+define config.name = _("")
 
 
 ## Determina se o título fornecido acima será mostrado na tela do menu
@@ -23,7 +23,7 @@ define gui.show_name = True
 
 ## A versão do jogo.
 
-define config.version = "2.0"
+define config.version = ""
 
 
 ## Texto que é colocado na tela "Sobre" do jogo. Coloque o texto entre aspas
@@ -37,7 +37,7 @@ define gui.about = _p("""
 ## distribuição construída. Ele deve ser somente ASCII e não deve conter
 ## espaços, dois pontos ou ponto e vírgula.
 
-define build.name = "Teste"
+define build.name = "Dream'Py"
 
 
 ## Sons e música ###############################################################
