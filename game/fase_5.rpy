@@ -13,11 +13,19 @@ init python:
     import json
     import random
     import sergio_ai
+    import requests
 
     try:
-        with renpy.open_file("quiz_perguntas.json", encoding='utf-8') as f:
-            dados_quiz = json.load(f)
+        url_json = "https://senselessly-patronal-jorge.ngrok-free.dev/api/core/quiz/?format=json"
 
+        resposta = requests.get(url_json)
+        renpy.log("STATUS: " + str(resposta.status_code))
+        renpy.log("CONTENT RAW: " + resposta.text[:500])  # exibe conteúdo bruto
+
+        resposta.raise_for_status()
+        dados_quiz = resposta.json()
+
+        renpy.log("JSON CARREGADO: " + str(dados_quiz)[:500])
         perguntas_fase_5 = dados_quiz["Listas e Dicionários (criação, acesso, métodos básicos)"]
     except Exception as e:
         renpy.error("Falha ao carregar 'quiz_perguntas.json' (Fase 5): " + str(e))
