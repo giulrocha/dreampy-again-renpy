@@ -99,14 +99,16 @@ label preparar_quiz_alienigena:
         perguntas_unicas = []
         vistas = set()
         for p in lista_de_perguntas:
-            # usa o texto da pergunta como chave de unicidade
             key = p.get("answer", "")
             if key not in vistas:
                 vistas.add(key)
                 perguntas_unicas.append(p)
-    $ random.shuffle(lista_de_perguntas)
 
-    $ perguntas_da_sessao = lista_de_perguntas[:perguntas_totais]
+    $ renpy.log("TOTAL BRUTO: " + str(len(lista_de_perguntas)))
+    $ renpy.log("TOTAL UNICO: " + str(len(perguntas_unicas)))
+
+    $ random.shuffle(perguntas_unicas)
+    $ perguntas_da_sessao = perguntas_unicas[:perguntas_totais]
 
     jump proxima_pergunta_alienigena
 
@@ -156,7 +158,19 @@ label proxima_pergunta_alienigena:
     $ status_resposta = resultado.get("status")
     $ feedback_sergio = resultado.get("feedback")
 
-    frank "[feedback_sergio]"
+    if status_resposta == "correta":
+        show sergio_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0) 
+    elif status_resposta == "errada":
+        show sergio_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    else:
+        show sergio_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    sergio "[feedback_sergio]"
+    if status_resposta == "correta":
+        hide sergio_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    elif status_resposta == "errada":
+        hide sergio_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    else:
+        hide sergio_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     if status_resposta == "correta":
         $ acertos += 1

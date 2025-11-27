@@ -105,14 +105,16 @@ label preparar_quiz_marinho:
         perguntas_unicas = []
         vistas = set()
         for p in lista_de_perguntas:
-            # usa o texto da pergunta como chave de unicidade
             key = p.get("answer", "")
             if key not in vistas:
                 vistas.add(key)
                 perguntas_unicas.append(p)
-    $ random.shuffle(lista_de_perguntas)
 
-    $ perguntas_da_sessao = lista_de_perguntas[:perguntas_totais]
+    $ renpy.log("TOTAL BRUTO: " + str(len(lista_de_perguntas)))
+    $ renpy.log("TOTAL UNICO: " + str(len(perguntas_unicas)))
+
+    $ random.shuffle(perguntas_unicas)
+    $ perguntas_da_sessao = perguntas_unicas[:perguntas_totais]
 
     jump proxima_pergunta_marinho
 

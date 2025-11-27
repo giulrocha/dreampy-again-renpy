@@ -3,6 +3,9 @@
 image bg fase2 = "images/background/bg cyberpunk.png"
 image bg hub = "images/background/bg hub.png"
 image vanilton = "images/characters/vanilton.png"
+image vanilton_feliz = "images/characters/vanilton_feliz.png"
+image vanilton_erro = "images/characters/vanilton_erro.png"
+image vanilton_falando = "images/characters/vanilton_falando.png"
 image gilberto_android = "images/characters/gilberto_android.png"
 
 transform grande: 
@@ -41,17 +44,22 @@ label cyberpunk:
 
     scene expression Transform("bg fase2", fit="cover") with fade
     
-    show vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    show vanilton_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     vanilton "Olá, [jogador]! Seja bem-vindo ao Universo de Lógica e Estruturas Condicionais!"
+    hide vanilton_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    show vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jogador "E quem é você?"
+    hide vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    show vanilton_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     vanilton "Sou Vanilton. Vou testar se sua lógica é forte o suficiente para continuar."
+    hide vanilton_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    show vanilton_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jogador "Pode mandar, eu aceito o desafio!"
-
-    hide vanilton
+    hide vanilton_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     if difficulty == "easy":
         $ perguntas_totais = 10
@@ -98,14 +106,16 @@ label preparar_quiz_cyberpunk:
         perguntas_unicas = []
         vistas = set()
         for p in lista_de_perguntas:
-            # usa o texto da pergunta como chave de unicidade
             key = p.get("answer", "")
             if key not in vistas:
                 vistas.add(key)
                 perguntas_unicas.append(p)
-    $ random.shuffle(lista_de_perguntas)
 
-    $ perguntas_da_sessao = lista_de_perguntas[:perguntas_totais]
+    $ renpy.log("TOTAL BRUTO: " + str(len(lista_de_perguntas)))
+    $ renpy.log("TOTAL UNICO: " + str(len(perguntas_unicas)))
+
+    $ random.shuffle(perguntas_unicas)
+    $ perguntas_da_sessao = perguntas_unicas[:perguntas_totais]
 
     jump proxima_pergunta_cyberpunk
 
@@ -157,9 +167,19 @@ label proxima_pergunta_cyberpunk:
     $ status_resposta = resultado.get("status")
     $ feedback_vanilton = resultado.get("feedback")
 
-    show vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    if status_resposta == "correta":
+        show vanilton_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0) 
+    elif status_resposta == "errada":
+        show vanilton_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    else:
+        show vanilton_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
     vanilton "[feedback_vanilton]"
-    hide vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    if status_resposta == "correta":
+        hide vanilton_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    elif status_resposta == "errada":
+        hide vanilton_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    else:
+        hide vanilton_falando at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     if status_resposta == "correta":
         $ acertos += 1
@@ -188,13 +208,13 @@ label cyberpunk_feliz:
 
     $ fase_3_liberada = True
 
-    show vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    show vanilton_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     vanilton "Parabéns, [jogador]! Sua lógica passou nos meus testes."
 
     jogador "Ótimo, mais um passo pra casa!"
 
-    hide vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    hide vanilton_feliz at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jump hub_controle_3_feliz
 
@@ -204,13 +224,13 @@ label cyberpunk_feliz:
 
 label cyberpunk_triste:
 
-    show vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    show vanilton_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     vanilton "Você ainda não domina bem as estruturas condicionais. Mas pode tentar de novo."
 
     jogador "Não vou desistir. Vou ajustar minha lógica!"
 
-    hide vanilton at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
+    hide vanilton_erro at Position(xpos=0.49, ypos=0.92, xanchor=0.5, yanchor=1.0)
 
     jump hub_controle_3_triste
 
