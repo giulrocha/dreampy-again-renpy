@@ -17,7 +17,7 @@ init python:
     import requests
 
     try:
-        url_json = "https://senselessly-patronal-jorge.ngrok-free.dev/api/core/quiz/?format=json"
+        url_json = "https://gist.githubusercontent.com/lufllp/e4d5e828927b1f6bc355059c4a994f8a/raw/3cdac6c9b89394ab99735e306d32efe460ade97a/quiz_perguntas.json"
 
         resposta = requests.get(url_json)
         renpy.log("STATUS: " + str(resposta.status_code))

@@ -9,7 +9,7 @@ image raimundo_feliz = "images/characters/raimundo_feliz.png"
 image gilberto_android = "images/characters/gilberto_android.png"
 
 # --- TELA CUSTOMIZADA PARA O QUIZ ---
-screen quiz_screen(question, options):
+screen quiz_screen(question):
     frame:
         xalign 0.5
         yalign 0.5
@@ -21,10 +21,10 @@ screen quiz_screen(question, options):
             text question:
                 xalign 0.5
 
-            for option in options:
-                textbutton option:
-                    xalign 0.5
-                    action Return(option)
+            # for option in options:
+            #     textbutton option:
+            #         xalign 0.5
+            #         action Return(option)
 
 
 # Bloco de inicialização para carregar as perguntas da Fase 1
@@ -40,7 +40,7 @@ init python:
     config.keymap['enviar_quiz'] = ['K_RETURN', 'K_KP_ENTER']  # ENTER e ENTER do teclado numérico
 
     try:
-        url_json = "https://senselessly-patronal-jorge.ngrok-free.dev/api/core/quiz/?format=json"
+        url_json = "https://gist.githubusercontent.com/lufllp/e4d5e828927b1f6bc355059c4a994f8a/raw/3cdac6c9b89394ab99735e306d32efe460ade97a/quiz_perguntas.json"
 
         resposta = requests.get(url_json)
         renpy.log("STATUS: " + str(resposta.status_code))
