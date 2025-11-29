@@ -27,7 +27,7 @@ def normalize(text):
 def avaliar_resposta(answer, answer_correct, resposta_do_jogador, numero_da_pergunta):
     try:
         r = requests.post(
-            "https://senselessly-patronal-jorge.ngrok-free.dev/avaliar_resposta_api/",
+            "http://ec2-107-20-38-175.compute-1.amazonaws.com:30001/avaliar_resposta_api/",
             json={
                 "answer": answer,
                 "answer_correct": answer_correct,
