@@ -1,747 +1,523 @@
 {
-  "Valores, Tipos de Dados, Variáveis, Nomes de Variáveis, Palavras-chave": {
-    "fácil": [
-      {
-        "pergunta": " Qual é o tipo de dado usado para armazenar números inteiros em Python?",
-        "opcoes": ["int","float","str","bool"],
-        "resposta_correta": "int"
-      },
-      {
-        "pergunta": " Qual é o tipo de dado usado para números com parte decimal?",
-        "opcoes": ["int","float","complex","bool"],
-        "resposta_correta": "float"
-      },
-      {
-        "pergunta": " Qual é o tipo de dado usado para texto?",
-        "opcoes": ["str","int","list","dict"],
-        "resposta_correta": "str"
-      },
-      {
-        "pergunta": " Qual é a convenção mais comum para nomes de variáveis em Python?",
-        "opcoes": ["CamelCase","snake_case","UPPERCASE","kebab-case"],
-        "resposta_correta": "snake_case"
-      },
-      {
-        "pergunta": " Pode uma variável começar com um número?",
-        "opcoes": ["Sim","Não","Depende","Somente em dados externos"],
-        "resposta_correta": "Não"
-      },
-      {
-        "pergunta": " Qual das opções é uma palavra-chave reservada do Python?",
-        "opcoes": ["print","for","list","append"],
-        "resposta_correta": "for"
-      },
-      {
-        "pergunta": " Variáveis em Python são sensíveis a maiúsculas e minúsculas Verdadeiro ou Falso?",
-        "opcoes": ["Verdadeiro","Falso","Depende","Não se aplica"],
-        "resposta_correta": "Verdadeiro"
-      },
-      {
-        "pergunta": " Qual é a atribuição correta para armazenar o valor 10 na variável 'resultado'?",
-        "opcoes": ["resultado = 10","10 = resultado","result = 10","valor = 10"],
-        "resposta_correta": "resultado = 10"
-      },
-      {
-        "pergunta": " None representa o quê?",
-        "opcoes": ["valor nulo","número zero","string vazia","valor verdadeiro"],
-        "resposta_correta": "valor nulo"
-      },
-      {
-        "pergunta": " Como verificar o tipo de uma variável, por exemplo 'x'?",
-        "opcoes": ["type(x)","typeof(x)","x.dtype","inspect(x)"],
-        "resposta_correta": "type(x)"
-      }
-    ],
-    "médio": [
-      {
-        "pergunta": "Qual é o tipo retornado por type('abc')?",
-        "opcoes": ["str","int","list","dict"],
-        "resposta_correta": "str"
-      },
-      {
-        "pergunta": "É permitido usar acentos em nomes de variáveis em Python 3?",
-        "opcoes": ["Sim","Não","Depende","Somente em Python 3"],
-        "resposta_correta": "Sim"
-      },
-      {
-        "pergunta": "Como obter o tipo de uma variável 'n'?",
-        "opcoes": ["type(n)","typeof(n)","n.dtype","typeOf(n)"],
-        "resposta_correta": "type(n)"
-      },
-      {
-        "pergunta": "Qual é a convenção para constantes?",
-        "opcoes": ["camelCase","snake_case","UPPERCASE","lowercase"],
-        "resposta_correta": "UPPERCASE"
-      },
-      {
-        "pergunta": "Qual é o símbolo usado para atribuição em Python?",
-        "opcoes": ["=","==","!=",":="],
-        "resposta_correta": "="
-      },
-      {
-        "pergunta": "O que é uma variável global?",
-        "opcoes": ["Armazena valor que pode ser acessado de qualquer lugar","Armazena valor dentro de uma função","Não existe","É apenas uma constante"],
-        "resposta_correta": "Armazena valor que pode ser acessado de qualquer lugar"
-      },
-      {
-        "pergunta": "É permitido usar espaços em nomes de variáveis?",
-        "opcoes": ["Sim","Não","Depende","Apenas em Unicode"],
-        "resposta_correta": "Não"
-      },
-      {
-        "pergunta": "Qual é o tipo de dado para booleanos?",
-        "opcoes": ["bool","int","str","NoneType"],
-        "resposta_correta": "bool"
-      },
-      {
-        "pergunta": "Qual é o tipo de dado para listas?",
-        "opcoes": ["list","tuple","dict","set"],
-        "resposta_correta": "list"
-      },
-      {
-        "pergunta": "Pode-se nomear variáveis com palavras-chave reservadas?",
-        "opcoes": ["Sim","Não","Depende","Somente se usar prefixo"],
-        "resposta_correta": "Não"
-      }
-    ],
-    "difícil": [
-      {
-        "pergunta": "Qual é o efeito de atribuir 'global' dentro de uma função sem declarar 'global'?",
-        "opcoes": ["Nada muda","Cria nova variável local com o mesmo nome","Gera erro","Altera global automaticamente"],
-        "resposta_correta": "Cria nova variável local com o mesmo nome"
-      },
-      {
-        "pergunta": "Qual é a diferença entre 'is' e '=='?",
-        "opcoes": ["is verifica identidade; == verifica igualdade de valor","is verifica tipo; == verifica valor","is é para strings; == para números","is usa valor; == usa referência"],
-        "resposta_correta": "is verifica identidade; == verifica igualdade de valor"
-      },
-      {
-        "pergunta": "O que ocorre se você tenta acessar uma variável não declarada dentro de uma função?",
-        "opcoes": ["Penalidade","NameError","TypeError","ValueError"],
-        "resposta_correta": "NameError"
-      },
-      {
-        "pergunta": "Como converter uma string 's' para inteiro?",
-        "opcoes": ["int(s)","str(s)","float(s)","bool(s)"],
-        "resposta_correta": "int(s)"
-      },
-      {
-        "pergunta": "O que retorna a expressão 'len({1, 2, 3})'?",
-        "opcoes": ["3","2","1","0"],
-        "resposta_correta": "3"
-      },
-      {
-        "pergunta": "Como verificar se uma chave existe em um dicionário sem criar a chave?",
-        "opcoes": ["in","get","has_key","isset"],
-        "resposta_correta": "in"
-      },
-      {
-        "pergunta": "Qual é a diferença entre listas e arrays do módulo 'array'?",
-        "opcoes": ["Listas são dinâmicas, arrays do módulo são restritos a tipos","Arrays são imutáveis","Não há diferença","Listas não existem"],
-        "resposta_correta": "Listas são dinâmicas, arrays do módulo são restritos a tipos"
-      },
-      {
-        "pergunta": "Qual expressão retorna uma cópia invertida da lista sem alterar a original?",
-        "opcoes": ["lista[::-1]","lista.reverse()","lista[::-1:]","reverse(lista)"],
-        "resposta_correta": "lista[::-1]"
-      },
-      {
-        "pergunta": "Qual é o resultado de: lista = [1, 2, 3]; lista.append(4); lista",
-        "opcoes": ["[1, 2, 3, 4]","[4, 1, 2, 3]","[1, 2, 3]","[1, 2, 3, 4, 5]"],
-        "resposta_correta": "[1, 2, 3, 4]"
-      }
-    ]
-  },
-  "Lógica e estruturas condicionais (if, else, elif)": {
-    "fácil": [
-      {
-        "pergunta": "Qual palavra-chave inicia uma condição?",
-        "opcoes": ["then","if","when","cond"],
-        "resposta_correta": "if"
-      },
-      {
-        "pergunta": "Qual é a estrutura básica de decisão em Python?",
-        "opcoes": ["if-else","switch","case","do-while"],
-        "resposta_correta": "if-else"
-      },
-      {
-        "pergunta": "Como encadear várias condições?",
-        "opcoes": ["if-else","if-elif-else","when-else","switch-case"],
-        "resposta_correta": "if-elif-else"
-      },
-      {
-        "pergunta": "Qual é a diferença entre '==' e '='?",
-        "opcoes": ["'==' compara, '=' atribui","'==' atribui, '=' compara","Ambos comparam","Nenhum"],
-        "resposta_correta": "'==' compara, '=' atribui"
-      },
-      {
-        "pergunta": "O que acontece se a condição for falsa e não houver else?",
-        "opcoes": ["O código falha","Nenhuma ação","Sai do programa","Depende"],
-        "resposta_correta": "Nenhuma ação"
-      },
-      {
-        "pergunta": "Como verificar se uma variável é maior que 0?",
-        "opcoes": ["x > 0","x >= 0","x < 0","x != 0"],
-        "resposta_correta": "x > 0"
-      },
-      {
-        "pergunta": "No Python, um valor vazio como lista vazia é considerado True ou False em uma condição?",
-        "opcoes": ["True","False","Depende","Erro"],
-        "resposta_correta": "False"
-      },
-      {
-        "pergunta": "Como usar 'elif' com duas condições?",
-        "opcoes": ["elif","else","for","while"],
-        "resposta_correta": "elif"
-      },
-      {
-        "pergunta": "Como escrever uma única condição simples?",
-        "opcoes": ["if condição:", "if condição bloco","condition if","elif"],
-        "resposta_correta": "if condição:"
-      },
-      {
-        "pergunta": "Qual bloco é executado se a primeira condição for falsa e a segunda for verdadeira?",
-        "opcoes": ["elif","else","for","while"],
-        "resposta_correta": "elif"
-      }
-    ],
-    "médio": [
-      {
-        "pergunta": "Qual é o resultado de: x = 5; if x > 3: y = 'alto' elif x > 1: y = 'médio' else: y = 'baixo'; print(y)",
-        "opcoes": ["alto","médio","baixo","erro"],
-        "resposta_correta": "alto"
-      },
-      {
-        "pergunta": "Como testar se um valor está entre dois números em Python?",
-        "opcoes": ["if 0 <= x <= 10","if x > 0 and x < 11","if x in range(0,11)","Todas anteriores"],
-        "resposta_correta": "Todas anteriores"
-      },
-      {
-        "pergunta": "Como usar o operador 'not' para negar uma condição?",
-        "opcoes": ["if not cond:","if !cond:","if not cond then","if not(cond)"],
-        "resposta_correta": "if not cond:"
-      },
-      {
-        "pergunta": "Qual é o resultado de 'if not []: print('ok')'?",
-        "opcoes": ["Nada é impresso","'ok' é impresso","Erro de sintaxe","Imprime None"],
-        "resposta_correta": "'ok' é impresso"
-      }
-    ],
-    "difícil": [
-      {
-        "pergunta": "Qual bloco é executado se o código passar por todos os 'if' sem entrar em nenhum, sem usar 'else'?",
-        "opcoes": ["Nada acontece","Gera erro","Executa o restante do código","Executa apenas se houver 'else'"],
-        "resposta_correta": "Nada acontece"
-      },
-      {
-        "pergunta": "Qual expressão é verdadeira para checar duas condições com 'and'?",
-        "opcoes": ["cond1 and cond2","cond1 or cond2","cond1 && cond2","cond1 || cond2"],
-        "resposta_correta": "cond1 and cond2"
-      },
-      {
-        "pergunta": "É possível aninhar estruturas 'if'? ",
-        "opcoes": ["Sim","Não","Somente com elif","Só em funções"],
-        "resposta_correta": "Sim"
-      },
-      {
-        "pergunta": "Qual é o efeito de 'elif' após um 'if' que já foi verdadeiro?",
-        "opcoes": ["Executa sempre","É ignorado","Executa apenas se o anterior for falso","Não pode ter"],
-        "resposta_correta": "É ignorado"
-      },
-      {
-        "pergunta": "Como escrever uma condição que verifica se uma variável está entre 10 e 20, inclusive?",
-        "opcoes": ["10 <= x <= 20","x >= 10 and x <= 20","(x >= 10) and (x <= 20)","Todas as anteriores"],
-        "resposta_correta": "Todas as anteriores"
-      },
-      {
-        "pergunta": "O que acontece se a condição for verdadeira, mas há apenas 'else' após o 'if'?",
-        "opcoes": ["O código do 'else' não executa","O 'else' executa sempre","Gera erro de sintaxe","O programa trava"],
-        "resposta_correta": "O código do 'else' não executa"
-      },
-      {
-        "pergunta": "Qual é a função de condicional ternária em Python (expressão condicional)?",
-        "opcoes": ["valor1 if cond else valor2","cond if valor1 else valor2","valor1 if else cond","cond ? valor1 : valor2"],
-        "resposta_correta": "valor1 if cond else valor2"
-      },
-      {
-        "pergunta": "Como verificar se uma string contém uma substring usando condicionais?",
-        "opcoes": ["if 'sub' in s:","if s contains 'sub':","if s.includes('sub')","if 'sub' has in s"],
-        "resposta_correta": "if 'sub' in s:"
-      },
-      {
-        "pergunta": "Qual é o resultado de 'if x: pass' quando x é 0?",
-        "opcoes": ["Executa o bloco","Não executa o bloco","Gera erro","Depende do tipo de x"],
-        "resposta_correta": "Não executa o bloco"
-      },
-      {
-        "pergunta": "É correto usar 'elif' sem um 'if' anterior?",
-        "opcoes": ["Sim","Não","Depende","Somente em módulos"],
-        "resposta_correta": "Não"
-      }
-    ]
-  },
-  "Estrutura de repetição (loops for e while)": {
-    "fácil": [
-      {
-        "pergunta": "Qual palavra-chave inicia um laço que repete um conjunto de instruções?",
-        "opcoes": ["for","while","loop","repeat"],
-        "resposta_correta": "for"
-      },
-      {
-        "pergunta": "Como iterar sobre uma lista 'nomes' com for?",
-        "opcoes": ["for item in nomes:","for nomes in nomes:","for i, nome in enumerate(nomes):","foreach(nome in nomes)"],
-        "resposta_correta": "for item in nomes:"
-      },
-      {
-        "pergunta": "Como criar um range de 5 itens?",
-        "opcoes": ["range(5)","range[5]","range-5-","range(1,5)"],
-        "resposta_correta": "range(5)"
-      },
-      {
-        "pergunta": "Qual laço é usado quando você não sabe quantas vezes repetirá?",
-        "opcoes": ["for","while","do-while","repeat"],
-        "resposta_correta": "while"
-      },
-      {
-        "pergunta": "Como sair de um loop antes de terminar?",
-        "opcoes": ["break","continue","exit","return"],
-        "resposta_correta": "break"
-      },
-      {
-        "pergunta": "Como pular a iteração atual e seguir para a próxima?",
-        "opcoes": ["continue","break","pass","skip"],
-        "resposta_correta": "continue"
-      },
-      {
-        "pergunta": "Para percorrer uma lista com índice, qual construção é comum?",
-        "opcoes": ["for i in range(len(lista))","for i, v in enumerate(lista)","for v in lista:","for i in range(len(lista)) ou for i, v in enumerate(lista)"],
-        "resposta_correta": "for i in range(len(lista)) ou for i, v in enumerate(lista)"
-      },
-      {
-        "pergunta": "Qual função retorna ao final de um loop for?",
-        "opcoes": ["O programa para","O fluxo continua","Gera erro","Não faz nada"],
-        "resposta_correta": "O fluxo continua"
-      },
-      {
-        "pergunta": "Como percorrer uma string com um laço for para obter cada caractere?",
-        "opcoes": ["for c in 'texto':","for c in texto:","for c in texto[]:","for c in (texto):"],
-        "resposta_correta": "for c in (texto):"
-      },
-      {
-        "pergunta": "Qual é o uso de 'else' em um loop?",
-        "opcoes": ["Não existe","Executa se o loop não encontrar 'break'","Executa sempre","Executa antes do loop"],
-        "resposta_correta": "Executa se o loop não encontrar 'break'"
-      }
-    ],
-    "médio": [
-      {
-        "pergunta": "Como usar 'range' com início, fim e passo?",
-        "opcoes": ["range(inicio, fim, passo)","range(inicio, fim)","range(fim)","range(inicio, fim, 0)"],
-        "resposta_correta": "range(inicio, fim, passo)"
-      },
-      {
-        "pergunta": "Como percorrer uma lista ao contrário sem inverter a lista?",
-        "opcoes": ["for i in reversed(lista)","for i in lista[::-1]","range(len(lista)-1, -1, -1)","Todas as anteriores"],
-        "resposta_correta": "Todas as anteriores"
-      },
-      {
-        "pergunta": "Como combinar duas condições usando AND em um while?",
-        "opcoes": ["while x > 0 and y > 0:","while x > 0 or y > 0:","while x > 0 && y > 0:","while (x>0) and (y>0):"],
-        "resposta_correta": "while x > 0 and y > 0:"
-      },
-      {
-        "pergunta": "Qual é o efeito de usar 'elif' quando a condição anterior for verdadeira?",
-        "opcoes": ["É executado apenas se o anterior for falso","É executado em paralelo","É ignorado","Não pode ter"],
-        "resposta_correta": "É executado apenas se o anterior for falso"
-      },
-      {
-        "pergunta": "Como usar o 'else' com um while?",
-        "opcoes": ["else executa quando o while termina naturalmente","else executa sempre","else é proibido com while","else executa se houver 'break'"],
-        "resposta_correta": "else executa quando o while termina naturalmente"
-      },
-      {
-        "pergunta": "Qual construção faz itera por índices e valores de uma lista?",
-        "opcoes": ["for i, v in enumerate(lista)","for i in range(len(lista))","for v in lista","for i in lista:"],
-        "resposta_correta": "for i, v in enumerate(lista)"
-      },
-      {
-        "pergunta": "Como transformar uma lista em uma cópia invertida sem modificar a original?",
-        "opcoes": ["lista[::-1]","lista.reverse()","lista[::-1] com atribuição","reverse(lista)"],
-        "resposta_correta": "lista[::-1]"
-      },
-      {
-        "pergunta": "Qual expressão retorna uma cópia da lista em ordem inversa sem alterar a original?",
-        "opcoes": ["lista[::-1]","lista.reverse()","lista[:: -1]","Todas as anteriores"],
-        "resposta_correta": "lista[::-1]"
-      },
-      {
-        "pergunta": "O que acontece se o laço for executado sem encontrar um 'break'?",
-        "opcoes": ["O laço repete até o fim","O programa trava","Gera erro","Não acontece nada"],
-        "resposta_correta": "O laço repete até o fim"
-      },
-      {
-        "pergunta": "Qual é o uso de 'for' com 'break' dentro de um loop aninhado?",
-        "opcoes": ["Para sair do loop interno apenas","Para sair de todos os loops","Não tem efeito","Reinicia o loop"],
-        "resposta_correta": "Para sair do loop interno apenas"
-      }
-    ],
-    "difícil": [
-      {
-        "pergunta": "Qual é a diferença entre 'break' e 'continue' dentro de um loop?",
-        "opcoes": ["break encerra o loop inteiro; continue pula para a próxima iteração","break inicia o loop; continue encerra o loop","Não há diferença","Ambos encerram o loop"],
-        "resposta_correta": "break encerra o loop inteiro; continue pula para a próxima iteração"
-      },
-      {
-        "pergunta": "Como iterar sobre uma lista com índice e valor usando apenas for?",
-        "opcoes": ["for i, v in enumerate(lista)","for i, v in lista:","for i in lista:","for v in enumerate(lista)"],
-        "resposta_correta": "for i, v in enumerate(lista)"
-      },
-      {
-        "pergunta": "Qual é a saída de um loop for que quebra na primeira iteração?",
-        "opcoes": ["Depende do conteúdo","0","Nenhuma saída","Erro de sintaxe"],
-        "resposta_correta": "Depende do conteúdo"
-      },
-      {
-        "pergunta": "Como usar um 'while' que executa exatamente 3 vezes sem usar 'for'?",
-        "opcoes": ["while i < 3:","while i <= 3:","while i != 3:","Enquanto i < 3"],
-        "resposta_correta": "while i < 3:"
-      },
-      {
-        "pergunta": "Qual é a vantagem de usar 'for' com 'range' versus 'while'?",
-        "opcoes": ["Menor probabilidade de erros de contagem","Melhor desempenho","Menor uso de memória","Não há vantagem"],
-        "resposta_correta": "Menor probabilidade de erros de contagem"
-      },
-      {
-        "pergunta": "Como inverter rapidamente uma lista sem alterar a original usando slicing?",
-        "opcoes": ["lista[::-1]","lista.reverse()","lista.invert()","lista[::-1:]"],
-        "resposta_correta": "lista[::-1]"
-      },
-      {
-        "pergunta": "Qual é o efeito de 'for x in range(n):' quando n é 0 ou negativo?",
-        "opcoes": ["Executa zero vezes","Executa uma vez","Gera erro","Executa indefinidamente"],
-        "resposta_correta": "Executa zero vezes"
-      },
-      {
-        "pergunta": "É possível ter um 'else' associado a um 'while' em Python. O que ele significa?",
-        "opcoes": ["Executa se o loop não foi encerrado por 'break'","Executa sempre","Não existe","É obrigatório"],
-        "resposta_correta": "Executa se o loop não foi encerrado por 'break'"
-      },
-      {
-        "pergunta": "Qual é a forma correta de percorrer uma lista com seu índice e valor, de trás para frente?",
-        "opcoes": ["for i in range(len(lista)-1, -1, -1):","for i in range(len(lista)):","for i, v in enumerate(lista[::-1]):","for i in range(len(lista),-1,-1):"],
-        "resposta_correta": "for i in range(len(lista)-1, -1, -1):"
-      }
-    ]
-  },
-  "Funções e modularização (def, return)": {
-    "fácil": [
-      {
-        "pergunta": "Como definir uma função em Python?",
-        "opcoes": ["def minha_func():","function minha_func():","função minha_func()","lambda"],
-        "resposta_correta": "def minha_func():"
-      },
-      {
-        "pergunta": "Qual palavra-chave retorna um valor de uma função?",
-        "opcoes": ["return","exit","yield","pass"],
-        "resposta_correta": "return"
-      },
-      {
-        "pergunta": "O que acontece se uma função não tem 'return'?",
-        "opcoes": ["Erro","A função retorna None","Retorna 0","Não pode ser chamada"],
-        "resposta_correta": "A função retorna None"
-      },
-      {
-        "pergunta": "Como chamar uma função definida chamada 'soma' com 2 e 3?",
-        "opcoes": ["soma(2,3)","soma 2 3","call soma(2,3)","soma(2 3)"],
-        "resposta_correta": "soma(2,3)"
-      },
-      {
-        "pergunta": "O que são parâmetros com valores padrão?",
-        "opcoes": ["parâmetros obrigatórios","parâmetros com valor default","parâmetros opcionais sem valor","parâmetros só leitura"],
-        "resposta_correta": "parâmetros com valor default"
-      },
-      {
-        "pergunta": "O que significa 'def' em Python?",
-        "opcoes": ["É uma declaração de classe","É uma definição de função","É uma instrução de loop","É uma palavra-chave para import"],
-        "resposta_correta": "É uma definição de função"
-      },
-      {
-        "pergunta": "Como retornar múltiplos valores de uma função?",
-        "opcoes": ["return a,b","return (a,b)","return a,b ou return (a,b)","Nenhuma"],
-        "resposta_correta": "return a,b ou return (a,b)"
-      },
-      {
-        "pergunta": "Como tornar uma função visível em outros módulos?",
-        "opcoes": ["import","export","include","use"],
-        "resposta_correta": "import"
-      },
-      {
-        "pergunta": "O que é uma função lambda?",
-        "opcoes": ["função sem nome","função com nome longo","função de classe","função que retorna sempre"],
-        "resposta_correta": "função sem nome"
-      },
-      {
-        "pergunta": "Qual é o objetivo de modularização?",
-        "opcoes": ["Melhor organização","Diminuir legibilidade","Aumentar tempo de execução","Aumentar uso de memória"],
-        "resposta_correta": "Melhor organização"
-      }
-    ],
-    "médio": [
-      {
-        "pergunta": "Como importar uma função de um módulo 'math' para uso direto?",
-        "opcoes": ["from math import sqrt","import math.sqrt","from math import *","import sqrt from math"],
-        "resposta_correta": "from math import sqrt"
-      },
-      {
-        "pergunta": "O que acontece se uma função não tem 'None' retornando explicitamente?",
-        "opcoes": ["Retorna None","Lança exceção","Retorna 0","Retorna ''"],
-        "resposta_correta": "Retorna None"
-      },
-      {
-        "pergunta": "Qual é a diferença entre parâmetro e argumento?",
-        "opcoes": ["Parâmetro é na definição; argumento é na chamada","Ambos são a mesma coisa","Parâmetro é sempre opcional","Argumento é sempre obrigatório"],
-        "resposta_correta": "Parâmetro é na definição; argumento é na chamada"
-      },
-      {
-        "pergunta": "Como evitar que uma função altere uma lista original passada como argumento?",
-        "opcoes": ["Faça cópia dentro da função","Use global","Passe como string","Não é possível"],
-        "resposta_correta": "Faça cópia dentro da função"
-      },
-      {
-        "pergunta": "O que é uma função recursiva?",
-        "opcoes": ["Uma função que se chama","Uma função que não pode chamar outras","Uma função que retorna apenas strings","Uma função que nunca termina"],
-        "resposta_correta": "Uma função que se chama"
-      },
-      {
-        "pergunta": "Como verificar o tipo de retorno de uma função usando anotações de tipo (type hints)?",
-        "opcoes": ["def f() -> int:","def f() -> int","def f() return int:","def f() -> int:"],
-        "resposta_correta": "def f() -> int:"
-      },
-      {
-        "pergunta": "O que é o valor de retorno padrão de uma função sem 'return'?",
-        "opcoes": ["None","0","''","True"],
-        "resposta_correta": "None"
-      },
-      {
-        "pergunta": "Qual é o uso de 'global' dentro de uma função?",
-        "opcoes": ["Usar e modificar uma variável no escopo global","Criar uma nova função","Definir uma classe","Não tem uso"],
-        "resposta_correta": "Usar e modificar uma variável no escopo global"
-      },
-      {
-        "pergunta": "Como criar uma função que recebe um número variável de argumentos?",
-        "opcoes": ["def f(*args):","def f(args...):","def f(args):","def f(**args):"],
-        "resposta_correta": "def f(*args):"
-      },
-      {
-        "pergunta": "O que faz o decorator '@staticmethod' em Python?",
-        "opcoes": ["Define um método que não recebe 'self'","Cria uma nova classe","Converte a função em string","Não tem efeito"],
-        "resposta_correta": "Define um método que não recebe 'self'"
-      }
-    ],
-    "difícil": [
-      {
-        "pergunta": "Qual é a diferença entre variáveis globais e locais em termos de escopo em Python?",
-        "opcoes": ["Locais são acessíveis apenas dentro de onde foram criadas; globais são acessíveis em todo o módulo","Globais só podem ser lidas; locais podem ser modificadas","Locais são visíveis em todo o programa; globais não","Não há diferença"],
-        "resposta_correta": "Locais são acessíveis apenas dentro de onde foram criadas; globais são acessíveis em todo o módulo"
-      },
-      {
-        "pergunta": "Como retornar múltiplos valores de uma função sem empacotá-los em uma tupla explicitamente?",
-        "opcoes": ["return a, b","return (a,b)","Ambas","Nenhuma"],
-        "resposta_correta": "Ambas"
-      },
-      {
-        "pergunta": "Qual é a finalidade de usar '__all__' em um módulo?",
-        "opcoes": ["Definir quais símbolos são exportados quando se usa 'from modulo import *'","Listar as funções locais","Controlar o escopo de variáveis globais","Não é utilizado em Python"],
-        "resposta_correta": "Definir quais símbolos são exportados quando se usa 'from modulo import *'"
-      },
-      {
-        "pergunta": "Como tratar exceções dentro de uma função para não interromper a execução do programa?",
-        "opcoes": ["Usar try/except dentro da função","Não tratar exceções","Usar 'finally' apenas","Ignorar exceções"],
-        "resposta_correta": "Usar try/except dentro da função"
-      },
-      {
-        "pergunta": "O que é o conceito de 'closure' em Python?",
-        "opcoes": ["Função retornando outra função que captura variáveis do ambiente externo","Tipo de dado de função","Módulo de teste","Não existe"],
-        "resposta_correta": "Função retornando outra função que captura variáveis do ambiente externo"
-      },
-      {
-        "pergunta": "Qual é a diferença entre 'callable' e 'callable()'?",
-        "opcoes": ["Callable é tipo; callable() executa a função","Callable() é a chamada de função","Não há diferença","Ambas são válidas"],
-        "resposta_correta": "Callable é tipo; callable() executa a função"
-      },
-      {
-        "pergunta": "Como impor tipo de retorno usando 'typing' no Python 3.9+?",
-        "opcoes": ["def f() -> int:","def f() -> int","def f() -> int: ->","def f() -> int: pass"],
-        "resposta_correta": "def f() -> int:"
-      },
-      {
-        "pergunta": "O que acontece se uma função é decorada com '@classmethod'?",
-        "opcoes": ["Recebe a classe como primeiro argumento","Recebe o objeto como primeiro argumento","Não pode ser chamada","É equivalente a staticmethod"],
-        "resposta_correta": "Recebe a classe como primeiro argumento"
-      },
-      {
-        "pergunta": "Qual é a vantagem de separar código em módulos?",
-        "opcoes": ["Melhor organização, reutilização e testabilidade","Aumento de tempo de execução","Reduz a legibilidade","Não traz benefício"],
-        "resposta_correta": "Melhor organização, reutilização e testabilidade"
-      },
-      {
-        "pergunta": "Como criar um gerador simples com 'yield'?",
-        "opcoes": ["def g(): yield 1","def g(): return 1","yield def g(): 1","def g(): yield 1; return"],
-        "resposta_correta": "def g(): yield 1"
-      }
-    ]
-  },
-  "Listas e Dicionários (criação, acesso, métodos básicos)": {
-    "fácil": [
-      {
-        "pergunta": "Qual estrutura armazena itens em uma ordem?",
-        "opcoes": ["tuple","lista (list)","set","dict"],
-        "resposta_correta": "lista (list)"
-      },
-      {
-        "pergunta": "Como criar uma lista vazia?",
-        "opcoes": ["'[]'","{}","()","list()"],
-        "resposta_correta": "'[]'"
-      },
-      {
-        "pergunta": "Como acessar o segundo elemento de uma lista 'nums'?",
-        "opcoes": ["nums[2]","nums[1]","nums(2)","'nums{2}'"],
-        "resposta_correta": "nums[1]"
-      },
-      {
-        "pergunta": "Qual método adiciona um item ao final de uma lista?",
-        "opcoes": ["append","add","insert","push"],
-        "resposta_correta": "append"
-      },
-      {
-        "pergunta": "Como criar um dicionário com as chaves 'nome' e 'idade'?",
-        "opcoes": ["{'nome': 'João', 'idade': 30}","{'nome', 'idade': 30}","{'nome': ['João'], 'idade': 30}","{'nome':30, 'idade': 'João'}"],
-        "resposta_correta": "{'nome': 'João', 'idade': 30}"
-      },
-      {
-        "pergunta": "Como acessar a chave 'nome' de um dicionário 'p'?",
-        "opcoes": ["p['nome']","p[nome]","p.nome","p.nome."],
-        "resposta_correta": "p['nome']"
-      },
-      {
-        "pergunta": "Qual método para obter todas as chaves de um dicionário 'd'?",
-        "opcoes": ["d.values()","d.keys()","d.items()","d.get_keys()"],
-        "resposta_correta": "d.keys()"
-      },
-      {
-        "pergunta": "Como verificar se a chave 'nome' existe em um dicionário?",
-        "opcoes": ["'nome' in d","'nome' in d.keys()","d.has_key('nome')","d.contains('nome')"],
-        "resposta_correta": "'nome' in d"
-      },
-      {
-        "pergunta": "Qual é a diferença entre listas e dicionários?",
-        "opcoes": ["Listas mantêm ordem por índice; Dicionários mapeiam chaves para valores","Listas armazenam chaves; Dicionários armazenam índices","Dicionários não permitem duplicatas; Listas permitem","Nenhuma diferença"],
-        "resposta_correta": "Listas mantêm ordem por índice; Dicionários mapeiam chaves para valores"
-      },
-      {
-        "pergunta": "Como remover o item com índice 0 de uma lista 'l'?",
-        "opcoes": ["l.pop(0)","l.remove(0)","del l[0]","l.pop()"],
-        "resposta_correta": "l.pop(0)"
-      }
-    ],
-    "médio": [
-      {
-        "pergunta": "Como criar uma lista por compreensão simples?",
-        "opcoes": ["[i for i in range(5)]","(i for i in range(5))","{i for i in range(5)}","<i for i in range(5)>"],
-        "resposta_correta": "[i for i in range(5)]"
-      },
-      {
-        "pergunta": "Qual é o método para obter itens de um dicionário como uma lista de pares (chave, valor)?",
-        "opcoes": ["d.items()","d.values()","d.keys()","list(d)"],
-        "resposta_correta": "d.items()"
-      },
-      {
-        "pergunta": "Como inserir um par chave:valor em um dicionário existente?",
-        "opcoes": ["d['novo'] = 1","d.add('novo',1)","d.insert('novo',1)","d['novo'] : 1"],
-        "resposta_correta": "d['novo'] = 1"
-      },
-      {
-        "pergunta": "Como verificar se uma lista está vazia de forma confiável?",
-        "opcoes": ["len(lista) == 0","lista == []","not lista","Todas as anteriores"],
-        "resposta_correta": "Todas as anteriores"
-      },
-      {
-        "pergunta": "Qual é o uso de 'set' em relação a listas?",
-        "opcoes": ["Eliminar duplicatas","Ordenar elementos","Converter para tupla","Converter para dicionário"],
-        "resposta_correta": "Eliminar duplicatas"
-      },
-      {
-        "pergunta": "Como copiar um dicionário de forma rasa (shallow copy)?",
-        "opcoes": ["d.copy()","d.clone()","copy(d)","dict(d)"],
-        "resposta_correta": "d.copy()"
-      },
-      {
-        "pergunta": "Como mesclar dois dicionários 'a' e 'b' em um novo?",
-        "opcoes": ["{**a, **b}","a.update(b)","{a, b}","merge(a, b)"],
-        "resposta_correta": "{**a, **b}"
-      },
-      {
-        "pergunta": "Qual é o método para obter valor de chave com valor padrão se não existir?",
-        "opcoes": ["get('chave')","get('chave', default)","setdefault('chave', default)","Todas as anteriores"],
-        "resposta_correta": "get('chave', default)"
-      },
-      {
-        "pergunta": "Como ordenar um dicionário pelas chaves em ordem alfabética?",
-        "opcoes": ["sorted(d)","d.sort_keys()","order(d)","sorted(d.keys())"],
-        "resposta_correta": "sorted(d.keys())"
-      }
-    ],
-    "difícil": [
-      {
-        "pergunta": "Como criar um dicionário por desempenho via compreensão de dicionário?",
-        "opcoes": ["{k: v for k, v in iterable}","dict((k,v) for k,v in iterable)","{k: v for (k,v) in iterable}","Todas as anteriores"],
-        "resposta_correta": "Todas as anteriores"
-      },
-      {
-        "pergunta": "Qual é a diferença entre 'list' e 'append' quando usados com uma lista existente?",
-        "opcoes": ["list cria lista; append adiciona item","append adiciona item; list cria nova lista","Não há diferença","append substitui a lista inteira"],
-        "resposta_correta": "list cria lista; append adiciona item" 
-      },
-      {
-        "pergunta": "Como obter uma lista com apenas as chaves de um dicionário, mantendo a correspondência com seus valores em outra lista?",
-        "opcoes": ["keys() e values() com zip","keys() apenas","values() apenas","items() com map"],
-        "resposta_correta": "keys() e values() com zip"
-      },
-      {
-        "pergunta": "O que faz o método 'setdefault' em um dicionário?",
-        "opcoes": ["Obtém o valor de uma chave ou define um valor padrão se não existir","Remove a chave","Atualiza todos os valores para um padrão","Não existe"],
-        "resposta_correta": "Obtém o valor de uma chave ou define um valor padrão se não existir"
-      },
-      {
-        "pergunta": "Como evitar alterações acidentais em dados gravados quando se compartilha um dicionário entre funções?",
-        "opcoes": ["Usar cópia profunda (deepcopy)","Não compartilhar","Usar objetos imutáveis","Não há solução"],
-        "resposta_correta": "Usar cópia profunda (deepcopy)"
-      },
-      {
-        "pergunta": "Qual é a diferença entre 'd.items()' e 'd.items'?",
-        "opcoes": ["'d.items()' retorna view, 'd.items' é atributo","Ambos retornam pares","Nenhum","'d.items' é método estático"],
-        "resposta_correta": "'d.items()' retorna view, 'd.items' é atributo"
-      },
-      {
-        "pergunta": "Como ordenar um dicionário por valores e retornar uma lista de tuplas (chave, valor)?",
-        "opcoes": ["sorted(d.items(), key=lambda kv: kv[1])","sorted(d, key=lambda kv: kv[0])","sorted(d.values())","sorted(d.keys())"],
-        "resposta_correta": "sorted(d.items(), key=lambda kv: kv[1])"
-      },
-      {
-        "pergunta": "O que representa o método 'items' em um dicionário?",
-        "opcoes": ["Tupla de pares (chave, valor) para cada item","Chaves únicas apenas","Valores únicos apenas","Não existe"],
-        "resposta_correta": "Tupla de pares (chave, valor) para cada item"
-      },
-      {
-        "pergunta": "Como criar clones profundos de estruturas aninhadas (listas/dicionários) em Python?",
-        "opcoes": ["copy.deepcopy(obj)","obj.copy()","deep(obj)","clone(obj)"],
-        "resposta_correta": "copy.deepcopy(obj)"
-      },
-      {
-        "pergunta": "Qual técnica é útil para evitar efeitos colaterais ao passar estruturas mutáveis como parâmetros de função?",
-        "opcoes": ["Passar cópia imutável","Usar cópia profunda (deep copy)","Nunca retornar","Usar global"],
-        "resposta_correta": "Usar cópia profunda (deep copy)"
-      }
-    ]
-  }
+    "Valores, Tipos de Dados, Variáveis, Nomes de Variáveis, Palavras-chave": {
+        "fácil": [
+            {
+                "pergunta": "Qual é a palavra-chave usada para definir um valor verdadeiro em Python?",
+                "resposta_correta": "True"
+            },
+            {
+                "pergunta": "Qual é a palavra-chave usada para definir um valor falso em Python?",
+                "resposta_correta": "False"
+            },
+            {
+                "pergunta": "Qual função é utilizada para verificar o tipo de uma variável?",
+                "resposta_correta": "type()"
+            },
+            {
+                "pergunta": "Qual o tipo de dado do valor 10?",
+                "resposta_correta": "int"
+            },
+            {
+                "pergunta": "Qual o tipo de dado do valor 3.14?",
+                "resposta_correta": "float"
+            },
+            {
+                "pergunta": "Qual o tipo de dado do valor \"Python\"?",
+                "resposta_correta": "str"
+            },
+            {
+                "pergunta": "Qual símbolo é utilizado para atribuir um valor a uma variável?",
+                "resposta_correta": "="
+            },
+            {
+                "pergunta": "O Python diferencia letras maiúsculas de minúsculas em nomes de variáveis?",
+                "resposta_correta": "Sim"
+            },
+            {
+                "pergunta": "Qual caractere é usado para iniciar um comentário de uma linha?",
+                "resposta_correta": "#"
+            },
+            {
+                "pergunta": "Uma variável pode começar com um número em Python?",
+                "resposta_correta": "Não"
+            },
+            {
+                "pergunta": "Qual função é usada para ler uma entrada de texto do usuário?",
+                "resposta_correta": "input()"
+            },
+            {
+                "pergunta": "Qual a palavra-chave que representa a ausência de valor ou nulo?",
+                "resposta_correta": "None"
+            },
+            {
+                "pergunta": "Espaços são permitidos em nomes de variáveis?",
+                "resposta_correta": "Não"
+            },
+            {
+                "pergunta": "Qual símbolo é usado para separar decimais em números float no Python?",
+                "resposta_correta": "Ponto"
+            },
+            {
+                "pergunta": "O que a função str() faz?",
+                "resposta_correta": "Converte o valor para string"
+            },
+            {
+                "pergunta": "O que a função int() faz?",
+                "resposta_correta": "Converte o valor para inteiro"
+            },
+            {
+                "pergunta": "Qual operador é usado para exponenciação (potência)?",
+                "resposta_correta": "**"
+            },
+            {
+                "pergunta": "Aspas simples e duplas funcionam da mesma forma para criar strings?",
+                "resposta_correta": "Sim"
+            },
+            {
+                "pergunta": "Como se chama o estilo de nomeação de variáveis com sublinhados (ex: nome_usuario)?",
+                "resposta_correta": "Snake case"
+            },
+            {
+                "pergunta": "Qual é o tipo de dado resultante de 10 > 5?",
+                "resposta_correta": "bool"
+            }
+        ],
+        "médio": [
+            {
+                "pergunta": "Qual é o tipo de dado resultante da divisão 10 / 2?",
+                "resposta_correta": "float"
+            },
+            {
+                "pergunta": "Qual é o tipo de dado resultante da divisão inteira 10 // 2?",
+                "resposta_correta": "int"
+            },
+            {
+                "pergunta": "É possível atribuir valores a múltiplas variáveis em uma única linha (ex: x, y = 1, 2)?",
+                "resposta_correta": "Sim"
+            },
+            {
+                "pergunta": "Qual palavra-chave é usada para deletar uma referência a um objeto?",
+                "resposta_correta": "del"
+            },
+            {
+                "pergunta": "A palavra 'class' pode ser usada como nome de variável?",
+                "resposta_correta": "Não"
+            },
+            {
+                "pergunta": "O caractere sublinhado (_) é permitido no início de um nome de variável?",
+                "resposta_correta": "Sim"
+            },
+            {
+                "pergunta": "Qual o resultado de bool(0)?",
+                "resposta_correta": "False"
+            },
+            {
+                "pergunta": "Qual o resultado de bool(\"Texto\")?",
+                "resposta_correta": "True"
+            },
+            {
+                "pergunta": "Qual o resultado de bool(\"\") (string vazia)?",
+                "resposta_correta": "False"
+            },
+            {
+                "pergunta": "O que acontece se você tentar somar uma string com um inteiro sem conversão?",
+                "resposta_correta": "Erro (TypeError)"
+            },
+            {
+                "pergunta": "Qual é o tipo de dado da variável x em: x = 1, 2, 3?",
+                "resposta_correta": "tuple"
+            },
+            {
+                "pergunta": "A palavra-chave 'in' é usada para verificar pertinência?",
+                "resposta_correta": "Sim"
+            },
+            {
+                "pergunta": "A palavra-chave 'is' verifica igualdade de valor ou de identidade de objeto?",
+                "resposta_correta": "Identidade"
+            },
+            {
+                "pergunta": "Qual palavra-chave é usada para importar módulos?",
+                "resposta_correta": "import"
+            },
+            {
+                "pergunta": "Qual palavra-chave é usada junto com 'import' para importar partes específicas de um módulo?",
+                "resposta_correta": "from"
+            },
+            {
+                "pergunta": "Qual função retorna o tamanho (comprimento) de uma string?",
+                "resposta_correta": "len()"
+            },
+            {
+                "pergunta": "Variáveis em Python precisam ter seu tipo declarado explicitamente antes da atribuição?",
+                "resposta_correta": "Não"
+            },
+            {
+                "pergunta": "O que a função float(\"10.5\") retorna?",
+                "resposta_correta": "10.5"
+            },
+            {
+                "pergunta": "O que a função int(3.9) retorna?",
+                "resposta_correta": "3"
+            },
+            {
+                "pergunta": "Qual operador é usado para obter o resto da divisão?",
+                "resposta_correta": "%"
+            }
+        ],
+        "difícil": [
+            {
+                "pergunta": "Strings em Python são mutáveis ou imutáveis?",
+                "resposta_correta": "Imutáveis"
+            },
+            {
+                "pergunta": "Inteiros em Python são mutáveis ou imutáveis?",
+                "resposta_correta": "Imutáveis"
+            },
+            {
+                "pergunta": "Qual função retorna o identificador único de memória de um objeto?",
+                "resposta_correta": "id()"
+            },
+            {
+                "pergunta": "Qual palavra-chave é usada para declarar uma função anônima?",
+                "resposta_correta": "lambda"
+            },
+            {
+                "pergunta": "Qual palavra-chave é usada para indicar que uma variável dentro de uma função refere-se a uma variável global?",
+                "resposta_correta": "global"
+            },
+            {
+                "pergunta": "Qual palavra-chave é usada para criar uma variável que não é local nem global (em funções aninhadas)?",
+                "resposta_correta": "nonlocal"
+            },
+            {
+                "pergunta": "Qual palavra-chave é usada em testes lógicos para não fazer nada (operação nula)?",
+                "resposta_correta": "pass"
+            },
+            {
+                "pergunta": "Qual palavra-chave é usada para lançar uma exceção se uma condição for falsa (debug)?",
+                "resposta_correta": "assert"
+            },
+            {
+                "pergunta": "Qual palavra-chave é utilizada para criar um gerenciador de contexto (context manager)?",
+                "resposta_correta": "with"
+            },
+            {
+                "pergunta": "Qual palavra-chave transforma uma função em um gerador?",
+                "resposta_correta": "yield"
+            },
+            {
+                "pergunta": "Segundo a PEP 8, qual convenção de nomeação deve ser usada para constantes?",
+                "resposta_correta": "UPPER_CASE"
+            },
+            {
+                "pergunta": "A palavra-chave 'await' é usada em qual contexto de programação?",
+                "resposta_correta": "Assíncrona"
+            },
+            {
+                "pergunta": "Qual é o tipo retornado por type(type(1))?",
+                "resposta_correta": "type"
+            },
+            {
+                "pergunta": "Em Python, tudo (funções, números, strings) é considerado um...?",
+                "resposta_correta": "Objeto"
+            },
+            {
+                "pergunta": "O que acontece com uma variável local quando a função termina a execução?",
+                "resposta_correta": "É destruída"
+            },
+            {
+                "pergunta": "Qual o nome do mecanismo do Python que remove objetos sem referência da memória?",
+                "resposta_correta": "Garbage Collector"
+            },
+            {
+                "pergunta": "É possível usar acentos (ex: ç, ã) em nomes de variáveis no Python 3?",
+                "resposta_correta": "Sim"
+            },
+            {
+                "pergunta": "Qual palavra-chave é usada para lançar manualmente um erro/exceção?",
+                "resposta_correta": "raise"
+            },
+            {
+                "pergunta": "Números complexos são um tipo de dado nativo em Python?",
+                "resposta_correta": "Sim"
+            },
+            {
+                "pergunta": "Qual sufixo é usado para definir a parte imaginária de um número complexo em Python (ex: 3 + 4...)?",
+                "resposta_correta": "j"
+            }
+        ]
+    },
+
+    "Lógica e estruturas condicionais (if, else, elif)": {
+        "fácil": [
+            { "pergunta": "Qual palavra-chave inicia uma estrutura condicional?", "resposta_correta": "if" },
+            { "pergunta": "Qual palavra-chave é usada para executar um bloco caso o 'if' seja falso?", "resposta_correta": "else" },
+            { "pergunta": "O que significa 'elif'?", "resposta_correta": "else if" },
+            { "pergunta": "Qual operador verifica se dois valores são iguais?", "resposta_correta": "==" },
+            { "pergunta": "Qual operador verifica se dois valores são diferentes?", "resposta_correta": "!=" },
+            { "pergunta": "Qual operador verifica se um valor é maior que outro?", "resposta_correta": ">" },
+            { "pergunta": "Qual operador verifica se um valor é menor que outro?", "resposta_correta": "<" },
+            { "pergunta": "Qual operador lógico retorna True se ambas as condições forem verdadeiras?", "resposta_correta": "and" },
+            { "pergunta": "Qual operador lógico retorna True se pelo menos uma condição for verdadeira?", "resposta_correta": "or" },
+            { "pergunta": "Qual operador inverte o valor booleano (True vira False)?", "resposta_correta": "not" },
+            { "pergunta": "O Python usa chaves {} ou indentação para definir blocos de código?", "resposta_correta": "Indentação" },
+            { "pergunta": "O que acontece se a indentação do bloco 'if' estiver incorreta?", "resposta_correta": "Erro de Indentação" },
+            { "pergunta": "É obrigatório ter um 'else' para cada 'if'?", "resposta_correta": "Não" },
+            { "pergunta": "Qual é o resultado de: if True: print('A') else: print('B')?", "resposta_correta": "A" },
+            { "pergunta": "Qual é o resultado de: if False: print('A') else: print('B')?", "resposta_correta": "B" },
+            { "pergunta": "O operador '>=' significa o quê?", "resposta_correta": "Maior ou igual" },
+            { "pergunta": "O operador '<=' significa o quê?", "resposta_correta": "Menor ou igual" },
+            { "pergunta": "Para comparar strings por igualdade, qual operador usamos?", "resposta_correta": "==" },
+            { "pergunta": "Quantos blocos 'elif' podem existir em uma estrutura condicional?", "resposta_correta": "Quantos forem necessários" },
+            { "pergunta": "O ':' (dois pontos) é obrigatório no final da linha do 'if'?", "resposta_correta": "Sim" }
+        ],
+        "médio": [
+            { "pergunta": "O que é 'if aninhado'?", "resposta_correta": "Um if dentro de outro if" },
+            { "pergunta": "Qual é a ordem de precedência: 'and' é avaliado antes ou depois de 'or'?", "resposta_correta": "Antes" },
+            { "pergunta": "O que retorna a expressão: True or False and False?", "resposta_correta": "True" },
+            { "pergunta": "O que retorna a expressão: (True or False) and False?", "resposta_correta": "False" },
+            { "pergunta": "Qual valor numérico é considerado False em uma condição?", "resposta_correta": "0" },
+            { "pergunta": "Uma string vazia \"\" é considerada True ou False em um 'if'?", "resposta_correta": "False" },
+            { "pergunta": "Uma lista vazia [] é considerada True ou False?", "resposta_correta": "False" },
+            { "pergunta": "Como verificar se um valor 'x' está entre 10 e 20 (inclusive)?", "resposta_correta": "10 <= x <= 20" },
+            { "pergunta": "Qual a estrutura simplificada de um if/else em uma linha (ternário)?", "resposta_correta": "valor_se_true if condicao else valor_se_false" },
+            { "pergunta": "O operador 'not' tem precedência sobre 'and'?", "resposta_correta": "Sim" },
+            { "pergunta": "Qual operador verifica se um valor NÃO é igual a outro?", "resposta_correta": "!=" },
+            { "pergunta": "Se x = 5, o que imprime: 'Sim' if x > 10 else 'Não'?", "resposta_correta": "Não" },
+            { "pergunta": "É possível usar 'pass' dentro de um bloco 'if' para não fazer nada?", "resposta_correta": "Sim" },
+            { "pergunta": "Em uma cadeia if-elif-else, quantos blocos são executados se múltiplas condições forem verdadeiras?", "resposta_correta": "Apenas o primeiro verdadeiro" },
+            { "pergunta": "O que a palavra-chave 'in' faz em uma condição?", "resposta_correta": "Verifica pertinência" },
+            { "pergunta": "Qual o resultado de 'not True'?", "resposta_correta": "False" },
+            { "pergunta": "Qual o resultado de 'not False'?", "resposta_correta": "True" },
+            { "pergunta": "O Python suporta a estrutura 'switch/case' nativa em versões antigas (antes da 3.10)?", "resposta_correta": "Não" },
+            { "pergunta": "Qual é o equivalente ao 'switch/case' introduzido no Python 3.10?", "resposta_correta": "match/case" },
+            { "pergunta": "Se 'a' é True e 'b' é False, 'a and b' retorna o quê?", "resposta_correta": "False" }
+        ],
+        "difícil": [
+            { "pergunta": "O que é avaliação de curto-circuito (short-circuit) no operador 'and'?", "resposta_correta": "Se o primeiro for False, não avalia o segundo" },
+            { "pergunta": "O que é avaliação de curto-circuito no operador 'or'?", "resposta_correta": "Se o primeiro for True, não avalia o segundo" },
+            { "pergunta": "O que retorna: 0 or 'texto'?", "resposta_correta": "'texto'" },
+            { "pergunta": "O que retorna: 'a' and 'b'?", "resposta_correta": "'b'" },
+            { "pergunta": "O que acontece se tentarmos: if x = 10: (usando um único igual)?", "resposta_correta": "Erro de Sintaxe" },
+            { "pergunta": "Qual valor 'None' assume em um contexto booleano?", "resposta_correta": "False" },
+            { "pergunta": "No 'match/case', qual caractere funciona como curinga (wildcard) para o caso default?", "resposta_correta": "_" },
+            { "pergunta": "Qual a diferença entre '==' e 'is'?", "resposta_correta": "Valor vs Identidade na memória" },
+            { "pergunta": "O que a expressão 'all([])' retorna?", "resposta_correta": "True" },
+            { "pergunta": "O que a expressão 'any([])' retorna?", "resposta_correta": "False" },
+            { "pergunta": "É possível ter um 'if' em uma única linha sem 'else'?", "resposta_correta": "Sim" },
+            { "pergunta": "Como negar uma verificação de pertinência ('x está na lista') de forma pythonica?", "resposta_correta": "x not in lista" },
+            { "pergunta": "Qual a prioridade: operadores relacionais (>, <) ou lógicos (and, or)?", "resposta_correta": "Relacionais" },
+            { "pergunta": "O que significa o termo 'Truthy'?", "resposta_correta": "Valor que avalia como True em contexto booleano" },
+            { "pergunta": "Um objeto de uma classe personalizada é True ou False por padrão?", "resposta_correta": "True" },
+            { "pergunta": "Qual método mágico define o comportamento booleano de uma classe?", "resposta_correta": "__bool__" },
+            { "pergunta": "Se __bool__ não for definido, qual método o Python tenta usar para verificar veracidade?", "resposta_correta": "__len__" },
+            { "pergunta": "No Python 3.8+, o que faz o operador 'walrus' (:=) dentro de um if?", "resposta_correta": "Atribui e retorna o valor na condição" },
+            { "pergunta": "O que retorna: True + True?", "resposta_correta": "2" },
+            { "pergunta": "Em lógica booleana, qual a lei que diz que 'not (A and B)' é igual a '(not A) or (not B)'?", "resposta_correta": "Leis de De Morgan" }
+        ]
+    },
+    "Estrutura de repetição (loops for e while)": {
+        "fácil": [
+            { "pergunta": "Qual loop é usado quando sabemos a quantidade de vezes que queremos repetir?", "resposta_correta": "for" },
+            { "pergunta": "Qual loop é usado quando queremos repetir enquanto uma condição for verdadeira?", "resposta_correta": "while" },
+            { "pergunta": "Qual função gera uma sequência de números para usar no 'for'?", "resposta_correta": "range()" },
+            { "pergunta": "O comando 'break' faz o quê?", "resposta_correta": "Para o loop imediatamente" },
+            { "pergunta": "O que range(5) gera?", "resposta_correta": "0, 1, 2, 3, 4" },
+            { "pergunta": "O loop 'for' pode iterar sobre uma string?", "resposta_correta": "Sim" },
+            { "pergunta": "Como se chama um loop que nunca termina?", "resposta_correta": "Loop infinito" },
+            { "pergunta": "Qual palavra-chave pula para a próxima iteração do loop?", "resposta_correta": "continue" },
+            { "pergunta": "O 'while' precisa de dois pontos (:) no final da linha?", "resposta_correta": "Sim" },
+            { "pergunta": "O 'for' precisa de dois pontos (:) no final da linha?", "resposta_correta": "Sim" },
+            { "pergunta": "Qual a sintaxe básica para iterar 'item' em 'lista'?", "resposta_correta": "for item in lista:" },
+            { "pergunta": "O que acontece se a condição do 'while' for inicialmente False?", "resposta_correta": "O loop não executa nenhuma vez" },
+            { "pergunta": "Como imprimir números de 0 a 9 usando range?", "resposta_correta": "range(10)" },
+            { "pergunta": "Podemos colocar um loop dentro de outro loop?", "resposta_correta": "Sim" },
+            { "pergunta": "No range(1, 5), o número 5 é incluído?", "resposta_correta": "Não" },
+            { "pergunta": "O que faz: while True:?", "resposta_correta": "Cria um loop infinito" },
+            { "pergunta": "Qual variável geralmente armazena o item atual no loop for?", "resposta_correta": "Variável iteradora" },
+            { "pergunta": "É possível iterar sobre uma lista?", "resposta_correta": "Sim" },
+            { "pergunta": "É preciso incrementar manualmente a variável no 'for' do Python?", "resposta_correta": "Não" },
+            { "pergunta": "É preciso atualizar a condição de parada dentro de um 'while' para evitar loop infinito?", "resposta_correta": "Sim" }
+        ],
+        "médio": [
+            { "pergunta": "O que faz range(2, 10, 2)?", "resposta_correta": "Gera 2, 4, 6, 8" },
+            { "pergunta": "Qual é o terceiro argumento da função range()?", "resposta_correta": "Passo (step)" },
+            { "pergunta": "Como fazer um loop reverso de 10 a 1 com range?", "resposta_correta": "range(10, 0, -1)" },
+            { "pergunta": "O 'else' pode ser usado junto com 'for' e 'while'?", "resposta_correta": "Sim" },
+            { "pergunta": "Quando o bloco 'else' de um loop é executado?", "resposta_correta": "Quando o loop termina normalmente (sem break)" },
+            { "pergunta": "Se um loop for interrompido por 'break', o 'else' do loop é executado?", "resposta_correta": "Não" },
+            { "pergunta": "Qual função permite iterar sobre índice e valor ao mesmo tempo?", "resposta_correta": "enumerate()" },
+            { "pergunta": "Como iterar sobre duas listas simultaneamente?", "resposta_correta": "zip()" },
+            { "pergunta": "O que acontece se iterarmos sobre um dicionário diretamente?", "resposta_correta": "Itera sobre as chaves" },
+            { "pergunta": "Podemos alterar o tamanho de uma lista enquanto iteramos sobre ela com 'for'?", "resposta_correta": "Não é recomendado (pode causar erros)" },
+            { "pergunta": "Qual o tipo de objeto retornado por range() no Python 3?", "resposta_correta": "objeto range" },
+            { "pergunta": "O 'do-while' existe nativamente em Python?", "resposta_correta": "Não" },
+            { "pergunta": "Como iterar apenas sobre os valores de um dicionário?", "resposta_correta": "dicionario.values()" },
+            { "pergunta": "Como iterar sobre chaves e valores de um dicionário?", "resposta_correta": "dicionario.items()" },
+            { "pergunta": "O que a instrução 'pass' faz dentro de um loop?", "resposta_correta": "Nada (placeholder)" },
+            { "pergunta": "O que imprime: for x in 'Oi': print(x)?", "resposta_correta": "'O' e depois 'i'" },
+            { "pergunta": "Como parar um loop aninhado (loop dentro de loop)?", "resposta_correta": "Break para apenas o loop interno" },
+            { "pergunta": "O objeto range consome muita memória se o intervalo for grande?", "resposta_correta": "Não (gera sob demanda)" },
+            { "pergunta": "Qual comando é usado para pular o resto do código no loop e voltar ao início?", "resposta_correta": "continue" },
+            { "pergunta": "Quantas vezes 'for i in range(0):' executa?", "resposta_correta": "Zero" }
+        ],
+        "difícil": [
+            { "pergunta": "O que são 'list comprehensions'?", "resposta_correta": "Sintaxe concisa para criar listas a partir de loops" },
+            { "pergunta": "O 'break' em um loop interno para o loop externo também?", "resposta_correta": "Não" },
+            { "pergunta": "O que é um 'iterável' em Python?", "resposta_correta": "Objeto capaz de retornar seus membros um de cada vez" },
+            { "pergunta": "O que é um 'iterador' em Python?", "resposta_correta": "Objeto que tem o método __next__" },
+            { "pergunta": "Qual função transforma um iterável em um iterador?", "resposta_correta": "iter()" },
+            { "pergunta": "Qual exceção é levantada quando um iterador não tem mais itens?", "resposta_correta": "StopIteration" },
+            { "pergunta": "Como criar um loop infinito usando iter() e um sentinela?", "resposta_correta": "iter(funcao, sentinela)" },
+            { "pergunta": "A variável definida no 'for' (ex: for x in...) continua existindo após o loop?", "resposta_correta": "Sim (vaza o escopo)" },
+            { "pergunta": "O que acontece se o argumento 'step' no range for 0?", "resposta_correta": "ValueError" },
+            { "pergunta": "Como modificar uma lista enquanto itera sobre ela com segurança?", "resposta_correta": "Iterar sobre uma cópia ou slice [:]" },
+            { "pergunta": "É possível usar 'yield' dentro de um loop para criar um gerador?", "resposta_correta": "Sim" },
+            { "pergunta": "O que o underscore (_) indica quando usado como variável no for?", "resposta_correta": "Que a variável não será usada" },
+            { "pergunta": "Qual a complexidade de tempo de iterar uma lista de tamanho n?", "resposta_correta": "O(n)" },
+            { "pergunta": "O 'else' em um loop 'while' executa se a condição inicial for falsa?", "resposta_correta": "Sim" },
+            { "pergunta": "A função zip() para quando a menor lista termina ou quando a maior termina?", "resposta_correta": "Quando a menor termina" },
+            { "pergunta": "Qual módulo fornece a função zip_longest para iterar até a maior lista acabar?", "resposta_correta": "itertools" },
+            { "pergunta": "Em list comprehension, onde vai a condição 'if' para filtrar itens?", "resposta_correta": "No final" },
+            { "pergunta": "Em list comprehension, onde vai o 'if/else' para modificar o valor retornado?", "resposta_correta": "No início" },
+            { "pergunta": "Loops 'for' em Python são baseados em contadores ou em iteradores?", "resposta_correta": "Iteradores" },
+            { "pergunta": "Qual método mágico permite que um objeto seja usado em um loop 'for'?", "resposta_correta": "__iter__" }
+        ]
+    },
+    "Funções e modularização (def, return)": {
+        "fácil": [
+            { "pergunta": "Qual palavra-chave define uma função?", "resposta_correta": "def" },
+            { "pergunta": "Qual palavra-chave retorna um valor da função?", "resposta_correta": "return" },
+            { "pergunta": "Como se chama a variável dentro dos parênteses na definição da função?", "resposta_correta": "Parâmetro" },
+            { "pergunta": "Como se chama o valor enviado para a função quando ela é chamada?", "resposta_correta": "Argumento" },
+            { "pergunta": "Uma função pode não retornar nada?", "resposta_correta": "Sim" },
+            { "pergunta": "Se uma função não tem 'return', o que ela retorna por padrão?", "resposta_correta": "None" },
+            { "pergunta": "Como chamamos uma função chamada 'minha_funcao'?", "resposta_correta": "minha_funcao()" },
+            { "pergunta": "O código dentro da função precisa ser indentado?", "resposta_correta": "Sim" },
+            { "pergunta": "Podemos chamar uma função dentro de outra função?", "resposta_correta": "Sim" },
+            { "pergunta": "O que é o escopo local?", "resposta_correta": "Variáveis dentro da função" },
+            { "pergunta": "O que é o escopo global?", "resposta_correta": "Variáveis fora de qualquer função" },
+            { "pergunta": "A execução da função termina imediatamente após o comando 'return'?", "resposta_correta": "Sim" },
+            { "pergunta": "É possível definir uma função sem parâmetros?", "resposta_correta": "Sim" },
+            { "pergunta": "Para documentar uma função, usamos strings chamadas de...?", "resposta_correta": "Docstrings" },
+            { "pergunta": "As Docstrings devem vir antes ou depois da linha 'def'?", "resposta_correta": "Depois (primeira linha do corpo)" },
+            { "pergunta": "Qual o propósito de modularização?", "resposta_correta": "Organizar e reutilizar código" },
+            { "pergunta": "Uma função pode retornar mais de um valor?", "resposta_correta": "Sim" },
+            { "pergunta": "Qual caractere separa os parâmetros na definição da função?", "resposta_correta": "Vírgula" },
+            { "pergunta": "Nomes de funções devem seguir qual estilo (snake_case ou CamelCase)?", "resposta_correta": "snake_case" },
+            { "pergunta": "Podemos usar o mesmo nome para uma variável local e uma global?", "resposta_correta": "Sim" }
+        ],
+        "médio": [
+            { "pergunta": "O que são argumentos padrão (default arguments)?", "resposta_correta": "Parâmetros com valores iniciais definidos" },
+            { "pergunta": "Onde devem ficar os argumentos padrão: antes ou depois dos argumentos sem padrão?", "resposta_correta": "Depois" },
+            { "pergunta": "O que são argumentos nomeados (keyword arguments)?", "resposta_correta": "Chamar passando nome_parametro=valor" },
+            { "pergunta": "Se uma função retorna 'a, b', qual é o tipo de dado do retorno?", "resposta_correta": "Tupla" },
+            { "pergunta": "O que a palavra-chave 'global' faz dentro de uma função?", "resposta_correta": "Permite modificar uma variável global" },
+            { "pergunta": "Uma variável criada dentro de uma função é visível fora dela?", "resposta_correta": "Não" },
+            { "pergunta": "O que é uma função lambda?", "resposta_correta": "Uma função anônima de uma linha" },
+            { "pergunta": "Qual a sintaxe para criar uma lambda que soma x e y?", "resposta_correta": "lambda x, y: x + y" },
+            { "pergunta": "O que significa o parâmetro *args?", "resposta_correta": "Recebe múltiplos argumentos posicionais" },
+            { "pergunta": "Qual o tipo de dado de *args dentro da função?", "resposta_correta": "Tupla" },
+            { "pergunta": "O que significa o parâmetro **kwargs?", "resposta_correta": "Recebe múltiplos argumentos nomeados" },
+            { "pergunta": "Qual o tipo de dado de **kwargs dentro da função?", "resposta_correta": "Dicionário" },
+            { "pergunta": "As funções em Python são objetos de primeira classe?", "resposta_correta": "Sim" },
+            { "pergunta": "Podemos passar uma função como argumento para outra função?", "resposta_correta": "Sim" },
+            { "pergunta": "O que é recursão?", "resposta_correta": "Uma função chamar a si mesma" },
+            { "pergunta": "Toda função recursiva precisa ter o quê para não travar?", "resposta_correta": "Caso base (condição de parada)" },
+            { "pergunta": "Podemos aninhar definições de funções (função dentro de função)?", "resposta_correta": "Sim" },
+            { "pergunta": "O que acontece se chamarmos uma função com menos argumentos do que o exigido?", "resposta_correta": "TypeError" },
+            { "pergunta": "Docstrings podem ser acessadas por qual atributo da função?", "resposta_correta": "__doc__" },
+            { "pergunta": "O que é 'type hinting' em funções?", "resposta_correta": "Anotação de tipos de parâmetros e retorno" }
+        ],
+        "difícil": [
+            { "pergunta": "O que acontece se usarmos uma lista vazia [] como valor padrão de um argumento?", "resposta_correta": "O valor é compartilhado entre chamadas (mutável)" },
+            { "pergunta": "Qual a solução para o problema do argumento padrão mutável?", "resposta_correta": "Usar None como padrão e inicializar dentro" },
+            { "pergunta": "O que é um 'decorator'?", "resposta_correta": "Função que modifica outra função" },
+            { "pergunta": "Qual símbolo é usado para aplicar um decorator?", "resposta_correta": "@" },
+            { "pergunta": "O que é o conceito de 'closure'?", "resposta_correta": "Função interna lembrando do ambiente da externa" },
+            { "pergunta": "A palavra-chave 'nonlocal' serve para quê?", "resposta_correta": "Modificar variável de escopo aninhado (não global)" },
+            { "pergunta": "Qual o limite padrão de profundidade de recursão no Python?", "resposta_correta": "1000" },
+            { "pergunta": "Como aumentar o limite de recursão?", "resposta_correta": "sys.setrecursionlimit()" },
+            { "pergunta": "O que é 'unpacking' de argumentos na chamada da função?", "resposta_correta": "Usar *lista ou **dict para passar valores" },
+            { "pergunta": "Uma função pode ter atributos próprios (ex: funcao.atributo = 1)?", "resposta_correta": "Sim" },
+            { "pergunta": "Qual módulo ajuda a criar 'partial functions'?", "resposta_correta": "functools" },
+            { "pergunta": "O que o decorador @staticmethod faz?", "resposta_correta": "Define método que não recebe 'self' nem 'cls'" },
+            { "pergunta": "O que o decorador @classmethod faz?", "resposta_correta": "Define método que recebe a classe (cls) como 1º arg" },
+            { "pergunta": "Na definição def func(a, /, b):, o que a barra '/' indica?", "resposta_correta": "'a' deve ser apenas posicional" },
+            { "pergunta": "Na definição def func(a, *, b):, o que o asterisco '*' indica?", "resposta_correta": "'b' deve ser apenas nomeado" },
+            { "pergunta": "O que é 'currying'?", "resposta_correta": "Transformar função de n argumentos em n funções de 1 argumento" },
+            { "pergunta": "Funções lambda podem conter comandos como 'print' ou 'return' explícito?", "resposta_correta": "Não (apenas expressões)" },
+            { "pergunta": "O que é o 'LEGB rule' para escopo?", "resposta_correta": "Local, Enclosing, Global, Built-in" },
+            { "pergunta": "O que a função map() retorna?", "resposta_correta": "Um iterador (map object)" },
+            { "pergunta": "Qual a diferença entre uma função geradora e uma normal?", "resposta_correta": "Usa 'yield' e retorna um gerador" }
+        ]
+    },
+    "Listas e Dicionários (criação, acesso, métodos básicos)": {
+        "fácil": [
+            { "pergunta": "Qual símbolo é usado para criar listas?", "resposta_correta": "Colchetes []" },
+            { "pergunta": "Qual símbolo é usado para criar dicionários?", "resposta_correta": "Chaves {}" },
+            { "pergunta": "Listas são ordenadas?", "resposta_correta": "Sim" },
+            { "pergunta": "Qual o índice do primeiro elemento de uma lista?", "resposta_correta": "0" },
+            { "pergunta": "Como acessar o valor associado à chave 'k' no dicionário 'd'?", "resposta_correta": "d['k']" },
+            { "pergunta": "Qual método adiciona um item ao final da lista?", "resposta_correta": "append()" },
+            { "pergunta": "Qual função retorna o número de itens em uma lista ou dicionário?", "resposta_correta": "len()" },
+            { "pergunta": "Dicionários permitem chaves duplicadas?", "resposta_correta": "Não" },
+            { "pergunta": "Listas permitem valores duplicados?", "resposta_correta": "Sim" },
+            { "pergunta": "Listas são mutáveis (podem ser alteradas)?", "resposta_correta": "Sim" },
+            { "pergunta": "Qual método remove o último item da lista?", "resposta_correta": "pop()" },
+            { "pergunta": "Como verificar se o valor 'x' está na lista?", "resposta_correta": "x in lista" },
+            { "pergunta": "Qual estrutura armazena dados em pares chave-valor?", "resposta_correta": "Dicionário" },
+            { "pergunta": "Como acessar o último item de uma lista usando índice negativo?", "resposta_correta": "-1" },
+            { "pergunta": "Podemos ter tipos de dados misturados em uma lista?", "resposta_correta": "Sim" },
+            { "pergunta": "Qual método ordena a lista original?", "resposta_correta": "sort()" },
+            { "pergunta": "Como criar uma lista vazia?", "resposta_correta": "[] ou list()" },
+            { "pergunta": "Como criar um dicionário vazio?", "resposta_correta": "{}" },
+            { "pergunta": "O que acontece se acessar um índice que não existe na lista?", "resposta_correta": "IndexError" },
+            { "pergunta": "O que acontece se acessar uma chave que não existe no dicionário?", "resposta_correta": "KeyError" }
+        ],
+        "médio": [
+            { "pergunta": "Como obter uma sub-lista (fatiamento) dos índices 1 a 3?", "resposta_correta": "lista[1:4]" },
+            { "pergunta": "Qual método insere um item em uma posição específica da lista?", "resposta_correta": "insert()" },
+            { "pergunta": "Qual método adiciona elementos de uma lista em outra lista (extensão)?", "resposta_correta": "extend()" },
+            { "pergunta": "Como remover um item da lista pelo seu valor (não índice)?", "resposta_correta": "remove()" },
+            { "pergunta": "Qual método de dicionário retorna o valor da chave ou um padrão se não existir?", "resposta_correta": "get()" },
+            { "pergunta": "Como obter todas as chaves de um dicionário?", "resposta_correta": "keys()" },
+            { "pergunta": "Como obter todos os valores de um dicionário?", "resposta_correta": "values()" },
+            { "pergunta": "O que lista[::-1] faz?", "resposta_correta": "Inverte a lista" },
+            { "pergunta": "Qual a diferença entre sort() e sorted()?", "resposta_correta": "sort() altera a lista, sorted() retorna nova lista" },
+            { "pergunta": "Como remover uma chave de um dicionário?", "resposta_correta": "del d['chave'] ou d.pop('chave')" },
+            { "pergunta": "O que o método items() retorna em um dicionário?", "resposta_correta": "Pares (chave, valor)" },
+            { "pergunta": "É possível usar uma lista como chave de dicionário?", "resposta_correta": "Não (lista é mutável)" },
+            { "pergunta": "É possível usar uma tupla como chave de dicionário?", "resposta_correta": "Sim (se itens da tupla forem imutáveis)" },
+            { "pergunta": "Qual comando apaga todos os itens da lista?", "resposta_correta": "clear()" },
+            { "pergunta": "Como contar quantas vezes o item 'x' aparece na lista?", "resposta_correta": "count()" },
+            { "pergunta": "O que acontece se somarmos duas listas (lista1 + lista2)?", "resposta_correta": "Concatenação (nova lista)" },
+            { "pergunta": "O que acontece se multiplicarmos uma lista por um inteiro (lista * 3)?", "resposta_correta": "Repete os elementos 3 vezes" },
+            { "pergunta": "Dicionários preservam a ordem de inserção (Python 3.7+)?", "resposta_correta": "Sim" },
+            { "pergunta": "O método popitem() no dicionário remove qual item?", "resposta_correta": "O último inserido (LIFO)" },
+            { "pergunta": "Como mesclar dois dicionários no Python 3.9+?", "resposta_correta": "d1 | d2" }
+        ],
+        "difícil": [
+            { "pergunta": "O que é 'List Comprehension'?", "resposta_correta": "Criação concisa de listas [x for x in iteravel]" },
+            { "pergunta": "O que é 'Dict Comprehension'?", "resposta_correta": "Criação concisa de dicts {k:v for k,v in iteravel}" },
+            { "pergunta": "Qual a diferença entre cópia rasa (shallow copy) e profunda (deep copy)?", "resposta_correta": "Shallow copia referências, Deep copia objetos recursivamente" },
+            { "pergunta": "Como fazer uma deep copy de uma lista?", "resposta_correta": "copy.deepcopy()" },
+            { "pergunta": "O que lista1 = lista2 faz?", "resposta_correta": "Cria uma referência (alias), não uma cópia" },
+            { "pergunta": "Qual método de dicionário insere a chave se não existir, mas retorna o valor se existir?", "resposta_correta": "setdefault()" },
+            { "pergunta": "O que acontece se tentarmos criar um dicionário com duas chaves iguais na definição?", "resposta_correta": "A última chave sobrescreve a anterior" },
+            { "pergunta": "Para ser chave de dicionário, o objeto precisa ser...", "resposta_correta": "Hashable (dispor de hash)" },
+            { "pergunta": "Qual método remove e retorna um item de índice arbitrário da lista?", "resposta_correta": "pop(indice)" },
+            { "pergunta": "Como criar um dicionário a partir de duas listas (chaves e valores)?", "resposta_correta": "dict(zip(chaves, valores))" },
+            { "pergunta": "O que é um defaultdict?", "resposta_correta": "Dict que gera valor padrão para chaves inexistentes" },
+            { "pergunta": "De qual módulo vem o defaultdict?", "resposta_correta": "collections" },
+            { "pergunta": "O operador 'in' é mais rápido em listas ou dicionários?", "resposta_correta": "Dicionários (O(1) vs O(n))" },
+            { "pergunta": "Como ordenar uma lista de dicionários por uma chave específica?", "resposta_correta": "sort(key=lambda x: x['chave'])" },
+            { "pergunta": "O método fromkeys() cria um dicionário com...", "resposta_correta": "Chaves do iterável e mesmo valor para todas" },
+            { "pergunta": "Qual a complexidade de tempo média para acessar um item em lista pelo índice?", "resposta_correta": "O(1)" },
+            { "pergunta": "Qual a complexidade de tempo para inserir no início de uma lista?", "resposta_correta": "O(n)" },
+            { "pergunta": "Qual estrutura de dados é alternativa à lista para inserções rápidas nas pontas?", "resposta_correta": "deque (do collections)" },
+            { "pergunta": "É possível modificar uma lista enquanto itera sobre ela com 'for x in lista'?", "resposta_correta": "Perigoso/Errado (pode pular itens)" },
+            { "pergunta": "Qual método remove a primeira ocorrência de um valor na lista?", "resposta_correta": "remove()" }
+        ]
+    }
 }
